@@ -30,6 +30,7 @@ public class BMIServlet extends HttpServlet {
 		// Controller: 檢查參數的正確性
 		Args result = null;
 		Double bmiValue = null;
+		String diagnosis = null;
 		double h = 0, w = 0;
 		try {
 			h = Double.parseDouble(height); // 將字串轉 double
@@ -42,6 +43,7 @@ public class BMIServlet extends HttpServlet {
 		// Model: 計算BMI
 		if(result.equals(Args.OK)) {
 			bmiValue = bmiService.calcBmi(h, w); // 透過 model 來計算 bmi
+			diagnosis = bmiService.getDiagnosis(bmiValue); // 診斷
 		}
 		
 		// View: 呈現 BMI 資料
@@ -53,6 +55,7 @@ public class BMIServlet extends HttpServlet {
 		req.setAttribute("w", w);
 		req.setAttribute("bmiValue", bmiValue);
 		req.setAttribute("result", result);
+		req.setAttribute("diagnosis", diagnosis);
 		
 		// 傳送
 		rd.forward(req, resp);
