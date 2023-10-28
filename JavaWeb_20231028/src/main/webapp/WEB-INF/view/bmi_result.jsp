@@ -12,5 +12,6 @@
 	<h2>體重: ${ w } kg</h2>
 	<h2>BMI: ${ bmiValue }</h2>
 	<h2>結果: ${ result }</h2>
+	<h2>診斷: ${ diagnosis }</h2>
 </body>
 </html>
