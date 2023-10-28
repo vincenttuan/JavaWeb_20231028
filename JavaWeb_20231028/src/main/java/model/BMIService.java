@@ -15,4 +15,8 @@ public class BMIService {
 		return bmiValue;
 	}
 	
+	public String getDiagnosis(double bmiValue) {
+		return bmiValue > 23 ? "過重" : bmiValue <= 18 ? "過輕" : "正常";
+	}
+	
 }
