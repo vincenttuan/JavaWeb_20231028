@@ -8,9 +8,9 @@
 </head>
 <body>
 	<h1>BMI Result</h1><p />
-	<h2>身高: { h } cm</h2><br />
-	<h2>體重: { w } kg</h2><br />
-	<h2>BMI: { bmiValue }</h2><br />
-	<h2>結果: { result }</h2><br />
+	<h2>身高: ${ h } cm</h2>
+	<h2>體重: ${ w } kg</h2>
+	<h2>BMI: ${ bmiValue }</h2>
+	<h2>結果: ${ result }</h2>
 </body>
 </html>
