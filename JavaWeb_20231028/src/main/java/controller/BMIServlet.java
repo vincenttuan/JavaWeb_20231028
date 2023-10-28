@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -43,11 +44,19 @@ public class BMIServlet extends HttpServlet {
 			bmiValue = bmiService.calcBmi(h, w); // 透過 model 來計算 bmi
 		}
 		
-		// View: 呈現BMI 資料
-		resp.getWriter().println("h=" + height);
-		resp.getWriter().println("w=" + weight);
-		resp.getWriter().println("bmi=" + bmiValue);
-		resp.getWriter().println("result=" + result);
+		// View: 呈現 BMI 資料
+		// 利用 Dispatcher 分派器
+		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/bmi_result.jsp");
+		
+		// 準備要送的資料
+		req.setAttribute("h", h);
+		req.setAttribute("w", w);
+		req.setAttribute("bmiValue", bmiValue);
+		req.setAttribute("result", result);
+		
+		// 傳送
+		rd.forward(req, resp);
+		
 	}
 	
 }
