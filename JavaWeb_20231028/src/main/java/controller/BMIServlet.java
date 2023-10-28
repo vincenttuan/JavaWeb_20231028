@@ -8,6 +8,10 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+enum Args {
+	OK, Error
+}
+
 // 設定 Servlet 參數
 @WebServlet(value = {"/controller/bmi"})
 public class BMIServlet extends HttpServlet {
@@ -19,19 +23,19 @@ public class BMIServlet extends HttpServlet {
 		String weight = req.getParameter("w"); // 體重
 		
 		// Controller: 檢查參數的正確性
-		String result = null;
+		Args result = null;
 		Double bmiValue = null;
 		double h = 0, w = 0;
 		try {
 			h = Double.parseDouble(height); // 將字串轉 double
 			w = Double.parseDouble(weight); // 將字串轉 double
-			result = "OK";
+			result = Args.OK;
 		} catch (Exception e) {
-			result = "Error";
+			result = Args.Error;
 		}
 		
 		// Model: 計算BMI
-		if(result.equals("OK")) {
+		if(result.equals(Args.OK)) {
 			bmiValue = w / Math.pow(h/100, 2); // bmi 計算公式
 		}
 		
