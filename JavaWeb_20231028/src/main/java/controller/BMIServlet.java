@@ -14,20 +14,27 @@ public class BMIServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// 取得 url 參數
+		// Controller: 取得 url 參數
 		String height = req.getParameter("h"); // 身高
 		String weight = req.getParameter("w"); // 體重
 		
-		resp.getWriter().println("h=" + height);
-		resp.getWriter().println("w=" + weight);
-		
 		// Model: 計算BMI
-		double h = Double.parseDouble(height); // 將字串轉 double
-		double w = Double.parseDouble(weight); // 將字串轉 double
-		double bmiValue = w / Math.pow(h/100, 2); // bmi 計算公式 
+		Double bmiValue = null;
+		String result = null;
+		try {
+			double h = Double.parseDouble(height); // 將字串轉 double
+			double w = Double.parseDouble(weight); // 將字串轉 double
+			bmiValue = w / Math.pow(h/100, 2); // bmi 計算公式
+			result = "OK";
+		} catch (Exception e) {
+			result = "Error";
+		}
 		
 		// View: 呈現BMI 資料
+		resp.getWriter().println("h=" + height);
+		resp.getWriter().println("w=" + weight);
 		resp.getWriter().println("bmi=" + bmiValue);
+		resp.getWriter().println("result=" + result);
 	}
 	
 }
