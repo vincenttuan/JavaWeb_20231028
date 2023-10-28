@@ -31,7 +31,8 @@ public class BMIServlet extends HttpServlet {
 		Args result = null;
 		Double bmiValue = null;
 		String diagnosis = null;
-		double h = 0, w = 0;
+		Double h = null, w = null;
+		
 		try {
 			h = Double.parseDouble(height); // 將字串轉 double
 			w = Double.parseDouble(weight); // 將字串轉 double
