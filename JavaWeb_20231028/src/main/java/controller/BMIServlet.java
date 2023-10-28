@@ -18,13 +18,17 @@ public class BMIServlet extends HttpServlet {
 		String height = req.getParameter("h"); // 身高
 		String weight = req.getParameter("w"); // 體重
 		
-		// Model: 計算BMI
-		Double bmiValue = null;
+		// Controller: 檢查參數的正確性
 		String result = null;
+		Double bmiValue = null;
+		double h = 0, w = 0;
 		try {
-			double h = Double.parseDouble(height); // 將字串轉 double
-			double w = Double.parseDouble(weight); // 將字串轉 double
+			h = Double.parseDouble(height); // 將字串轉 double
+			w = Double.parseDouble(weight); // 將字串轉 double
+			
+			// Model: 計算BMI
 			bmiValue = w / Math.pow(h/100, 2); // bmi 計算公式
+			
 			result = "OK";
 		} catch (Exception e) {
 			result = "Error";
