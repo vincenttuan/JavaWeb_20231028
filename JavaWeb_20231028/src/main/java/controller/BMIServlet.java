@@ -31,7 +31,9 @@ public class BMIServlet extends HttpServlet {
 		}
 		
 		// Model: 計算BMI
-		bmiValue = w / Math.pow(h/100, 2); // bmi 計算公式
+		if(result.equals("OK")) {
+			bmiValue = w / Math.pow(h/100, 2); // bmi 計算公式
+		}
 		
 		// View: 呈現BMI 資料
 		resp.getWriter().println("h=" + height);
