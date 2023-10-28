@@ -20,6 +20,14 @@ public class BMIServlet extends HttpServlet {
 		
 		resp.getWriter().println("h=" + height);
 		resp.getWriter().println("w=" + weight);
+		
+		// Model: 計算BMI
+		double h = Double.parseDouble(height); // 將字串轉 double
+		double w = Double.parseDouble(weight); // 將字串轉 double
+		double bmiValue = w / Math.pow(h/100, 2); // bmi 計算公式 
+		
+		// View: 呈現BMI 資料
+		resp.getWriter().println("bmi=" + bmiValue);
 	}
 	
 }
