@@ -8,6 +8,20 @@
 <title>Welcome</title>
 </head>
 <body>
-	Welcome JSP <%=new Date() %>
+	<h1>Index</h1>
+	<ul>
+		<li>
+			<a href="${pageContext.request.contextPath}/controller/bmi?h=170&w=60">BMIServlet</a>
+		</li>
+		<li>
+			<a href="${pageContext.request.contextPath}/controller/bmr?h=170&w=60&age=30">BMRServlet</a>
+		</li>
+		<li>
+			<a href="${pageContext.request.contextPath}/controller/score?score=100&score=40&score=72">ScoreServlet</a>
+		</li>
+		<li>
+			<a href="${pageContext.request.contextPath}/controller/guestbook">GuestBookServlet</a>
+		</li>
+	</ul>
 </body>
 </html>
