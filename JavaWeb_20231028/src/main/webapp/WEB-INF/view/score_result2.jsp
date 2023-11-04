@@ -24,6 +24,9 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Score Result</title>
+		<style type="text/css">
+			failing { color: red; }
+		</style>
 	</head>
 	<body>
 		所有成績: <%=scores %><br />
@@ -42,7 +45,10 @@
 						<tr>
 							<td><%=i %></td>
 							<td><%=scores[i] %></td>
-							<td><%=(Integer.parseInt(scores[i]) >= 60 ? "及格" : "不及格") %></td>
+							<% int score = Integer.parseInt(scores[i]); %>
+							<td class="<%=(score >= 60 ? "" : "failing") %>">
+								<%=(score >= 60 ? "及格" : "不及格") %>
+							</td>
 						</tr>
 						
 					<% } %>
