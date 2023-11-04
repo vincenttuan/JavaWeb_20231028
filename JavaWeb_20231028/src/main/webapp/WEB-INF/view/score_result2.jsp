@@ -1,3 +1,5 @@
+<%@page import="java.text.DecimalFormat"%>
+<%@page import="java.text.NumberFormat"%>
 <%@page import="java.util.Map"%>
 <%@ page import="java.util.Arrays"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -52,7 +54,12 @@
 		<% if (scoreMap != null) { %>
 			成績個數: <%=scoreMap.get("count") %><br />
 			成績總分: <%=scoreMap.get("sum") %><br />
-			成績平均: <%=scoreMap.get("avg") %><br />
+			成績平均: 
+				<%
+					DecimalFormat nf = new DecimalFormat(".0"); // .#
+					out.println(nf.format(scoreMap.get("avg")));
+				%>
+				<br />
 			最高成績: <%=scoreMap.get("max") %><br />
 			最低成績: <%=scoreMap.get("min") %><br />
 		<% } %>
