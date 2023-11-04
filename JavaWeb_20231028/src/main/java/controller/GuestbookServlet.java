@@ -29,6 +29,23 @@ public class GuestbookServlet extends HttpServlet {
 		rd.forward(req, resp);
 		
 	}
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String name = req.getParameter("name");
+		String message = req.getParameter("message");
+		
+		// 新增留言紀錄
+		guestbookService.addRecord(name, message);
+		
+		// 從 model 中取得最新留言紀錄
+		List<Map<String, String>> records = guestbookService.getRecords();
+		
+		// 重導到 view
+		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/guestbook.jsp");
+		req.setAttribute("records", records);
+		rd.forward(req, resp);
+	}
 	
 	
 }
