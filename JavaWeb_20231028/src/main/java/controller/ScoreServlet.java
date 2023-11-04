@@ -7,6 +7,7 @@ import java.util.IntSummaryStatistics;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -36,14 +37,10 @@ public class ScoreServlet extends HttpServlet {
 		Map<String, Number> scoreMap = scoreService.getScoreMap(scores);
 		
 		// View:
-		out.println("scores: " + Arrays.toString(scores));
-		// 從 scoreMap 中取得所要的資訊
-		out.println("count: " + scoreMap.get("count"));
-		out.println("sum: " + scoreMap.get("sum"));
-		out.println("avg: " + scoreMap.get("avg"));
-		out.println("max: " + scoreMap.get("max"));
-		out.println("min: " + scoreMap.get("min"));
-		
+		RequestDispatcher rd = req.getRequestDispatcher("WEB-INF/view/score_result.jsp");
+		req.setAttribute("scores", scores);
+		req.setAttribute("scoreMap", scoreMap);
+		rd.forward(req, resp);
 	}
 	
 }
