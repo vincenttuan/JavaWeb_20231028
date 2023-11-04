@@ -19,12 +19,15 @@ public class ScoreServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		PrintWriter out = resp.getWriter();
 				
-		// 取得多筆 score 參數資料
+		// Controller: 取得多筆 score 參數資料
 		String[] scores = req.getParameterValues("score");
-		out.println(Arrays.toString(scores));
 		
-		// 計算 scores 的總分, 平均, 個數, 最高分, 最低分
+		
+		// Model: 計算 scores 的總分, 平均, 個數, 最高分, 最低分
 		IntSummaryStatistics stat = Arrays.stream(scores).mapToInt(Integer::parseInt).summaryStatistics();
+		
+		// View:
+		out.println(Arrays.toString(scores));
 		out.println("count: " + stat.getCount());
 		out.println("sum: " + stat.getSum());
 		out.println("avg: " + stat.getAverage());
