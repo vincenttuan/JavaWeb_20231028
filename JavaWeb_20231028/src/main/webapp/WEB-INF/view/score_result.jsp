@@ -11,9 +11,20 @@
 	<body>
 		所有成績: ${ scores }<br />
 		列出成績: 
-		<c:forEach items="${ scores }" var="score">
-			${ score }
-		</c:forEach>
+		<table border="1">
+			<thead>
+				<tr>
+					<th>序號</th><th>分數</th>
+				</tr>
+			</thead>
+			<tbody>
+				<c:forEach items="${ scores }" var="score" varStatus="status">
+					<tr>
+						<td>${ status.index }</td><td>${ score }</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
 		<br />
 		成績個數: ${ scoreMap.count }<br />
 		成績總分: ${ scoreMap.sum }<br />
