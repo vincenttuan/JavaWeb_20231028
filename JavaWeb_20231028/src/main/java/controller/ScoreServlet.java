@@ -12,11 +12,14 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import model.ScoreService;
 
 //@WebServlet(value = {"/controller/score", "/controller/score_list", "/controller/scores"})
 @WebServlet("/controller/score")
 public class ScoreServlet extends HttpServlet {
-
+	
+	private ScoreService scoreService = new ScoreService();
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		PrintWriter out = resp.getWriter();
@@ -30,14 +33,7 @@ public class ScoreServlet extends HttpServlet {
 		}
 		
 		// Model: 計算 scores 的 總分, 平均, 個數, 最高分, 最低分
-		IntSummaryStatistics stat = Arrays.stream(scores).mapToInt(Integer::parseInt).summaryStatistics();
-		// 將 總分, 平均, 個數, 最高分, 最低分 放到一個 Map 集合中
-		Map<String, Number> scoreMap = new LinkedHashMap<>();
-		scoreMap.put("count", stat.getCount());
-		scoreMap.put("sum", stat.getSum());
-		scoreMap.put("avg", stat.getAverage());
-		scoreMap.put("max", stat.getMax());
-		scoreMap.put("min", stat.getMin());
+		Map<String, Number> scoreMap = scoreService.getScoreMap(scores);
 		
 		// View:
 		out.println("scores: " + Arrays.toString(scores));
