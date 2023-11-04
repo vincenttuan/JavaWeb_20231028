@@ -8,6 +8,7 @@ import java.util.Map;
 public class ScoreService {
 	
 	public Map<String, Number> getScoreMap(String[] scores) {
+		// 統計物件使用 stream 技術來計算
 		IntSummaryStatistics stat = Arrays.stream(scores)
 										  .mapToInt(Integer::parseInt)
 										  .summaryStatistics();
