@@ -8,21 +8,21 @@
 		<title>Guest book</title>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css">
 	</head>
-	<body>
-		<form>
+	<body style="padding: 15px">
+		<form class="pure-form">
 			<fieldset>
 				<legend>留言輸入</legend>
 				姓名: <input type="text" id="name" name="name" placeholder="請輸入姓名" required /><p />
 				留言: <input type="text" id="message" name="message" placeholder="請輸入留言" required /><p />
-				<button type="reset">清除</button>
-				<button type="submit">傳送</button>
+				<button type="reset" class="pure-button">清除</button>
+				<button type="submit" class="pure-button pure-button-primary">傳送</button>
 			</fieldset>
 		</form>
 		<p />
-		<form>
+		<form class="pure-form">
 			<fieldset>
 				<legend>留言紀錄</legend>
-				<table border="1">
+				<table class="pure-table pure-table-bordered">
 					<thead>
 						<tr>
 							<th>序號</th><th>姓名</th><th>留言</th><th>時間</th>
