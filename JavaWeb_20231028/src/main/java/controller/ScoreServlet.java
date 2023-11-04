@@ -32,6 +32,4 @@ public class ScoreServlet extends HttpServlet {
 		out.println("min: " + stat.getMin());
 	}
 	
-
-	
 }
