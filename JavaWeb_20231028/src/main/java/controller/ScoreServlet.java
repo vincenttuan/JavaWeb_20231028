@@ -43,6 +43,7 @@ public class ScoreServlet extends HttpServlet {
 		out.println("avg: " + scoreMap.get("avg"));
 		out.println("max: " + scoreMap.get("max"));
 		out.println("min: " + scoreMap.get("min"));
+		
 	}
 	
 }
