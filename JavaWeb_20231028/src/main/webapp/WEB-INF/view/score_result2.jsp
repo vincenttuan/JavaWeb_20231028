@@ -25,7 +25,7 @@
 		<meta charset="UTF-8">
 		<title>Score Result</title>
 		<style type="text/css">
-			failing { color: red; }
+			.failing { color: red; }
 		</style>
 	</head>
 	<body>
