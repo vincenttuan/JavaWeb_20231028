@@ -40,7 +40,7 @@
 								<td>${ record.message }</td>
 								<td>${ record.datetime }</td>
 								<td>
-									<a href="" title="按我一下可以刪除">刪除</a>
+									<a href="${pageContext.request.contextPath}/controller/guestbook?del_id=${ status.index }" title="按我一下可以刪除">刪除</a>
 								</td>
 							</tr>
 						</c:forEach>
