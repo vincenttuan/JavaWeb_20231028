@@ -38,7 +38,8 @@ public class ScoreServlet extends HttpServlet {
 		Map<String, Number> scoreMap = scoreService.getScoreMap(scores);
 		
 		// View:
-		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/score_result.jsp");
+		//RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/score_result.jsp"); // EL + JSTL 版
+		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/score_result2.jsp"); // 傳統 jsp 版
 		req.setAttribute("scores", scores);
 		req.setAttribute("scoreMap", scoreMap);
 		rd.forward(req, resp);
