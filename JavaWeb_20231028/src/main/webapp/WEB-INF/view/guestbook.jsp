@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>    
 <!DOCTYPE html>
 <html>
 	<head>
@@ -20,7 +21,23 @@
 		<form>
 			<fieldset>
 				<legend>留言紀錄</legend>
-				${ records }
+				<table border="1">
+					<thead>
+						<tr>
+							<th>序號</th><th>姓名</th><th>留言</th><th>時間</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach items="${ records }" var="record" varStatus="status">
+							<tr>
+								<td>${ status.index }</td>
+								<td>${ records.name }</td>
+								<td>${ records.message }</td>
+								<td>${ records.datetime }</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
 			</fieldset>
 		</form>
 	</body>
