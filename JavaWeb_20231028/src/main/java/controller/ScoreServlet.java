@@ -15,7 +15,7 @@ public class ScoreServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// 取得多筆 score 參數資料
-		
+		resp.getWriter().print("ScoreServlet");
 	}
 	
 
