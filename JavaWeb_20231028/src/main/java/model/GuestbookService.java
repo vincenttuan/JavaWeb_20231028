@@ -44,7 +44,8 @@ public class GuestbookService {
 		String datetime = sdf.format(new Date()); // 將現在時間格式化
 		record.put("datetime", datetime);
 		
-		records.add(record);
+		//records.add(record);
+		records.add(0, record);
 	}
 	
 }

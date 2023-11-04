@@ -25,7 +25,7 @@
 				<table class="pure-table pure-table-bordered">
 					<thead>
 						<tr>
-							<th>序號</th><th>姓名</th><th>留言</th><th>時間</th>
+							<th>▲ 序號 ▼</th><th>姓名</th><th>留言</th><th>時間</th><th>刪除</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -35,6 +35,9 @@
 								<td>${ record.name }</td>
 								<td>${ record.message }</td>
 								<td>${ record.datetime }</td>
+								<td>
+									<a href="">刪除</a>
+								</td>
 							</tr>
 						</c:forEach>
 					</tbody>
