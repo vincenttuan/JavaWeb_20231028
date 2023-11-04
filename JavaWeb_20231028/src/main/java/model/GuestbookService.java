@@ -49,11 +49,11 @@ public class GuestbookService {
 	}
 	
 	// 刪除留言紀錄
-	public void delRecord(String del_id) {
-		if(del_id == null) {
+	public void delRecord(String delId) {
+		if(delId == null) {
 			return;
 		}
-		int id = Integer.parseInt(del_id);
+		int id = Integer.parseInt(delId);
 		records.remove(id);
 	}
 	
