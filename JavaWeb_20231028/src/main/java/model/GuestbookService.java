@@ -22,9 +22,9 @@ public class GuestbookService {
 		
 		// 預設第二筆留言資料
 		Map<String, String> record2 = new LinkedHashMap<>();
-		record1.put("name", "Mary");
-		record1.put("message", "哈囉 !");
-		record1.put("datetime", "2023-11-04 10:02:03");
+		record2.put("name", "Mary");
+		record2.put("message", "哈囉 !");
+		record2.put("datetime", "2023-11-04 10:02:03");
 		
 		records.add(record1);
 		records.add(record2);
