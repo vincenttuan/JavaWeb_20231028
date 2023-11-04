@@ -31,9 +31,9 @@
 						<c:forEach items="${ records }" var="record" varStatus="status">
 							<tr>
 								<td>${ status.index }</td>
-								<td>${ records.name }</td>
-								<td>${ records.message }</td>
-								<td>${ records.datetime }</td>
+								<td>${ record.name }</td>
+								<td>${ record.message }</td>
+								<td>${ record.datetime }</td>
 							</tr>
 						</c:forEach>
 					</tbody>
