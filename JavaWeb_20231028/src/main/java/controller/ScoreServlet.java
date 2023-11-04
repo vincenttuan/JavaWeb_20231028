@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.IntSummaryStatistics;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -23,16 +25,24 @@ public class ScoreServlet extends HttpServlet {
 		String[] scores = req.getParameterValues("score");
 		
 		
-		// Model: 計算 scores 的總分, 平均, 個數, 最高分, 最低分
+		// Model: 計算 scores 的 總分, 平均, 個數, 最高分, 最低分
 		IntSummaryStatistics stat = Arrays.stream(scores).mapToInt(Integer::parseInt).summaryStatistics();
+		// 將 總分, 平均, 個數, 最高分, 最低分 放到一個 Map 集合中
+		Map<String, Number> scoreMap = new LinkedHashMap<>();
+		scoreMap.put("count", stat.getCount());
+		scoreMap.put("sum", stat.getSum());
+		scoreMap.put("avg", stat.getAverage());
+		scoreMap.put("max", stat.getMax());
+		scoreMap.put("min", stat.getMin());
 		
 		// View:
-		out.println(Arrays.toString(scores));
-		out.println("count: " + stat.getCount());
-		out.println("sum: " + stat.getSum());
-		out.println("avg: " + stat.getAverage());
-		out.println("max: " + stat.getMax());
-		out.println("min: " + stat.getMin());
+		out.println("scores: " + Arrays.toString(scores));
+		// 從 scoreMap 中取得所要的資訊
+		out.println("count: " + scoreMap.get("scout"));
+		out.println("sum: " + scoreMap.get("sum"));
+		out.println("avg: " + scoreMap.get("avg"));
+		out.println("max: " + scoreMap.get("max"));
+		out.println("min: " + scoreMap.get("min"));
 	}
 	
 }
