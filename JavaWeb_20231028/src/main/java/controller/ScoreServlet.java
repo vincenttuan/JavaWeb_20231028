@@ -24,6 +24,10 @@ public class ScoreServlet extends HttpServlet {
 		// Controller: 取得多筆 score 參數資料
 		String[] scores = req.getParameterValues("score");
 		
+		if(scores == null) {
+			out.println("No score !");
+			return;
+		}
 		
 		// Model: 計算 scores 的 總分, 平均, 個數, 最高分, 最低分
 		IntSummaryStatistics stat = Arrays.stream(scores).mapToInt(Integer::parseInt).summaryStatistics();
