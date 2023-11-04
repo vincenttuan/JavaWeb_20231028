@@ -1,5 +1,7 @@
 package model;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,5 +30,21 @@ public class GuestbookService {
 		records.add(record2);
 	}
 	
+	// 取得最新留言紀錄
+	public List<Map<String, String>> getRecords() {
+		return records;
+	}
+	
+	// 加入留言紀錄
+	public void addRecord(String name, String message) {
+		Map<String, String> record = new LinkedHashMap<>();
+		record.put("name", name);
+		record.put("message", message);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss E");
+		String datetime = sdf.format(new Date()); // 將現在時間格式化
+		record.put("datetime", datetime);
+		
+		records.add(record);
+	}
 	
 }
