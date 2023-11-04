@@ -38,7 +38,7 @@ public class ScoreServlet extends HttpServlet {
 		// View:
 		out.println("scores: " + Arrays.toString(scores));
 		// 從 scoreMap 中取得所要的資訊
-		out.println("count: " + scoreMap.get("scout"));
+		out.println("count: " + scoreMap.get("count"));
 		out.println("sum: " + scoreMap.get("sum"));
 		out.println("avg: " + scoreMap.get("avg"));
 		out.println("max: " + scoreMap.get("max"));
