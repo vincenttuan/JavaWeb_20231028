@@ -22,7 +22,9 @@ public class GuestbookServlet extends HttpServlet {
 		
 		// 不論是否有 del_id 都先抓取
 		String delId = req.getParameter("del_id");
-		guestbookService.delRecord(delId);
+		if(delId != null) {
+			guestbookService.delRecord(delId);
+		}
 		
 		// 從 model 中取得最新留言紀錄
 		List<Map<String, String>> records = guestbookService.getRecords();
