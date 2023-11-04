@@ -6,6 +6,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Guest book</title>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css">
 	</head>
 	<body>
 		<form>
