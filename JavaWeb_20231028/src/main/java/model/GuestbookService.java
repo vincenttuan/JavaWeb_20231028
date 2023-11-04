@@ -48,4 +48,13 @@ public class GuestbookService {
 		records.add(0, record);
 	}
 	
+	// 刪除留言紀錄
+	public void delRecord(String del_id) {
+		if(del_id == null) {
+			return;
+		}
+		int id = Integer.parseInt(del_id);
+		records.remove(id);
+	}
+	
 }
