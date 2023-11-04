@@ -14,13 +14,15 @@
 		<table border="1">
 			<thead>
 				<tr>
-					<th>序號</th><th>分數</th>
+					<th>序號</th><th>分數</th><th>評鑑</th>
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach items="${ scores }" var="score" varStatus="status">
 					<tr>
-						<td>${ status.index }</td><td>${ score }</td>
+						<td>${ status.index }</td>
+						<td>${ score }</td>
+						<td>${ score >= 60 ? "及格" : "不及格" }</td>
 					</tr>
 				</c:forEach>
 			</tbody>
