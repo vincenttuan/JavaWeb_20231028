@@ -9,7 +9,7 @@
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css">
 	</head>
 	<body style="padding: 15px">
-		<form class="pure-form">
+		<form class="pure-form" method="post" action="${pageContext.request.contextPath}/controller/guestbook">
 			<fieldset>
 				<legend>留言輸入</legend>
 				姓名: <input type="text" id="name" name="name" placeholder="請輸入姓名" required /><p />
