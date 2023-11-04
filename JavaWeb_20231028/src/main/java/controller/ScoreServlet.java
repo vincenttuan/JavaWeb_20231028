@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -15,7 +16,9 @@ public class ScoreServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// 取得多筆 score 參數資料
-		resp.getWriter().print("ScoreServlet");
+		String[] scores = req.getParameterValues("score");
+		resp.getWriter().print(Arrays.toString(scores));
+		
 	}
 	
 
