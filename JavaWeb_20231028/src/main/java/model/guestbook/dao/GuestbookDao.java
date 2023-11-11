@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
 
@@ -35,9 +36,16 @@ public class GuestbookDao {
 	// 連線設定
 	private void setConn() {
 		try {
+			// 透過 JNDI 來查找資源
 			InitialContext ctx = new InitialContext();
-			DataSource ds = (DataSource)ctx.lookup("java:comp/env/jdbc/demo");
+			
+			//DataSource ds = (DataSource)ctx.lookup("java:comp/env/jdbc/demo");
+			
+			Context envContext = (Context)ctx.lookup("java:comp/env");   // 取得環境
+			DataSource ds = (DataSource)envContext.lookup("jdbc/demo");  // 透過環境取得資源
+			
 			conn = ds.getConnection();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
