@@ -64,6 +64,28 @@ public class GuestbookDao {
 		*/
 	}
 	
+	public int createGuestbook(Guestbook guestbook) {
+		if(conn == null) {
+			setConn();
+			if(conn == null) {
+				return 0;
+			}
+		}
+		String sql = "insert into guestbook(username, message) values(?, ?)";
+		int rowcount = 0;
+		try(PreparedStatement pstmt = conn.prepareStatement(sql)) {
+			pstmt.setString(1, guestbook.getUsername());
+			pstmt.setString(2, guestbook.getMessage());
+			
+			rowcount = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return rowcount;
+	} 
+	
 	// 取得分頁資料
 	public PageInfo getGuestbookPageInfo() {
 		if(conn == null) {
