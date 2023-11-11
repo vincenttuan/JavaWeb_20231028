@@ -97,7 +97,7 @@ public class GuestbookDao {
 				return null;
 			}
 		}
-		String sql = "select id, username, message, createtime from guestbook limit ? offset ? order by id";
+		String sql = "select id, username, message, createtime from guestbook order by id limit ? offset ?";
 		List<Guestbook> guestbooks = new ArrayList<>();
 		try(PreparedStatement pstmt = conn.prepareStatement(sql)) {
 			pstmt.setInt(1, limit);
