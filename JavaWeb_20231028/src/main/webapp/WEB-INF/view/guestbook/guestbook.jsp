@@ -22,6 +22,7 @@
 		<form class="pure-form">
 			<fieldset>
 				<legend>留言紀錄 (MySQL)</legend>
+				分頁: 
 				<table class="pure-table pure-table-bordered">
 					<thead>
 						<tr>
