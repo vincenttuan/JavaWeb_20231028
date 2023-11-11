@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.guestbook.entity.Guestbook;
+import model.guestbook.entity.PageInfo;
 import model.guestbook.service.GuestbookService;
 
 @WebServlet(value = "/controller/guestbook/guestbook")
@@ -19,9 +20,12 @@ public class GuestbookServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// 取得所有留言紀錄
 		List<Guestbook> guestbooks = service.queryAllGuestbooks();
+		// 取得分頁資訊
+		PageInfo pageInfo = service.getPageInfo();
 		
 		// 重導到 /WEB-INF/view/guestbook/guestbook.jsp
 		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/guestbook/guestbook.jsp");
+		req.setAttribute("pageInfo", pageInfo);
 		req.setAttribute("guestbooks", guestbooks);
 		rd.forward(req, resp);
 	}
