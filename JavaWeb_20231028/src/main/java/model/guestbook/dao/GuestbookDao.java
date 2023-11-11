@@ -14,7 +14,7 @@ public class GuestbookDao {
 		String username = "root";
 		String password = "12345678";
 		try {
-			Class.forName("com.mysql.cj.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver"); // 建立 MySQL Driver 物件
 			conn = DriverManager.getConnection(dbUrl, username, password);
 		} catch (Exception e) {
 			e.printStackTrace();
