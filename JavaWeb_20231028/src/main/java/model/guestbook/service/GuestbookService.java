@@ -4,6 +4,7 @@ import java.util.List;
 
 import model.guestbook.dao.GuestbookDao;
 import model.guestbook.entity.Guestbook;
+import model.guestbook.entity.PageInfo;
 
 public class GuestbookService {
 	
@@ -12,6 +13,10 @@ public class GuestbookService {
 	public List<Guestbook> queryAllGuestbooks() {
 		// 跟 dao 索要所有的留言紀錄
 		return dao.findAllGuestbooks();
+	}
+	
+	public PageInfo getPageInfo() {
+		return dao.getGuestbookPageInfo();
 	}
 	
 }
