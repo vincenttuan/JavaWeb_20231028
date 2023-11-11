@@ -8,11 +8,16 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.naming.InitialContext;
+import javax.sql.DataSource;
+
+import jakarta.annotation.Resource;
 import model.guestbook.entity.Guestbook;
 
 // 與資料庫進行 CRUD
 // 利用 SingleTon 設計模式
 public class GuestbookDao {
+	
 	private Connection conn;
 	
 	// SingleTon 設計模式 -----------------------------------------------------------------------
@@ -29,6 +34,14 @@ public class GuestbookDao {
 	
 	// 連線設定
 	private void setConn() {
+		try {
+			InitialContext ctx = new InitialContext();
+			DataSource ds = (DataSource)ctx.lookup("java:comp/env/jdbc/demo");
+			conn = ds.getConnection();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		/*
 		String dbUrl = "jdbc:mysql://localhost:3306/demo";
 		String username = "root";
 		String password = "12345678";
@@ -38,6 +51,7 @@ public class GuestbookDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		*/
 	}
 	
 	public List<Guestbook> findAllGuestbooks() {
