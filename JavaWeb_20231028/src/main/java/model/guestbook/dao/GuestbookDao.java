@@ -2,6 +2,13 @@ package model.guestbook.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import model.guestbook.entity.Guestbook;
 
 // 與資料庫進行 CRUD
 // 利用 SingleTon 設計模式
@@ -21,6 +28,26 @@ public class GuestbookDao {
 		}
 	}
 	
-	
+	public List<Guestbook> findAllGuestbooks() {
+		String sql = "select id, username, message, createtime from guestbook order by id";
+		List<Guestbook> guestbooks = new ArrayList<>();
+		try(Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql)) {
+			// 將每一筆紀錄讀出並注入到指定物件中
+			while (rs.next()) {
+				Guestbook guestbook = new Guestbook();
+				guestbook.setId(rs.getInt("id"));
+				guestbook.setUsername(rs.getString("username"));
+				guestbook.setMessage(rs.getString("message"));
+				guestbook.setCreatetime(rs.getTimestamp("createtime"));
+				// 加入到集合中
+				guestbooks.add(guestbook);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return guestbooks;
+	}
 	
 }
