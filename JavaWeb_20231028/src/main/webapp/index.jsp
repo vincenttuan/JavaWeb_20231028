@@ -20,10 +20,10 @@
 			<a href="${pageContext.request.contextPath}/controller/score?score=100&score=40&score=72">ScoreServlet</a>
 		</li>
 		<li>
-			<a href="${pageContext.request.contextPath}/controller/guestbook">GuestBookServlet</a>
+			<a href="${pageContext.request.contextPath}/controller/guestbook">GuestBookServlet(InMemory 版)</a>
 		</li>
 		<li>
-			<a href="${pageContext.request.contextPath}/controller/guestbook/guestbook">GuestBookServlet(MySQL版)</a>
+			<a href="${pageContext.request.contextPath}/controller/guestbook/guestbook">GuestBookServlet(MySQL 版)</a>
 		</li>
 	</ul>
 </body>
