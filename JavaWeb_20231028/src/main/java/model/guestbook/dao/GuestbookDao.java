@@ -63,6 +63,7 @@ public class GuestbookDao {
 		*/
 	}
 	
+	// 取得分頁資料
 	public PageInfo getGuestbookPageInfo() {
 		if(conn == null) {
 			setConn();
