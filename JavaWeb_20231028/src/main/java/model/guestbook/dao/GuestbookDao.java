@@ -14,6 +14,7 @@ import javax.sql.DataSource;
 
 import jakarta.annotation.Resource;
 import model.guestbook.entity.Guestbook;
+import model.guestbook.entity.PageInfo;
 
 // 與資料庫進行 CRUD
 // 利用 SingleTon 設計模式
@@ -60,6 +61,30 @@ public class GuestbookDao {
 			e.printStackTrace();
 		}
 		*/
+	}
+	
+	public PageInfo getGuestbookPageInfo() {
+		if(conn == null) {
+			setConn();
+			if(conn == null) {
+				return null;
+			}
+		}
+		String sql = "select records_of_page, count, max_page from guestbook_page_info";
+		PageInfo pageInfo = new PageInfo();
+		try(Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sql)) {
+			
+			if(rs.next()) { // 若資料只有一筆可以直接使用 if
+				pageInfo.setRecordsOfPage(rs.getInt("records_of_page"));
+				pageInfo.setCount(rs.getInt("count"));
+				pageInfo.setMaxPage(rs.getInt("max_page"));
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return pageInfo;
 	}
 	
 	public List<Guestbook> findAllGuestbooks() {
