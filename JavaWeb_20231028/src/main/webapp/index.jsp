@@ -22,6 +22,9 @@
 		<li>
 			<a href="${pageContext.request.contextPath}/controller/guestbook">GuestBookServlet</a>
 		</li>
+		<li>
+			<a href="${pageContext.request.contextPath}/controller/guestbook/guestbook">GuestBookServlet(MySQL版)</a>
+		</li>
 	</ul>
 </body>
 </html>
