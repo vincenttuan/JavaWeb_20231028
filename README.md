@@ -32,4 +32,13 @@ create table if not exists guestbook(
 insert into guestbook(username, message) values('John', 'Hello 1');
 insert into guestbook(username, message) values('Mary', 'Welcome 2');
 insert into guestbook(username, message) values('海倫', '大家好 3');
+
+-- 分頁 view
+USE `demo`;
+CREATE  OR REPLACE VIEW `guestbook_page_info` AS
+
+select 10 as records_of_page, 
+		count(*) as count, 
+        ceil(count(*)/10) as max_page 
+from guestbook;
 </pre>
