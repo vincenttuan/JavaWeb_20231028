@@ -46,7 +46,7 @@ public class GuestbookServlet extends HttpServlet {
 		int rowcount = service.addGuestbook(username, message);
 		
 		// 轉址到 /controller/guestbook/guestbook
-		resp.sendRedirect("/controller/guestbook/guestbook");
+		resp.sendRedirect(getServletContext().getContextPath() + "/controller/guestbook/guestbook");
 		
 	}
 	
