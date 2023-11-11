@@ -17,6 +17,11 @@ public class GuestbookDao {
 	private Connection conn;
 	
 	private GuestbookDao() {
+		setConn();
+	}
+	
+	// 連線設定
+	private void setConn() {
 		String dbUrl = "jdbc:mysql://localhost:3306/demo";
 		String username = "root";
 		String password = "12345678";
@@ -29,6 +34,12 @@ public class GuestbookDao {
 	}
 	
 	public List<Guestbook> findAllGuestbooks() {
+		if(conn == null) {
+			setConn();
+			if(conn == null) {
+				return null;
+			}
+		}
 		String sql = "select id, username, message, createtime from guestbook order by id";
 		List<Guestbook> guestbooks = new ArrayList<>();
 		try(Statement stmt = conn.createStatement();
