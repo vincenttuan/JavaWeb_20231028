@@ -10,6 +10,14 @@ public class GuestbookService {
 	
 	private GuestbookDao dao = GuestbookDao.getGuestbookDao();
 	
+	public int addGuestbook(String username, String message) {
+		Guestbook guestbook = new Guestbook();
+		guestbook.setUsername(username);
+		guestbook.setMessage(message);
+		int rowcount = dao.createGuestbook(guestbook);
+		return rowcount;
+	}
+	
 	// 分頁查詢
 	public List<Guestbook> queryAllGuestbooksByPage(String pageNo, String recordsOfPage) {
 		// 若沒有 pageNo 或 recordsOfPage 就當成是第一頁
