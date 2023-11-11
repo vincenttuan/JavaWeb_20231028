@@ -10,6 +10,7 @@ public class GuestbookService {
 	
 	private GuestbookDao dao = GuestbookDao.getGuestbookDao();
 	
+	// 新增
 	public int addGuestbook(String username, String message) {
 		Guestbook guestbook = new Guestbook();
 		guestbook.setUsername(username);
