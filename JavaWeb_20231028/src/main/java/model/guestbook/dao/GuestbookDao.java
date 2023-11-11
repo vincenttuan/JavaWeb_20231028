@@ -64,6 +64,7 @@ public class GuestbookDao {
 		*/
 	}
 	
+	// 新增
 	public int createGuestbook(Guestbook guestbook) {
 		if(conn == null) {
 			setConn();
