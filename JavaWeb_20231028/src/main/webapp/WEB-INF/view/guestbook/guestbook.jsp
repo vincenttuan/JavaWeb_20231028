@@ -23,6 +23,11 @@
 			<fieldset>
 				<legend>留言紀錄 (MySQL)</legend>
 				分頁: 
+				<c:forEach begin="1" end="${ pageInfo.maxPage }" var="pageNo">
+					<a href="./?pageNo=${ pageNo }&recordsOfPage=${pageInfo.recordsOfPage}">
+						${ pageNo }
+					</a>	
+				</c:forEach>
 				<table class="pure-table pure-table-bordered">
 					<thead>
 						<tr>
