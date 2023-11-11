@@ -14,3 +14,14 @@ https://jakarta.ee/specifications/tags/3.0/jakarta-tags-spec-3.0#multiple-tag-li
   &lt;version>3.0.0&lt;/version>
 &lt;/dependency>
 </pre>
+# 建立訪客留言表(MySQL)
+<pre>
+-- 建立訪客留言表
+create table if not exists guestbook(
+	id int not null auto_increment,
+    username varchar(50) not null,
+    message varchar(255) not null,
+    createtime timestamp default current_timestamp,
+    primary key(id)
+);
+</pre>
