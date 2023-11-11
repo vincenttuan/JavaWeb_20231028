@@ -50,8 +50,15 @@ public class GuestbookServlet extends HttpServlet {
 		PageInfo pageInfo = service.getPageInfo();
 		int pageNo = pageInfo.getMaxPage();
 		int recordsOfPage = pageInfo.getRecordsOfPage();
+		
 		// 轉址到 /controller/guestbook/guestbook
-		resp.sendRedirect(getServletContext().getContextPath() + "/controller/guestbook/guestbook?pageNo=" + pageNo + "&recordsOfPage=" + recordsOfPage);
+		//resp.sendRedirect(getServletContext().getContextPath() + "/controller/guestbook/guestbook?pageNo=" + pageNo + "&recordsOfPage=" + recordsOfPage);
+		
+		RequestDispatcher rd = req.getRequestDispatcher("/WEB-INF/view/guestbook/result.jsp");
+		req.setAttribute("rowcount", rowcount);
+		req.setAttribute("pageNo", pageNo);
+		req.setAttribute("recordsOfPage", recordsOfPage);
+		rd.forward(req, resp);
 		
 	}
 	
