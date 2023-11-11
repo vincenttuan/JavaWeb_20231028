@@ -22,8 +22,9 @@
 		<form class="pure-form">
 			<fieldset>
 				<legend>留言紀錄 (MySQL)</legend>
-				分頁: 
+				分頁
 				<c:forEach begin="1" end="${ pageInfo.maxPage }" var="pageNo">
+					&nbsp;|&nbsp;
 					<a href="?pageNo=${ pageNo }&recordsOfPage=${pageInfo.recordsOfPage}">
 						${ pageNo }
 					</a>	
