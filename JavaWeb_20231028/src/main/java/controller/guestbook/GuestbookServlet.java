@@ -18,8 +18,12 @@ public class GuestbookServlet extends HttpServlet {
 	private GuestbookService service = new GuestbookService();
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String pageNo = req.getParameter("pageNo");
+		String recordsOfPage = req.getParameter("recordsOfPage");
+		
 		// 取得所有留言紀錄
 		List<Guestbook> guestbooks = service.queryAllGuestbooks();
+		
 		// 取得分頁資訊
 		PageInfo pageInfo = service.getPageInfo();
 		
