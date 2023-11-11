@@ -13,7 +13,8 @@
 			<legend>
 				資料新增: ${ rowcount == 0 ? "失敗" : "成功" }
 			</legend>
-			<a href="${pageContext.request.contextPath}/controller/guestbook/guestbook?pageNo=${pageNo}&recordsOfPage=${recordsOfPage}"">
+			<button type="button" onclick="location.href='${pageContext.request.contextPath}/controller/guestbook/guestbook?pageNo=${pageNo}&recordsOfPage=${recordsOfPage}';">返回</button>
+			<a href="${pageContext.request.contextPath}/controller/guestbook/guestbook?pageNo=${pageNo}&recordsOfPage=${recordsOfPage}">
 				返回
 			</a>
 		</fieldset>
