@@ -25,7 +25,8 @@
 				分頁
 				<c:forEach begin="1" end="${ pageInfo.maxPage }" var="pageNo">
 					&nbsp;|&nbsp;
-					<a href="?pageNo=${ pageNo }&recordsOfPage=${pageInfo.recordsOfPage}">
+					<a href="?pageNo=${ pageNo }&recordsOfPage=${pageInfo.recordsOfPage}" 
+					   style="font-size: ${ pageNo == param.pageNo ? '50px':'' }">
 						${ pageNo }
 					</a>	
 				</c:forEach>
