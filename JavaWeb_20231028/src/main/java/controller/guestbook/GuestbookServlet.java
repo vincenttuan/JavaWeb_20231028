@@ -22,7 +22,10 @@ public class GuestbookServlet extends HttpServlet {
 		String recordsOfPage = req.getParameter("recordsOfPage");
 		
 		// 取得所有留言紀錄
-		List<Guestbook> guestbooks = service.queryAllGuestbooks();
+		//List<Guestbook> guestbooks = service.queryAllGuestbooks();
+		
+		// 取得所有留言紀錄(分頁板)
+		List<Guestbook> guestbooks = service.queryAllGuestbooksByPage(pageNo, recordsOfPage);
 		
 		// 取得分頁資訊
 		PageInfo pageInfo = service.getPageInfo();
