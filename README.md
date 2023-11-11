@@ -16,6 +16,9 @@ https://jakarta.ee/specifications/tags/3.0/jakarta-tags-spec-3.0#multiple-tag-li
 </pre>
 # 建立訪客留言表(MySQL)
 <pre>
+-- 刪除訪客留言表
+drop table if exists guestbook;
+
 -- 建立訪客留言表
 create table if not exists guestbook(
 	id int not null auto_increment,
@@ -24,4 +27,9 @@ create table if not exists guestbook(
     createtime timestamp default current_timestamp,
     primary key(id)
 );
+
+-- 建立訪客留言表預設資料
+insert into guestbook(username, message) values('John', 'Hello 1');
+insert into guestbook(username, message) values('Mary', 'Welcome 2');
+insert into guestbook(username, message) values('海倫', '大家好 3');
 </pre>
