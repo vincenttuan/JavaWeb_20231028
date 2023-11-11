@@ -1,9 +1,9 @@
 package model.guestbook.entity;
 
 public class PageInfo {
-	private Integer recordsOfPage;
-	private Integer count;
-	private Integer maxPage;
+	private Integer recordsOfPage; // 每頁的筆數
+	private Integer count; // 總共資料筆數
+	private Integer maxPage; // 最大頁數
 	
 	public Integer getRecordsOfPage() {
 		return recordsOfPage;
