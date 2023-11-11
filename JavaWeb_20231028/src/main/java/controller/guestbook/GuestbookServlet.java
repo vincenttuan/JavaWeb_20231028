@@ -46,8 +46,12 @@ public class GuestbookServlet extends HttpServlet {
 		
 		int rowcount = service.addGuestbook(username, message);
 		
+		// 取得最新 PageInfo 的資料
+		PageInfo pageInfo = service.getPageInfo();
+		int pageNo = pageInfo.getMaxPage();
+		int recordsOfPage = pageInfo.getRecordsOfPage();
 		// 轉址到 /controller/guestbook/guestbook
-		resp.sendRedirect(getServletContext().getContextPath() + "/controller/guestbook/guestbook");
+		resp.sendRedirect(getServletContext().getContextPath() + "/controller/guestbook/guestbook?pageNo=" + pageNo + "&recordsOfPage=" + recordsOfPage);
 		
 	}
 	
