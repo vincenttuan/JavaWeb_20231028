@@ -19,5 +19,10 @@
 			</a>
 		</fieldset>
 	</form>
+	<script>
+		setTimeout(() => {
+			location.href='${pageContext.request.contextPath}/controller/guestbook/guestbook?pageNo=${pageNo}&recordsOfPage=${recordsOfPage}';
+		}, 3000);
+	</script>
 </body>
 </html>
