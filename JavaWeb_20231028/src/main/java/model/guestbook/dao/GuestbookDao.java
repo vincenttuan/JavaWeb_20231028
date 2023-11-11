@@ -13,12 +13,19 @@ import model.guestbook.entity.Guestbook;
 // 與資料庫進行 CRUD
 // 利用 SingleTon 設計模式
 public class GuestbookDao {
-	
 	private Connection conn;
 	
-	private GuestbookDao() {
+	// SingleTon 設計模式 -----------------------------------------------------------------------
+	private static GuestbookDao guestbookDao = new GuestbookDao(); // 自己建立 guestbookDao 物件
+	
+	private GuestbookDao() { // 禁止其他程式自行建立 guestbookDao 物件
 		setConn();
 	}
+	
+	public static GuestbookDao getGuestbookDao() { // 提供一個公開的類別方法讓其他程式得到 guestbookDao 物件
+		return guestbookDao;
+	}
+	// ----------------------------------------------------------------------------------------
 	
 	// 連線設定
 	private void setConn() {
