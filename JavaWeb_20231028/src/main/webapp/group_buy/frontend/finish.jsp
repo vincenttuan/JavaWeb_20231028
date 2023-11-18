@@ -9,6 +9,8 @@
 		<link rel="stylesheet" href="../../css/group_buy.css">
 	</head>
 	<body style="padding: 15px">
+		<!-- menu -->
+		<%@include file="./menu.jspf" %>
 		Hello: John
 		<form class="pure-form">
 			<fieldset>
