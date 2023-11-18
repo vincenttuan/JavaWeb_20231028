@@ -16,7 +16,7 @@
 						<option value="2">肉羹(80元/包)</option>
 						<option value="3">肉丸(60元/包)</option>
 					 </select><p />
-				數量: <input type="number" id="amount" name="amount" /><p />	 
+				數量: <input type="number" id="amount" name="amount" value="5" /><p />	 
 				<button type="submit" class="pure-button pure-button-primary">新增</button>	 
 				<button type="button" class="pure-button pure-button-primary" onclick="location.href='./cart.jsp';">購物車</button>	 
 				<button type="button" class="pure-button pure-button-primary" onclick="location.href='../login.jsp';">登出</button>	 
