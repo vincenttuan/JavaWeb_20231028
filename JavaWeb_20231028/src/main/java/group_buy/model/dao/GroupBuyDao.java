@@ -81,7 +81,7 @@ public interface GroupBuyDao {
      * @param userId 用戶ID。
      * @return 返回找到的購物車，若未找到則返回 null。
      */
-    Optional<Cart> findActiveCartByUserId(Integer userId); 
+    Optional<Cart> findNoneCheckoutCartByUserId(Integer userId); 
 
     /**
      * 新增購物車。
