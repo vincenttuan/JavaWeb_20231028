@@ -11,37 +11,42 @@
 	<body style="padding: 15px">
 		<!-- menu -->
 		<%@include file="./menu.jspf" %>
-		<form class="pure-form">
-			<fieldset>
-				<legend>團購網-結帳成功</legend>
-				<table class="pure-table pure-table-bordered">
-					<thead>
-						<tr><th>序號</th><th>品名</th><th>價格</th><th>單位</th><th>數量</th><th>小計</th></tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>1</td><td>肉羹</td><td>80</td><td>包</td>
-							<td>7</td>
-							<td>560</td>
-						</tr>
-						<tr>
-							<td>2</td><td>肉丸</td><td>60</td><td>包</td>
-							<td>10</td>
-							<td>600</td>
-						</tr>
-						<tr>
-							<td>3</td><td>雞腳凍</td><td>50</td><td>包</td>
-							<td>5</td>
-							<td>250</td>
-						</tr>
-						<tr>
-							<td colspan="5" align="right">總計</td>
-							<td>1,410</td>
-						</tr>
-					</tbody>
-				</table>
-				<p />
-			</fieldset>
-		</form>
+		
+		<div style="padding: 15px">
+			<form class="pure-form">
+				<fieldset>
+					<legend>團購網-結帳成功</legend>
+					<table class="pure-table pure-table-bordered">
+						<thead>
+							<tr><th>序號</th><th>品名</th><th>價格</th><th>單位</th><th>數量</th><th>小計</th></tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td><td>肉羹</td><td>80</td><td>包</td>
+								<td>7</td>
+								<td>560</td>
+							</tr>
+							<tr>
+								<td>2</td><td>肉丸</td><td>60</td><td>包</td>
+								<td>10</td>
+								<td>600</td>
+							</tr>
+							<tr>
+								<td>3</td><td>雞腳凍</td><td>50</td><td>包</td>
+								<td>5</td>
+								<td>250</td>
+							</tr>
+							<tr>
+								<td colspan="5" align="right">總計</td>
+								<td>1,410</td>
+							</tr>
+						</tbody>
+					</table>
+					<p />
+				</fieldset>
+			</form>
+		</div>
+		
+		
 	</body>
 </html>

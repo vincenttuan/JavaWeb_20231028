@@ -10,12 +10,16 @@
 	<body style="padding: 15px">
 		<!-- menu -->
 		<%@include file="./menu.jspf" %>
-		<form class="pure-form">
-			<fieldset>
-				<legend>團購網-新增結果</legend>
-				商品: 雞腳凍(50元/包)<p />
-				數量: 5 包<p />	 
-			</fieldset>
-		</form>
+		
+		<div style="padding: 15px">
+			<form class="pure-form">
+				<fieldset>
+					<legend>團購網-新增結果</legend>
+					商品: 雞腳凍(50元/包)<p />
+					數量: 5 包<p />	 
+				</fieldset>
+			</form>
+		</div>
+		
 	</body>
 </html>
