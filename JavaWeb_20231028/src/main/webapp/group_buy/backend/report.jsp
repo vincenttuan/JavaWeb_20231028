@@ -16,7 +16,6 @@
 			<form class="pure-form">
 				<fieldset>
 					<legend>團購網-後台報表</legend>
-					
 					<table class="pure-table">
 					    <thead>
 					        <tr>
@@ -69,7 +68,6 @@
 					        </tr>
 					    </tbody>
 					</table>
-						 
 				</fieldset>
 			</form>
 		</div>
