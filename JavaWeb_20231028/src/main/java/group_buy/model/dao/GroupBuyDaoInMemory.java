@@ -47,13 +47,12 @@ public class GroupBuyDaoInMemory implements GroupBuyDao {
 	
 	@Override
 	public List<User> findAllUsers() {
-		return null;
+		return users;
 	}
 
 	@Override
 	public User findUserByUsername(String username) {
-		// TODO Auto-generated method stub
-		return null;
+		return users.stream().filter(user -> user.getUsername().equals(username)).findFirst().orElseGet(null);
 	}
 
 	@Override
