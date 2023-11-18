@@ -7,14 +7,19 @@
 		<title>團購網-後台報表</title>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css">
 	</head>
-	<body style="padding: 15px">
+	<body>
 		<!-- menu -->
 		<%@include file="./menu.jspf" %>
-		<form class="pure-form">
-			<fieldset>
-				<legend>團購網-後台報表</legend>
-					 
-			</fieldset>
-		</form>
+		
+		<div style="padding: 15px">
+			<form class="pure-form">
+				<fieldset>
+					<legend>團購網-後台報表</legend>
+						 
+				</fieldset>
+			</form>
+		</div>
+		
+		
 	</body>
 </html>

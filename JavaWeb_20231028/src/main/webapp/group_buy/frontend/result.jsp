@@ -7,7 +7,7 @@
 		<title>團購網-新增結果</title>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css">
 	</head>
-	<body style="padding: 15px">
+	<body>
 		<!-- menu -->
 		<%@include file="./menu.jspf" %>
 		
