@@ -25,6 +25,8 @@
 									<option value="4">箱</option>
 									<option value="5">組</option>
 								 </select>
+							&nbsp;&nbsp;&nbsp;&nbsp;	 
+							上架: <input type="checkbox" checked> 	 
 							<p />
 							<button type="submit" class="pure-button pure-button-primary">新增</button>
 						</fieldset>
@@ -47,6 +49,9 @@
 									</tr>
 									<tr>
 										<td>3</td><td>雞腳凍</td><td>50</td><td>包</td><td><input type="checkbox" checked> 上架</td>
+									</tr>
+									<tr>
+										<td>4</td><td>乖乖</td><td>500</td><td>箱</td><td><input type="checkbox"> 上架</td>
 									</tr>
 								</tbody>
 							</table>
