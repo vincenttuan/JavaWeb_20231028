@@ -14,11 +14,12 @@
 				<legend>團購網-購物車</legend>
 				<table class="pure-table pure-table-bordered">
 					<thead>
-						<tr><th>序號</th><th>品名</th><th>價格</th><th>單位</th><th>數量</th><th>修改</th><th>刪除</th></tr>
+						<tr><th>序號</th><th>品名</th><th>價格</th><th>單位</th><th>數量</th><th>修改數量</th><th>刪除</th></tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td>1</td><td>肉羹</td><td>80</td><td>包</td><td>7</td>
+							<td>1</td><td>肉羹</td><td>80</td><td>包</td>
+							<td><input type="number" value="7" /></td>
 							<td><button class="button-success pure-button">修改</button></td>
 							<td><button class="button-error pure-button">刪除</button></td>
 						</tr>
