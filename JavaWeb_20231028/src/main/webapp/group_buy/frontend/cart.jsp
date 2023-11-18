@@ -39,7 +39,7 @@
 				</table>
 				<p />
 				<button type="button" class="pure-button pure-button-primary" onclick="location.href='./main.jsp';">返回</button>	 
-				<button type="button" class="pure-button pure-button-primary" onclick="location.href='../cart.jsp';">查看購物車</button>	 
+				<button type="button" class="pure-button pure-button-primary" onclick="location.href='./finish.jsp';">結帳</button>	 
 			</fieldset>
 		</form>
 	</body>
