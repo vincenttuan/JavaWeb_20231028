@@ -49,9 +49,9 @@ public interface GroupBuyDao {
     /**
      * 更新產品的上架狀態。
      * @param productId 產品ID。
-     * @param isAvailable 產品是否上架。
+     * @param isLaunch 產品是否上架。
      */
-    void updateProductAvailability(Integer productId, Boolean isAvailable); 
+    void updateProductLaunch(Integer productId, Boolean isLaunch); 
 
     /**
      * 查詢所有購物車資料。
