@@ -8,7 +8,7 @@
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css">
 	</head>
 	<body style="padding: 15px">
-		<div style="vertical-align: middle">
+		<div style="margin:0 auto;">
 			<form method="post" action="./frontend/main.jsp" class="pure-form">
 				<fieldset>
 					<legend>團購登入</legend>
