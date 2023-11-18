@@ -10,6 +10,9 @@
         <li class="pure-menu-item">
             <a href="../login.jsp" class="pure-menu-link">登出</a>
         </li>
+        <li class="pure-menu-item">
+            <a href="#" class="pure-menu-link">John</a>
+        </li>
     </ul>
 </div>
 <p />

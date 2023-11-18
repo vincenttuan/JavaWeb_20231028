@@ -10,7 +10,6 @@
 	<body style="padding: 15px">
 		<!-- menu -->
 		<%@include file="./menu.jspf" %>
-		Hello: John
 		<form method="post" action="./result.jsp" class="pure-form">
 			<fieldset>
 				<legend>團購網首頁</legend>
