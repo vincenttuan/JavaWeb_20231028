@@ -57,8 +57,7 @@ public class GroupBuyDaoInMemory implements GroupBuyDao {
 
 	@Override
 	public User findUserById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		return users.stream().filter(user -> user.getId().equals(id)).findFirst().orElseGet(null);
 	}
 
 	@Override
