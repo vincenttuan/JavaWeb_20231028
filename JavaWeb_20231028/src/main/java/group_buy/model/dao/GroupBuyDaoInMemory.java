@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.stream.Collectors;
 
 import group_buy.model.entity.Cart;
 import group_buy.model.entity.CartItem;
@@ -94,18 +95,19 @@ public class GroupBuyDaoInMemory implements GroupBuyDao {
 
 	@Override
 	public List<Cart> findCartsByUserId(Integer userId) {
-		// TODO Auto-generated method stub
-		return null;
+		return carts.stream().filter(cart -> cart.getUserId().equals(userId)).collect(Collectors.toList());
 	}
 
 	@Override
 	public List<Cart> findCartsByUserIdAndCheckoutStatus(Integer userId, Boolean isCheckedOut) {
-		// TODO Auto-generated method stub
-		return null;
+		return carts.stream()
+				.filter(cart -> cart.getUserId().equals(userId))
+				.filter(cart -> cart.getIsCheckedOut().equals(isCheckedOut))
+				.collect(Collectors.toList());
 	}
 
 	@Override
-	public Cart findActiveCartByUserId(Integer userId) {
+	public Optional<Cart> findActiveCartByUserId(Integer userId) {
 		// TODO Auto-generated method stub
 		return null;
 	}
