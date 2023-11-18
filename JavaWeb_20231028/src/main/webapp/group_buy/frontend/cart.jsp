@@ -2,11 +2,29 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-
-</body>
+	<head>
+		<meta charset="UTF-8">
+		<title>團購網-購物車</title>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css">
+	</head>
+	<body style="padding: 15px">
+		<form class="pure-form">
+			<fieldset>
+				<legend>團購網-購物車</legend>
+				<table class="pure-table pure-table-bordered">
+					<thead>
+						<tr><th>序號</th><th>品名</th><th>價格</th><th>單位</th><th>數量</th><th>刪除</th></tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>1</td><td>肉羹</td><td>80</td><td>包</td><td>7</td>
+							<td></td>
+						</tr>
+					</tbody>
+				</table>
+				<button type="button" class="pure-button pure-button-primary" onclick="location.href='./main.jsp';">返回</button>	 
+				<button type="button" class="pure-button pure-button-primary" onclick="location.href='../cart.jsp';">查看購物車</button>	 
+			</fieldset>
+		</form>
+	</body>
 </html>
