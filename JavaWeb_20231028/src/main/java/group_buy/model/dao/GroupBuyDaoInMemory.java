@@ -117,14 +117,15 @@ public class GroupBuyDaoInMemory implements GroupBuyDao {
 
 	@Override
 	public void addCart(Cart cart) {
-		// TODO Auto-generated method stub
-		
+		carts.add(cart);
 	}
 
 	@Override
 	public void checkoutCartsByUserId(Integer userId) {
-		// TODO Auto-generated method stub
-		
+		Optional<Cart> optCart = findNoneCheckoutCartByUserId(userId);
+		if(optCart.isPresent()) {
+			optCart.get().setIsCheckedOut(true); // 結帳
+		}
 	}
 
 	@Override
