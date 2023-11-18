@@ -1,6 +1,8 @@
 package group_buy.model.dao;
 
 import java.util.List;
+import java.util.Optional;
+
 import group_buy.model.entity.Cart;
 import group_buy.model.entity.Product;
 import group_buy.model.entity.User;
@@ -18,14 +20,14 @@ public interface GroupBuyDao {
      * @param username 用戶名稱。
      * @return 返回找到的用戶，若未找到則返回 null。
      */
-    User findUserByUsername(String username); 
+    Optional<User> findUserByUsername(String username); 
 
     /**
      * 根據用戶ID查找用戶。
      * @param id 用戶ID。
      * @return 返回找到的用戶，若未找到則返回 null。
      */
-    User findUserById(Integer id); 
+    Optional<User> findUserById(Integer id); 
 
     /**
      * 查詢所有產品。
@@ -38,7 +40,7 @@ public interface GroupBuyDao {
      * @param id 產品ID。
      * @return 返回找到的產品，若未找到則返回 null。
      */
-    Product findProductById(Integer id); 
+    Optional<Product> findProductById(Integer id); 
 
     /**
      * 新增產品。
@@ -79,7 +81,7 @@ public interface GroupBuyDao {
      * @param userId 用戶ID。
      * @return 返回找到的購物車，若未找到則返回 null。
      */
-    Cart findActiveCartByUserId(Integer userId); 
+    Optional<Cart> findActiveCartByUserId(Integer userId); 
 
     /**
      * 新增購物車。
