@@ -30,39 +30,39 @@
 					        <tr class="pure-table-odd">
 					            <td>1</td>
 					            <td>John</td>
-					            <td>$1040</td>
+					            <td>$1,040</td>
 					            <td>
 					            	<button class="button-secondary pure-button">明細</button>
 					            </td>
 					        </tr>
 					        <tr>
-					            <td>1</td>
-					            <td>John</td>
-					            <td>$1040</td>
+					            <td>2</td>
+					            <td>Mary</td>
+					            <td>$250</td>
 					            <td>
 					            	<button class="button-secondary pure-button">明細</button>
 					            </td>
 					        </tr>
 					        <tr class="pure-table-odd">
-					            <td>1</td>
-					            <td>John</td>
-					            <td>$1040</td>
+					            <td>3</td>
+					            <td>Mark</td>
+					            <td>$560</td>
 					            <td>
 					            	<button class="button-secondary pure-button">明細</button>
 					            </td>
 					        </tr>
 					        <tr>
-					            <td>1</td>
-					            <td>John</td>
-					            <td>$1040</td>
+					            <td>4</td>
+					            <td>Helen</td>
+					            <td>$2,850</td>
 					            <td>
 					            	<button class="button-secondary pure-button">明細</button>
 					            </td>
 					        </tr>
 					        <tr class="pure-table-odd">
-					            <td>1</td>
-					            <td>John</td>
-					            <td>$1040</td>
+					            <td>5</td>
+					            <td>Alen</td>
+					            <td>$50</td>
 					            <td>
 					            	<button class="button-secondary pure-button">明細</button>
 					            </td>
