@@ -39,7 +39,7 @@
 							<td><button class="button-error pure-button">刪除</button></td>
 						</tr>
 						<tr>
-							<td colspan="5">總計</td>
+							<td colspan="5" align="right">總計</td>
 							<td>1,410</td>
 							<td colspan="2"></td>
 						</tr>
