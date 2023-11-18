@@ -9,7 +9,7 @@
 	</head>
 	<body style="padding: 15px">
 		<!-- menu -->
-		<%@include file="../menu.jspf" %>
+		<%@include file="./menu.jspf" %>
 		Hello: John
 		<form method="post" action="./result.jsp" class="pure-form">
 			<fieldset>
