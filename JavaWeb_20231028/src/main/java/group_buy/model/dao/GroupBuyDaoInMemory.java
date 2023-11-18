@@ -2,6 +2,7 @@ package group_buy.model.dao;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import group_buy.model.entity.Cart;
@@ -51,16 +52,16 @@ public class GroupBuyDaoInMemory implements GroupBuyDao {
 	}
 
 	@Override
-	public User findUserByUsername(String username) {
-		return users.stream().filter(user -> user.getUsername().equals(username)).findFirst().orElseGet(null);
+	public Optional<User> findUserByUsername(String username) {
+		return users.stream().filter(user -> user.getUsername().equals(username)).findFirst();
 	}
 
 	@Override
-	public User findUserById(Integer id) {
+	public Optional<User> findUserById(Integer id) {
 		// 在 sequential 順序流(預設) 中 findAny() , findFirst() 效果相同
-		return users.stream().filter(user -> user.getId().equals(id)).sequential().findAny().orElseGet(null);
+		return users.stream().filter(user -> user.getId().equals(id)).sequential().findAny();
 		// 在 parallel 並行流中 findAny() 效率大於 findFirst() , 但是在使用 parallel 時資料量不可以太小, 否則會造成反效果
-		//return users.stream().filter(user -> user.getId().equals(id)).parallel().findAny().orElseGet(null);
+		//return users.stream().filter(user -> user.getId().equals(id)).parallel().findAny();
 	}
 
 	@Override
@@ -69,8 +70,8 @@ public class GroupBuyDaoInMemory implements GroupBuyDao {
 	}
 
 	@Override
-	public Product findProductById(Integer id) {
-		return products.stream().filter(product -> product.getId().equals(id)).findAny().orElseGet(null);
+	public Optional<Product> findProductById(Integer id) {
+		return products.stream().filter(product -> product.getId().equals(id)).findAny();
 	}
 
 	@Override
@@ -80,9 +81,9 @@ public class GroupBuyDaoInMemory implements GroupBuyDao {
 
 	@Override
 	public void updateProductLaunch(Integer productId, Boolean isLaunch) {
-		Product product = findProductById(productId);
-		if(product != null) {
-			product.setIsLaunch(isLaunch);
+		Optional<Product> optProduct = findProductById(productId);
+		if(optProduct.isPresent()) {
+			optProduct.get().setIsLaunch(isLaunch);
 		}
 	}
 
