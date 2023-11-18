@@ -23,6 +23,18 @@
 							<td><button class="button-success pure-button">修改</button></td>
 							<td><button class="button-error pure-button">刪除</button></td>
 						</tr>
+						<tr>
+							<td>2</td><td>肉丸</td><td>60</td><td>包</td>
+							<td><input type="number" value="10" /></td>
+							<td><button class="button-success pure-button">修改</button></td>
+							<td><button class="button-error pure-button">刪除</button></td>
+						</tr>
+						<tr>
+							<td>3</td><td>雞腳凍</td><td>50</td><td>包</td>
+							<td><input type="number" value="5" /></td>
+							<td><button class="button-success pure-button">修改</button></td>
+							<td><button class="button-error pure-button">刪除</button></td>
+						</tr>
 					</tbody>
 				</table>
 				<p />
