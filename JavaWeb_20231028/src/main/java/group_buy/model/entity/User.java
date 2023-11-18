@@ -5,7 +5,7 @@ public class User {
 	private Integer id; // id
 	private String username;
 	private String password;
-	private Integer level; // 0: 訪客, 1: 後台人員
+	private Integer level; // 1: 訪客, 2: 後台人員
 	
 	public User() {
 		
