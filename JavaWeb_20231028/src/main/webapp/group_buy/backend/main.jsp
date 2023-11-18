@@ -30,23 +30,23 @@
 						</fieldset>
 					</form>
 				</td>
-				<td valign="top">
+				<td valign="top" style="padding-left: 15px">
 					<form class="pure-form">
 						<fieldset>
 							<legend>團購網-後臺商品維護</legend>
 							<table class="pure-table pure-table-bordered">
 								<thead>
-									<tr><th>序號</th><th>品名</th><th>價格</th><th>單位</th></tr>
+									<tr><th>序號</th><th>品名</th><th>價格</th><th>單位</th><th>上架</th></tr>
 								</thead>
 								<tbody>
 									<tr>
-										<td>1</td><td>肉羹</td><td>80</td><td>包</td>
+										<td>1</td><td>肉羹</td><td>80</td><td>包</td><td><input type="checkbox" checked> 上架</td>
 									</tr>
 									<tr>
-										<td>2</td><td>肉丸</td><td>60</td><td>包</td>
+										<td>2</td><td>肉丸</td><td>60</td><td>包</td><td><input type="checkbox" checked> 上架</td>
 									</tr>
 									<tr>
-										<td>3</td><td>雞腳凍</td><td>50</td><td>包</td>
+										<td>3</td><td>雞腳凍</td><td>50</td><td>包</td><td><input type="checkbox" checked> 上架</td>
 									</tr>
 								</tbody>
 							</table>
