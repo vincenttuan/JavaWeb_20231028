@@ -158,9 +158,8 @@ public class GroupBuyDaoInMemory implements GroupBuyDao {
 	@Override
 	public void updateCartItemQuantity(Integer cartItemId, Integer quantity) {
 		Optional<CartItem> optCartItem = cartItems.stream().filter(item -> item.getId().equals(cartItemId)).findAny();
-		if(optCartItem.isPresent()) {
-			optCartItem.get().setQuantity(quantity);
-		}
+		
+		optCartItem.ifPresent(cartItem -> cartItem.setQuantity(quantity));
 		
 	}
 
