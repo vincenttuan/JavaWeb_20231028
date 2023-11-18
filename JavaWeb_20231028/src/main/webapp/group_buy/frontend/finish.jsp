@@ -9,6 +9,7 @@
 		<link rel="stylesheet" href="../../css/group_buy.css">
 	</head>
 	<body style="padding: 15px">
+		Hello: John
 		<form class="pure-form">
 			<fieldset>
 				<legend>團購網-結帳成功</legend>
@@ -35,7 +36,6 @@
 						<tr>
 							<td colspan="5" align="right">總計</td>
 							<td>1,410</td>
-							<td colspan="2"></td>
 						</tr>
 					</tbody>
 				</table>

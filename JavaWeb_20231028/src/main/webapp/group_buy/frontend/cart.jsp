@@ -9,6 +9,7 @@
 		<link rel="stylesheet" href="../../css/group_buy.css">
 	</head>
 	<body style="padding: 15px">
+		Hello: John
 		<form class="pure-form">
 			<fieldset>
 				<legend>團購網-購物車</legend>
