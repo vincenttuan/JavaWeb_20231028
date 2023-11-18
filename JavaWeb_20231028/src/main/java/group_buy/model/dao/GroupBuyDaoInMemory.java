@@ -10,6 +10,13 @@ import group_buy.model.entity.Product;
 import group_buy.model.entity.User;
 
 public class GroupBuyDaoInMemory implements GroupBuyDao {
+	
+	public static void main(String[] args) {
+		System.out.println(users);
+		System.out.println(products);
+		System.out.println(carts);
+	}
+	
 	// In-memory
 	private static List<User> users = new CopyOnWriteArrayList<>();
 	private static List<Product> products = new CopyOnWriteArrayList<>();
