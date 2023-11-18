@@ -23,6 +23,7 @@ public class GroupBuyDaoInMemory implements GroupBuyDao {
 	private static List<User> users = new CopyOnWriteArrayList<>();
 	private static List<Product> products = new CopyOnWriteArrayList<>();
 	private static List<Cart> carts = new CopyOnWriteArrayList<>();
+	private static List<CartItem> cartItems = new CopyOnWriteArrayList<>();
 	
 	static {
 		users.add(new User(1, "John", "1234", 1));
@@ -34,15 +35,22 @@ public class GroupBuyDaoInMemory implements GroupBuyDao {
 		products.add(new Product(3, "雞腳凍", 50, "包", true));
 		products.add(new Product(4, "乖乖", 200, "箱", false));
 		
-		List<CartItem> cartItems = new ArrayList<>();
 		cartItems.add(new CartItem(1, 1, 1, 7)); // id, cartId, productId, quantity
 		cartItems.add(new CartItem(2, 1, 2, 10));
 		cartItems.add(new CartItem(3, 1, 3, 5));
-		carts.add(new Cart(1, 1, cartItems, false)); // id, userId, cartItems, isCheckedOut
+		cartItems.add(new CartItem(4, 2, 3, 4));
+		cartItems.add(new CartItem(5, 2, 1, 3));
+		
+		
+		List<CartItem> cartItems1 = new ArrayList<>();
+		cartItems1.add(cartItems.get(0)); 
+		cartItems1.add(cartItems.get(1));
+		cartItems1.add(cartItems.get(2));
+		carts.add(new Cart(1, 1, cartItems1, false)); // id, userId, cartItems, isCheckedOut
 		
 		List<CartItem> cartItems2 = new ArrayList<>();
-		cartItems2.add(new CartItem(4, 2, 3, 4)); // id, cartId, productId, quantity
-		cartItems2.add(new CartItem(5, 2, 1, 3));
+		cartItems2.add(cartItems.get(3));
+		cartItems2.add(cartItems.get(4));
 		carts.add(new Cart(2, 3, cartItems2, false)); // id, userId, cartItems, isCheckedOut
 		
 	}
@@ -141,7 +149,6 @@ public class GroupBuyDaoInMemory implements GroupBuyDao {
 
 	@Override
 	public void removeCartItem(Integer cartItemId) {
-		// TODO Auto-generated method stub
 		
 	}
 
