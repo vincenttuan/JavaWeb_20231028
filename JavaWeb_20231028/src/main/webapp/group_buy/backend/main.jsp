@@ -10,6 +10,7 @@
 	</head>
 	<body style="padding: 15px">
 		<!-- menu -->
+		<%@include file="./menu.jspf" %>
 		<table>
 			<tr>
 				<td valign="top">
