@@ -130,7 +130,12 @@ public class GroupBuyDaoInMemory implements GroupBuyDao {
 
 	@Override
 	public void checkoutCartById(Integer cartId) {
-		// TODO Auto-generated method stub
+		Optional<Cart> optCart = carts.stream()
+									.filter(cart -> cart.getId().equals(cartId))
+									.findAny();
+		if(optCart.isPresent()) {
+			optCart.get().setIsCheckedOut(true); // 結帳
+		}
 		
 	}
 
