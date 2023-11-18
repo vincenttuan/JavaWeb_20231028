@@ -24,8 +24,8 @@ public interface GroupBuyDao {
 	
 	void addCart(Cart cart); // 新增購物車
 	void setCheckOutCartByUserId(Integer userId); // 將該使用者的購物車資訊進行結帳  
-	void setCheckOutCartByChartId(Integer cartId); // 將該購物車資訊進行結帳  
+	void setCheckOutCartByCartId(Integer cartId); // 將該購物車資訊進行結帳  
 	void deleteCartItemById(Integer cartItemId); // 將該筆購物明細刪除
-	void updateCartItemAmountById(Integer cartItemId); // 修改該筆購物明細的數量
+	void updateCartItemAmountById(Integer cartItemId, Integer amount); // 修改該筆購物明細的數量
 	
 }
