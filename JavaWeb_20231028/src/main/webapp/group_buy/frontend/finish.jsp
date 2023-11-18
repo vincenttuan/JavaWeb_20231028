@@ -42,7 +42,6 @@
 					</tbody>
 				</table>
 				<p />
-				<button type="button" class="pure-button pure-button-primary" onclick="location.href='./main.jsp';">返回</button>	 
 			</fieldset>
 		</form>
 	</body>
