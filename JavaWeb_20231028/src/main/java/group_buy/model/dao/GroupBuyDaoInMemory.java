@@ -57,19 +57,20 @@ public class GroupBuyDaoInMemory implements GroupBuyDao {
 
 	@Override
 	public User findUserById(Integer id) {
-		return users.stream().filter(user -> user.getId().equals(id)).findFirst().orElseGet(null);
+		// 在 sequential 順序流(預設) 中 findAny() , findFirst() 效果相同
+		return users.stream().filter(user -> user.getId().equals(id)).sequential().findAny().orElseGet(null);
+		// 在 parallel 並行流中 findAny() 效率大於 findFirst() , 但是在使用 parallel 時資料量不可以太小, 否則會造成反效果
+		//return users.stream().filter(user -> user.getId().equals(id)).parallel().findAny().orElseGet(null);
 	}
 
 	@Override
 	public List<Product> findAllProducts() {
-		// TODO Auto-generated method stub
-		return null;
+		return products;
 	}
 
 	@Override
 	public Product findProductById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		return products.stream().filter(product -> product.getId().equals(id)).findAny().orElseGet(null);
 	}
 
 	@Override
