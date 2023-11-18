@@ -9,7 +9,7 @@
 	</head>
 	<body style="padding: 15px">
 		<div style="vertical-align: middle">
-			<form method="post" action="./frontend/main.jsp" class="pure-css">
+			<form method="post" action="./frontend/main.jsp" class="pure-form">
 				<fieldset>
 					<legend>團購登入</legend>
 					帳號: <input type="text" id="username" name="username" placeholder="請輸入帳號" value="John" required /><p />
