@@ -111,6 +111,7 @@ public class GroupBuyDaoInMemory implements GroupBuyDao {
 		return carts.stream()
 				.filter(cart -> cart.getUserId().equals(userId))
 				.filter(cart -> !cart.getIsCheckedOut()) // ! 尚未結帳
+				//.filter(cart -> cart.getIsCheckedOut().equals(false)) // false = 尚未結帳
 				.findAny();
 	}
 
