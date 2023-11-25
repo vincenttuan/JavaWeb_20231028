@@ -15,6 +15,7 @@ import group_buy.model.entity.CartItem;
 import group_buy.model.entity.Product;
 import group_buy.model.entity.User;
 
+// 利用 SingleTon + JdbcTemplate 來設計
 public class GroupBuyDaoMySQL implements GroupBuyDao {
 	private static GroupBuyDao _instance = new GroupBuyDaoMySQL();
 	
