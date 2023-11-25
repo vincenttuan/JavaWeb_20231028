@@ -16,6 +16,7 @@ import group_buy.model.entity.Product;
 import group_buy.model.entity.User;
 
 public class GroupBuyDaoMySQL implements GroupBuyDao {
+	private static GroupBuyDao _instance = new GroupBuyDaoMySQL();
 	
 	private JdbcTemplate jdbcTemplate;
 	
@@ -33,6 +34,10 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 		
 		// 設定 JdbcTemplate 的數據源
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
+	}
+	
+	public static GroupBuyDao getInstance() {
+		return _instance;
 	}
 	
 	@Override
