@@ -6,6 +6,8 @@ import java.util.Optional;
 
 import group_buy.model.dao.GroupBuyDao;
 import group_buy.model.dao.GroupBuyDaoMySQL;
+import group_buy.model.entity.Cart;
+import group_buy.model.entity.CartItem;
 import group_buy.model.entity.Product;
 import group_buy.model.entity.User;
 import jakarta.servlet.FilterChain;
@@ -35,6 +37,8 @@ public class DispatchFilter extends HttpFilter {
 		String method = request.getMethod();
 		System.out.println(servletPath + ", " + method);
 		
+		HttpSession session = request.getSession();
+		
 		switch (servletPath) {
 			case 團購首頁: // 按下登入頁的"前台登入"按鈕或按下"團購首頁"連結
 				if(method.equals("POST")) { // 按下登入頁的"前台登入"按鈕
@@ -50,7 +54,6 @@ public class DispatchFilter extends HttpFilter {
 					}
 					System.out.println("使用者登入成功");
 					// 將使用者物件存入到 session 中
-					HttpSession session = request.getSession();
 					session.setAttribute("user", userOpt.get());
 				} 
 				
@@ -59,7 +62,32 @@ public class DispatchFilter extends HttpFilter {
 				request.setAttribute("products", products); // 將商品資訊放入到 request-scope 的屬性中
 				break;
 			case 新增完成頁:
-				
+				if(method.equals("POST")) {
+					String productId = request.getParameter("productId"); // 取得欲購買商品
+					String quantity = request.getParameter("quantity"); // 取得欲購買數量
+					// 取得已登入的使用者
+					User user = (User)session.getAttribute("user");
+					// 使用者購物車
+					Cart cart = null;
+					// 先找該 user 目前有沒有還未結帳的購物車
+					Optional<Cart> cartOpt = dao.findNoneCheckoutCartByUserId(user.getUserId());
+					if(cartOpt.isPresent()) {
+						cart = cartOpt.get(); // 取得該使用者的購物車
+					} else {
+						cart = new Cart(); // 建立一個新的購物車
+						cart.setUserId(user.getUserId());
+						dao.addCart(cart); // 存放到資料表中
+					}
+					// 建立購物項目
+					CartItem cartItem = new CartItem();
+					cartItem.setCartId(cart.getCartId());
+					cartItem.setProductId(Integer.parseInt(productId));
+					cartItem.setQuantity(Integer.parseInt(quantity));
+					dao.addCartItem(cartItem);
+				} else {
+					response.getWriter().print("非法進入~");
+					return;
+				}
 				break;
 		}
 		
