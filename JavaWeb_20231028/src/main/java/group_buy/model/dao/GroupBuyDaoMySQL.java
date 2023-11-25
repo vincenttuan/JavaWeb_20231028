@@ -154,6 +154,8 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 		if(cartItem != null) {
 			// 根據 productId 來找到 product 並注入到 cartItem 中
 			findProductById(cartItem.getProductId()).ifPresent(product -> cartItem.setProduct(product));
+			// 根據 cartId 來找到 cart 並注入到 cartItem 中
+			findCartById(cartItem.getCartId()).ifPresent(cart -> cartItem.setCart(cart));
 		}
 		return Optional.ofNullable(cartItem);
 	}
