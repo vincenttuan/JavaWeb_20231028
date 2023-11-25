@@ -40,6 +40,7 @@ public class DispatchFilter extends HttpFilter {
 						response.sendRedirect(contextPath + "/group_buy/login.jsp");
 						return;
 					}
+					System.out.println("使用者登入成功");
 				}
 			break;
 		}
