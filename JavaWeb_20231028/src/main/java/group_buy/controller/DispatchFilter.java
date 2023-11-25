@@ -21,7 +21,7 @@ import jakarta.servlet.http.HttpSession;
 import static group_buy.controller.URLPath.團購首頁;
 import static group_buy.controller.URLPath.登入首頁;
 import static group_buy.controller.URLPath.新增完成頁;
-
+import static group_buy.controller.URLPath.購物車頁;
 // 過濾路徑分派器
 @WebFilter(value = {"/group_buy/*"})
 public class DispatchFilter extends HttpFilter {
@@ -104,6 +104,11 @@ public class DispatchFilter extends HttpFilter {
 					response.getWriter().print("非法進入~");
 					return;
 				}
+				break;
+			case 購物車頁:
+				// 取得已登入的使用者
+				User user = (User)session.getAttribute("user");
+				request.setAttribute("cart", dao.findNoneCheckoutCartByUserId(user.getUserId()));
 				break;
 		}
 		

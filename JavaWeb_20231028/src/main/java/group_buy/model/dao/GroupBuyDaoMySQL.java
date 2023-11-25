@@ -185,6 +185,14 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 		String sql = "select cartId, userId, isCheckout, checkoutTime from cart where userId = ? and (isCheckout = false or isCheckout is null)";
 		try {
 			Cart cart = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Cart.class), userId);
+			if(cart != null) {
+				// 根據 userId 來找到 user 並注入到 cart 中
+				findUserById(cart.getUserId()).ifPresent(cart::setUser);
+				// 查詢 List<CartItem> 根據 cartId  並注入到 cart 中
+				sql = "select itemId, cartId, productId, quantity from cartitem where cartId = ?";
+				List<CartItem> cartItems = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(CartItem.class), cart.getCartId());
+				cart.setCartItems(cartItems);
+			}
 			return Optional.ofNullable(cart);
 		} catch(EmptyResultDataAccessException e) {
 			return Optional.empty();
