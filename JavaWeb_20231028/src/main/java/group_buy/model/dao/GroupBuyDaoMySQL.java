@@ -1,9 +1,13 @@
 package group_buy.model.dao;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import group_buy.model.entity.Cart;
@@ -33,8 +37,23 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 	
 	@Override
 	public List<User> findAllUsers() {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "select userId, username, password, level from user";
+		
+		//return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(User.class));
+		
+		return jdbcTemplate.query(sql, new RowMapper<User>() {
+
+			@Override
+			public User mapRow(ResultSet rs, int rowNum) throws SQLException {
+				User user = new User();
+				user.setUserId(rs.getInt("userId"));
+				user.setUsername(rs.getString("username"));
+				user.setPassword(rs.getString("password"));
+				user.setLevel(rs.getInt("level"));
+				return user;
+			}
+			
+		});
 	}
 
 	@Override
