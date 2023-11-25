@@ -108,7 +108,9 @@ public class DispatchFilter extends HttpFilter {
 			case 購物車頁:
 				// 取得已登入的使用者
 				User user = (User)session.getAttribute("user");
-				request.setAttribute("cart", dao.findNoneCheckoutCartByUserId(user.getUserId()).get());
+				// 取得尚未結帳的購物車
+				Cart cart = dao.findNoneCheckoutCartByUserId(user.getUserId()).get();
+				request.setAttribute("cart", cart);
 				break;
 		}
 		
