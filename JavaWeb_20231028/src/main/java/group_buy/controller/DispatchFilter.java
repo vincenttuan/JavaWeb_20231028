@@ -110,7 +110,9 @@ public class DispatchFilter extends HttpFilter {
 				User user = (User)session.getAttribute("user");
 				// 取得尚未結帳的購物車
 				Cart cart = dao.findNoneCheckoutCartByUserId(user.getUserId()).get();
+				int total = cart.getCartItems().stream().mapToInt(item -> item.getQuantity() * item.getProduct().getPrice()).sum();
 				request.setAttribute("cart", cart);
+				request.setAttribute("total", total);
 				break;
 		}
 		
