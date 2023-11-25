@@ -1,10 +1,12 @@
 package group_buy.controller;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 
 import group_buy.model.dao.GroupBuyDao;
 import group_buy.model.dao.GroupBuyDaoMySQL;
+import group_buy.model.entity.Product;
 import group_buy.model.entity.User;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -35,13 +37,18 @@ public class DispatchFilter extends HttpFilter {
 					String password = request.getParameter("password");
 					// 找到使用者
 					Optional<User> userOpt = dao.findUserByUsername(username);
+					// 判斷是否有找到使用者與密碼判斷
 					if(userOpt.isEmpty() || !password.equals(userOpt.get().getPassword())) {
 						System.out.println("無此使用者或密碼不正確");
 						response.sendRedirect(contextPath + "/group_buy/login.jsp");
 						return;
 					}
 					System.out.println("使用者登入成功");
-				}
+				} 
+				
+				List<Product> products = dao.findAllProducts();
+				System.out.println("商品資訊: " + products);
+				request.setAttribute("products", products); // 將商品資訊放入到 request-scope 的屬性中
 			break;
 		}
 		
