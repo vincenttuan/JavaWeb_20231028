@@ -118,50 +118,52 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 
 	@Override
 	public Boolean updateProductLaunch(Integer productId, Boolean isLaunch) {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "update product set isLaunch = ? where productId = ?";
+		return jdbcTemplate.update(sql, isLaunch, productId) == 1;
 	}
 
 	@Override
 	public void addCart(Cart cart) {
-		// TODO Auto-generated method stub
-		
+		String sql = "insert into cart(userId, isCheckout) values(?, ?)";
+		jdbcTemplate.update(sql, cart.getUserId(), cart.getIsCheckout());
 	}
 
 	@Override
 	public void addCartItem(CartItem cartItem) {
-		// TODO Auto-generated method stub
-		
+		String sql = "insert into cartitem(cartId, productId, quantity) values(?, ?, ?)";
+		jdbcTemplate.update(sql, cartItem.getCartId(), cartItem.getProductId(), cartItem.getQuantity());
 	}
 
 	@Override
 	public List<Cart> findAllCart() {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "select cartId, userId, isCheckout, checkoutTime from cart";
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Cart.class));
 	}
 
 	@Override
 	public Optional<Cart> findCartById(Integer cartId) {
-		// TODO Auto-generated method stub
-		return Optional.empty();
+		String sql = "select cartId, userId, isCheckout, checkoutTime from cart where cartId = ?";
+		Cart cart = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Cart.class), cartId);
+		return Optional.ofNullable(cart);
 	}
 
 	@Override
 	public Optional<CartItem> findCartItemById(Integer itemId) {
-		// TODO Auto-generated method stub
-		return Optional.empty();
+		String sql = "select itemId, cartId, productId, quantity from cartitem where itemId = ?";
+		CartItem cartItem = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(CartItem.class), itemId);
+		return Optional.ofNullable(cartItem);
 	}
 
 	@Override
 	public List<Cart> findCartsByUserId(Integer userId) {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "select cartId, userId, isCheckout, checkoutTime from cart where userId = ?";
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Cart.class), userId);
 	}
 
 	@Override
 	public List<Cart> findCartsbyUserIdAndCheckoutStatus(Integer userId, Boolean isCheckout) {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "select cartId, userId, isCheckout, checkoutTime from cart where userId = ? and isCheckout = ?";
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Cart.class), userId, isCheckout);
 	}
 
 	@Override
