@@ -10,6 +10,7 @@
 	<dependencies>
 		
 		<!-- https://mvnrepository.com/artifact/org.springframework/spring-jdbc -->
+		<!-- Java JDK Env 17 -->
 		<dependency>
 		    <groupId>org.springframework</groupId>
 		    <artifactId>spring-jdbc</artifactId>
