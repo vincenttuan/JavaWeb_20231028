@@ -193,8 +193,8 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 
 	@Override
 	public Boolean updateCartItemQuantity(Integer cartItemId, Integer quantity) {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "update cartitem set quantity = ? where itemId = ?";
+		return jdbcTemplate.update(sql, quantity, cartItemId) == 1;
 	}
 
 }
