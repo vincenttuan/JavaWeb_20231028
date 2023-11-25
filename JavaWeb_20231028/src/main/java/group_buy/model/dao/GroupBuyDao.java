@@ -4,113 +4,74 @@ import java.util.List;
 import java.util.Optional;
 
 import group_buy.model.entity.Cart;
+import group_buy.model.entity.CartItem;
 import group_buy.model.entity.Product;
 import group_buy.model.entity.User;
 
 public interface GroupBuyDao {
-
-    /**
-     * 查詢所有用戶。
-     * @return 返回用戶列表。
-     */
-    List<User> findAllUsers(); 
-
-    /**
-     * 根據用戶名稱查找用戶。
-     * @param username 用戶名稱。
-     * @return 返回找到的用戶，若未找到則返回 null。
-     */
-    Optional<User> findUserByUsername(String username); 
-
-    /**
-     * 根據用戶ID查找用戶。
-     * @param id 用戶ID。
-     * @return 返回找到的用戶，若未找到則返回 null。
-     */
-    Optional<User> findUserById(Integer id); 
-
-    /**
-     * 查詢所有產品。
-     * @return 返回產品列表。
-     */
-    List<Product> findAllProducts(); 
-
-    /**
-     * 根據產品ID查找產品。
-     * @param id 產品ID。
-     * @return 返回找到的產品，若未找到則返回 null。
-     */
-    Optional<Product> findProductById(Integer id); 
-
-    /**
-     * 新增產品。
-     * @param product 要新增的產品實體。
-     */
-    void addProduct(Product product); 
-
-    /**
-     * 更新產品的上架狀態。
-     * @param productId 產品ID。
-     * @param isLaunch 產品是否上架。
-     */
-    void updateProductLaunch(Integer productId, Boolean isLaunch); 
-
-    /**
-     * 查詢所有購物車資料。
-     * @return 返回購物車列表。
-     */
-    List<Cart> findAllCarts(); 
-
-    /**
-     * 根據用戶ID查詢其所有購物車資料。
-     * @param userId 用戶ID。
-     * @return 返回該用戶的購物車列表。
-     */
-    List<Cart> findCartsByUserId(Integer userId); 
-
-    /**
-     * 根據用戶ID及結帳狀態查詢購物車資料。
-     * @param userId 用戶ID。
-     * @param isCheckedOut 是否已結帳。
-     * @return 返回符合條件的購物車列表。
-     */
-    List<Cart> findCartsByUserIdAndCheckoutStatus(Integer userId, Boolean isCheckedOut); 
-
-    /**
-     * 查詢用戶的未結帳購物車資料。
-     * @param userId 用戶ID。
-     * @return 返回找到的購物車，若未找到則返回 null。
-     */
-    Optional<Cart> findNoneCheckoutCartByUserId(Integer userId); 
-
-    /**
-     * 新增購物車。
-     * @param cart 要新增的購物車實體。
-     */
-    void addCart(Cart cart); 
-
-    /**
-     * 根據用戶ID將其所有購物車設置為已結帳狀態。
-     * @param userId 用戶ID。
-     */
-    void checkoutCartsByUserId(Integer userId); 
-
-    /**
-     * 根據購物車ID將該購物車設置為已結帳狀態。
-     * @param cartId 購物車ID。
-     */
-    void checkoutCartById(Integer cartId); 
-
-    /**
-     * 刪除指定的購物車項目。
-     * @param cartItemId 購物車項目ID。
-     */
-    void removeCartItem(Integer cartItemId); 
-
-    /**
-     * 更新購物車項目的數量。
-     * @param cartItemId 購物車項目ID。
-     * @param quantity 新的數量。
-     */
-    void updateCartItemQuantity(Integer cartItemId, Integer quantity); 
+//	使用者-User:
+//	1. 查詢所有使用者(多筆)
+	List<User> findAllUsers();
+	
+//	2. 新增使用者
+	void addUser(User user);
+	
+//	3. 修改密碼
+	Boolean updateUserPassword(Integer userId, String newPassword);
+	
+//	4. 根據使用者名稱查找使用者(登入用-單筆)
+	Optional<User> findUserByUsername(String username);
+	
+//	5. 根據使用者ID查找使用者(單筆)
+	Optional<User> findUserById(Integer userId);
+//
+//	商品-Product
+//	1. 查詢所有商品(多筆)
+	List<Product> findAllProducts();
+	
+//	2. 根據產品ID來查找商品(單筆)
+	Optional<Product> findProductById(Integer productId);
+	
+//	3. 新增商品
+	void addProduct(Product product);
+	
+//	4. 變更商品上架狀態
+	Boolean updateProductLaunch(Integer productId, Boolean isLaunch);
+//
+//	購物車/購物車項目(Cart/CartItem)
+//	1. 新增購物車資料
+	void addCart(Cart cart);
+	
+//	2. 新增購物車項目資料
+	void addCartItem(CartItem cartItem);
+	
+//	3. 查詢所有購物車資料(多筆)
+	List<Cart> findAllCart();
+	
+//	4. 根據購物車ID查找購物車資料(單筆)
+	Optional<Cart> findCartById(Integer cartId);
+	
+//	5. 根據購物車項目ID查找購物車項目資料(單筆)
+	Optional<CartItem> findCartItemById(Integer itemId);
+	
+//	6. 根據使用者ID來查找其所有購物車資料(多筆)
+	List<Cart> findCartsByUserId(Integer userId);
+	
+//	7. 根據使用者ID及結帳狀態來查找其所有購物車資料(多筆)
+	List<Cart> findCartsbyUserIdAndCheckoutStatus(Integer userId, Boolean isCheckout);
+	
+//	8. 根據使用者ID來查找其未結帳的購物車資料(單筆)
+	Optional<Cart> findNoneCheckoutCartByUserId(Integer userId);
+	
+//	9. 根據使用者ID將該使用者的購物車設置為已結帳狀態(前台的事件)
+	Boolean checkoutCartByUserId(Integer userId);
+	
+//	10. 根據購物車ID將購物車設置為已結帳狀態(後台的事件)
+	Boolean checkoutCartById(Integer cartId);
+	
+//	11. 根據購物車項目ID刪除指定的購物車項目
+	Boolean removeCartItemById(Integer cartItemId);
+	
+//	12. 更新購物車項目的數量
+	Boolean updateCartItemQuantity(Integer cartItemId, Integer quantity);
 }

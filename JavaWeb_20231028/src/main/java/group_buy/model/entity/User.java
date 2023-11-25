@@ -1,30 +1,39 @@
 package group_buy.model.entity;
 
-// 使用者
+/**
+2. 使用者
+level: 1(一般會員-進行團購), 2(後臺維運人員-進行團購+上架商品)
++--------+----------+----------+-------+
+| userId | username | password | level |
++--------+----------+----------+-------+
+|  101   | user123  | pass123  |   1   |
+|  102   | user456  | pass456  |   2   |
+|  103   | user789  | pass789  |   1   |
++--------+----------+----------+-------+
+*/
 public class User {
-	private Integer id; // id
-	private String username;
-	private String password;
-	private Integer level; // 1: 訪客, 2: 後台人員
+	private Integer userId; // 使用者代號
+	private String username; // 使用者名稱
+	private String password; // 使用者密碼
+	private Integer level; // 使用者權限
 	
 	public User() {
 		
 	}
-
-	public User(Integer id, String username, String password, Integer level) {
-		super();
-		this.id = id;
+	
+	public User(Integer userId, String username, String password, Integer level) {
+		this.userId = userId;
 		this.username = username;
 		this.password = password;
 		this.level = level;
 	}
 
-	public Integer getId() {
-		return id;
+	public Integer getUserId() {
+		return userId;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
 
 	public String getUsername() {
@@ -53,8 +62,10 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", username=" + username + ", password=" + password + ", level=" + level + "]";
+		return "User [userId=" + userId + ", username=" + username + ", password=" + password + ", level=" + level
+				+ "]";
 	}
+	
 	
 	
 }

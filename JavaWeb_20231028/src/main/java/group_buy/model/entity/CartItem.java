@@ -1,30 +1,47 @@
 package group_buy.model.entity;
 
-// 購物車明細檔(Detail)
+/**
+4. 購物車明細檔(Detail)
++--------+----------+-----------+------------+
+| itemId |  cartId  | productId |  quantity  |
++--------+----------+-----------+------------+
+|   1    |   201    |    501    |     10     |
+|   2    |   201    |    502    |     8      |
+|   3    |   202    |    503    |     5      |
+|   4    |   203    |    502    |     8      |
+|   5    |   203    |    504    |     20     |
+|   6    |   205    |    505    |     15     |
++--------+----------+-----------+------------+
+ * */
 public class CartItem {
-	private Integer id; // 序號
-	private Integer cartId; // 購物車主檔序號
-	private Integer productId; // 商品 id
-	private Integer quantity; // 商品數量
+	private Integer itemId; // 購物車明細 Id
+	private Integer cartId; // 購物車 Id
+	private Integer productId; // 商品 Id
+	private Integer quantity; // 數量
+	
+	private Cart cart; // 購物車物件(關聯欄位)
+	private Product product; // 商品物件(關聯欄位)
 	
 	public CartItem() {
 		
 	}
-
-	public CartItem(Integer id, Integer cartId, Integer productId, Integer quantity) {
-		super();
-		this.id = id;
+	
+	public CartItem(Integer itemId, Integer cartId, Integer productId, Integer quantity) {
+		this.itemId = itemId;
 		this.cartId = cartId;
 		this.productId = productId;
 		this.quantity = quantity;
+		
+		// 根據 productId 找到 Product 物件
+		// 根據 cartId 找到 Cart 物件
 	}
 
-	public Integer getId() {
-		return id;
+	public Integer getItemId() {
+		return itemId;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setItemId(Integer itemId) {
+		this.itemId = itemId;
 	}
 
 	public Integer getCartId() {
@@ -35,12 +52,28 @@ public class CartItem {
 		this.cartId = cartId;
 	}
 
+	public Cart getCart() {
+		return cart;
+	}
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
+
 	public Integer getProductId() {
 		return productId;
 	}
 
 	public void setProductId(Integer productId) {
 		this.productId = productId;
+	}
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 
 	public Integer getQuantity() {
@@ -53,8 +86,8 @@ public class CartItem {
 
 	@Override
 	public String toString() {
-		return "CartItem [id=" + id + ", cartId=" + cartId + ", productId=" + productId + ", quantity=" + quantity
-				+ "]";
+		return "CartItem [itemId=" + itemId + ", cartId=" + cartId + ", cart=" + cart + ", productId=" + productId
+				+ ", product=" + product + ", quantity=" + quantity + "]";
 	}
 	
 	
