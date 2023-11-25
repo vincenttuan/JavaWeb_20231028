@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -65,26 +66,35 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 
 	@Override
 	public void addUser(User user) {
-		// TODO Auto-generated method stub
-		
+		String sql = "insert into user(username, password, level) values(?, ?, ?)";
+		jdbcTemplate.update(sql, user.getUsername(), user.getPassword(), user.getLevel());
 	}
 
 	@Override
 	public Boolean updateUserPassword(Integer userId, String newPassword) {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "update user set password = ? where userId = ?";
+		int rowcount = jdbcTemplate.update(sql, newPassword, userId);
+		return rowcount == 1;
 	}
 
 	@Override
 	public Optional<User> findUserByUsername(String username) {
-		// TODO Auto-generated method stub
-		return Optional.empty();
+		String sql = "select userId, username, password, level from user where username = ?";
+		User user = null;
+		try {
+			user = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(User.class), username);
+		} catch (EmptyResultDataAccessException e) {
+			e.printStackTrace();
+			return Optional.empty();
+		}
+		return Optional.ofNullable(user);
 	}
 
 	@Override
 	public Optional<User> findUserById(Integer userId) {
-		// TODO Auto-generated method stub
-		return Optional.empty();
+		String sql = "select userId, username, password, level from user where userId = ?";
+		User user = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(User.class), userId);
+		return Optional.ofNullable(user);
 	}
 
 	@Override
