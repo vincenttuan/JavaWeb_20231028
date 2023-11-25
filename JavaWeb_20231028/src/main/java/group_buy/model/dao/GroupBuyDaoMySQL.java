@@ -141,29 +141,31 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 	}
 
 	// 為 cart 注入 cartItems
-	private void enrichCartWithItems(Cart cart) {
+	private void enrichCartWithDetails(Cart cart) {
 	    // 注入 User
 	    findUserById(cart.getUserId()).ifPresent(cart::setUser);
-	
-	    // 查詢 CartItems
-	    String sqlItems = "select itemId, cartId, productId, quantity from cartitem where cartId = ?";
+	    
+	    // 查詢和注入 CartItems
+	    String sqlItems = "SELECT itemId, cartId, productId, quantity FROM cartitem WHERE cartId = ?";
 	    List<CartItem> cartItems = jdbcTemplate.query(sqlItems, new BeanPropertyRowMapper<>(CartItem.class), cart.getCartId());
-	    cart.setCartItems(cartItems);
-	
-	    // 為每個 CartItem 注入 Product
 	    cartItems.forEach(cartItem -> {
 	        findProductById(cartItem.getProductId()).ifPresent(cartItem::setProduct);
 	    });
+	    cart.setCartItems(cartItems);
 	}
 	
 	@Override
 	public Optional<Cart> findCartById(Integer cartId) {
-	    String sql = "select cartId, userId, isCheckout, checkoutTime from cart where cartId = ?";
-	    Cart cart = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Cart.class), cartId);
-	    if (cart != null) {
-	        enrichCartWithItems(cart);
+	    try {
+	        String sql = "SELECT cartId, userId, isCheckout, checkoutTime FROM cart WHERE cartId = ?";
+	        Cart cart = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Cart.class), cartId);
+	        if (cart != null) {
+	            enrichCartWithDetails(cart);
+	        }
+	        return Optional.ofNullable(cart);
+	    } catch (EmptyResultDataAccessException e) {
+	        return Optional.empty();
 	    }
-	    return Optional.ofNullable(cart);
 	}
 
 	@Override
@@ -197,7 +199,7 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 	        String sql = "select cartId, userId, isCheckout, checkoutTime from cart where userId = ? and (isCheckout = false or isCheckout is null)";
 	        Cart cart = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Cart.class), userId);
 	        if (cart != null) {
-	            enrichCartWithItems(cart);
+	            enrichCartWithDetails(cart);
 	        }
 	        return Optional.ofNullable(cart);
 	    } catch (EmptyResultDataAccessException e) {
