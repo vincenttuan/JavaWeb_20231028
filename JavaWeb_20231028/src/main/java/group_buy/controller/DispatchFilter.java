@@ -111,21 +111,27 @@ public class DispatchFilter extends HttpFilter {
 				// 取得已登入的使用者
 				User user = (User)session.getAttribute("user");
 				// 取得尚未結帳的購物車
-				Cart cart = dao.findNoneCheckoutCartByUserId(user.getUserId()).get();
-				int total = cart.getCartItems().stream().mapToInt(item -> item.getQuantity() * item.getProduct().getPrice()).sum();
-				request.setAttribute("cart", cart);
-				request.setAttribute("total", total);
+				Optional<Cart> cartOpt = dao.findNoneCheckoutCartByUserId(user.getUserId());
+				if(cartOpt.isPresent()) {
+					Cart cart = cartOpt.get();
+					int total = cart.getCartItems().stream().mapToInt(item -> item.getQuantity() * item.getProduct().getPrice()).sum();
+					request.setAttribute("cart", cart);
+					request.setAttribute("total", total);
+				}
 				break;
 			case 結帳成功:
 				// 取得已登入的使用者
 				user = (User)session.getAttribute("user");
 				// 取得尚未結帳的購物車
-				cart = dao.findNoneCheckoutCartByUserId(user.getUserId()).get();
-				total = cart.getCartItems().stream().mapToInt(item -> item.getQuantity() * item.getProduct().getPrice()).sum();
-				request.setAttribute("cart", cart);
-				request.setAttribute("total", total);
-				// 結帳
-				dao.checkoutCartById(cart.getCartId());
+				cartOpt = dao.findNoneCheckoutCartByUserId(user.getUserId());
+				if(cartOpt.isPresent()) {
+					Cart cart = cartOpt.get();
+					int total = cart.getCartItems().stream().mapToInt(item -> item.getQuantity() * item.getProduct().getPrice()).sum();
+					request.setAttribute("cart", cart);
+					request.setAttribute("total", total);
+					// 結帳
+					dao.checkoutCartById(cart.getCartId());
+				}
 				break;
 		}
 		
