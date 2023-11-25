@@ -23,12 +23,14 @@
 						</thead>
 						<tbody>
 							<c:forEach items="${ cart.cartItems }" var="item">
-								<td>${ item.itemId }</td>
+								<tr>
+									<td>${ item.itemId }</td>
 									<td>${ item.product.productName }</td>
 									<td>${ item.product.price }</td>
 									<td>${ item.product.unit }</td>
 									<td>${ item.quantity }</td>
 									<td>${ item.product.price * item.quantity }</td>
+								</tr>	
 							</c:forEach>
 							<tr>
 								<td colspan="5" align="right">總計</td>
