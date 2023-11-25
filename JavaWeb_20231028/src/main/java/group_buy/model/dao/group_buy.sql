@@ -46,6 +46,8 @@ ps: cartItems 一對多關聯
 |   6    |   205    |    505    |     15     |
 +--------+----------+-----------+------------+
 
+資料庫的建立: CREATE SCHEMA `group_buy` DEFAULT CHARACTER SET utf8mb4 ;
+
  * */
 drop table if exists cartitem;
 drop table if exists cart;
@@ -111,11 +113,11 @@ INSERT INTO user (userId, username, password, level) VALUES
 (103, 'user789', 'pass789', 1);
 
 INSERT INTO cart (cartId, userId, isCheckout, checkoutTime) VALUES
-(201, 101, true, NULL),
+(201, 101, true, current_timestamp),
 (202, 102, false, NULL),
-(203, 103, true, NULL),
+(203, 103, true, current_timestamp),
 (204, 103, false, NULL),
-(205, 101, true, NULL);
+(205, 101, true, current_timestamp);
 
 INSERT INTO cartitem (itemId, cartId, productId, quantity) VALUES
 (1, 201, 501, 10),
