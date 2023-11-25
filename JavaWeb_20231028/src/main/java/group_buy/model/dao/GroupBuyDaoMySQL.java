@@ -3,13 +3,34 @@ package group_buy.model.dao;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
+
 import group_buy.model.entity.Cart;
 import group_buy.model.entity.CartItem;
 import group_buy.model.entity.Product;
 import group_buy.model.entity.User;
 
 public class GroupBuyDaoMySQL implements GroupBuyDao {
-
+	
+	private JdbcTemplate jdbcTemplate;
+	
+	private GroupBuyDaoMySQL() {
+		String dbURL = "jdbc:mysql://localhost:3306/group_buy?serverTimezone=Asia/Taipei";
+		String username = "root";
+		String password = "12345678";
+		
+		// 創建 DriverManagerDataSource
+		DriverManagerDataSource dataSource = new DriverManagerDataSource();
+		dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver"); // MySQL 驅動
+		dataSource.setUrl(dbURL);
+		dataSource.setUsername(username);
+		dataSource.setPassword(password);
+		
+		// 設定 JdbcTemplate 的數據源
+		this.jdbcTemplate = new JdbcTemplate(dataSource);
+	}
+	
 	@Override
 	public List<User> findAllUsers() {
 		// TODO Auto-generated method stub
