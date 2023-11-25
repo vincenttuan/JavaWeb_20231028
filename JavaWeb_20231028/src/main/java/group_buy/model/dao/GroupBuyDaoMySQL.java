@@ -84,7 +84,7 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 		try {
 			user = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(User.class), username);
 		} catch (EmptyResultDataAccessException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			return Optional.empty();
 		}
 		return Optional.ofNullable(user);
