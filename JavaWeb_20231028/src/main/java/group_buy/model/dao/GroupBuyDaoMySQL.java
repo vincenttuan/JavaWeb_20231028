@@ -192,6 +192,8 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 				sql = "select itemId, cartId, productId, quantity from cartitem where cartId = ?";
 				List<CartItem> cartItems = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(CartItem.class), cart.getCartId());
 				cart.setCartItems(cartItems);
+				// 根據每一筆 cartItem 注入 product
+				cartItems.forEach(cartItem -> cartItem.setProduct(findProductById(cartItem.getProductId()).get()));
 			}
 			return Optional.ofNullable(cart);
 		} catch(EmptyResultDataAccessException e) {
