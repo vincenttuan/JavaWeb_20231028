@@ -94,6 +94,9 @@ public class DispatchFilter extends HttpFilter {
 					cartItem.setQuantity(Integer.parseInt(quantity));
 					dao.addCartItem(cartItem);
 					
+					// 將商品物件與數量傳下去給 jsp
+					request.setAttribute("product", dao.findProductById(Integer.parseInt(productId)).get());
+					request.setAttribute("quantity", quantity);
 				} else {
 					response.getWriter().print("非法進入~");
 					return;
