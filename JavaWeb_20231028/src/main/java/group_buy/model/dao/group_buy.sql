@@ -78,8 +78,8 @@ alter table user auto_increment = 101;
 -- 建立 Cart 購物車主檔
 create table if not exists cart(
 	cartId int auto_increment primary key,
-    userId int, 
-    isCheckout boolean,
+    userId int not null, 
+    isCheckout boolean default false,
     checkoutTime datetime default current_timestamp,
     foreign key (userId) references user(userId)
 );
@@ -89,9 +89,9 @@ alter table cart auto_increment = 201;
 -- 建立 CartItem 購物車明細檔
 create table if not exists cartitem(
 	itemId int auto_increment primary key,
-    cartId int,
-    productId int,
-    quantity int,
+    cartId int not null,
+    productId int not null,
+    quantity int default 0,
     foreign key (cartId) references cart(cartId),
     foreign key (productId) references product(productId)
 );
