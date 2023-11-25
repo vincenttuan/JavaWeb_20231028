@@ -77,6 +77,15 @@ public class DispatchFilter extends HttpFilter {
 						cart = new Cart(); // 建立一個新的購物車
 						cart.setUserId(user.getUserId());
 						dao.addCart(cart); // 存放到資料表中
+						
+						// 新增之後馬上又要查詢建議可以下達一段 delay
+						try {
+							Thread.sleep(10);
+						} catch (Exception e) {
+						}
+						
+						// 再抓一次使用者的 cart, 目的是要得到 carId
+						cart = dao.findNoneCheckoutCartByUserId(user.getUserId()).get();
 					}
 					// 建立購物項目
 					CartItem cartItem = new CartItem();
