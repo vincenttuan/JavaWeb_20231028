@@ -15,8 +15,8 @@
 			<form class="pure-form">
 				<fieldset>
 					<legend>團購網-新增結果</legend>
-					商品: 雞腳凍(50元/包)<p />
-					數量: 5 包<p />	 
+					商品: ${ product.productName } ( ${ product.price } 元 / ${ product.unit } )<p />
+					數量: ${ quantity } 包<p />	 
 				</fieldset>
 			</form>
 		</div>

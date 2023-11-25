@@ -93,6 +93,7 @@ public class DispatchFilter extends HttpFilter {
 					cartItem.setProductId(Integer.parseInt(productId));
 					cartItem.setQuantity(Integer.parseInt(quantity));
 					dao.addCartItem(cartItem);
+					
 				} else {
 					response.getWriter().print("非法進入~");
 					return;
