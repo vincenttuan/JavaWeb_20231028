@@ -22,6 +22,8 @@ import static group_buy.controller.URLPath.團購首頁;
 import static group_buy.controller.URLPath.登入首頁;
 import static group_buy.controller.URLPath.新增完成頁;
 import static group_buy.controller.URLPath.購物車頁;
+import static group_buy.controller.URLPath.結帳成功;
+
 // 過濾路徑分派器
 @WebFilter(value = {"/group_buy/*"})
 public class DispatchFilter extends HttpFilter {
@@ -113,6 +115,17 @@ public class DispatchFilter extends HttpFilter {
 				int total = cart.getCartItems().stream().mapToInt(item -> item.getQuantity() * item.getProduct().getPrice()).sum();
 				request.setAttribute("cart", cart);
 				request.setAttribute("total", total);
+				break;
+			case 結帳成功:
+				// 取得已登入的使用者
+				user = (User)session.getAttribute("user");
+				// 取得尚未結帳的購物車
+				cart = dao.findNoneCheckoutCartByUserId(user.getUserId()).get();
+				total = cart.getCartItems().stream().mapToInt(item -> item.getQuantity() * item.getProduct().getPrice()).sum();
+				request.setAttribute("cart", cart);
+				request.setAttribute("total", total);
+				// 結帳
+				dao.checkoutCartById(cart.getCartId());
 				break;
 		}
 		
