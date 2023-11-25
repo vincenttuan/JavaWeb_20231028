@@ -14,6 +14,7 @@ import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import static group_buy.controller.URLPath.團購首頁;
 import static group_buy.controller.URLPath.登入首頁;;
@@ -47,6 +48,9 @@ public class DispatchFilter extends HttpFilter {
 						return;
 					}
 					System.out.println("使用者登入成功");
+					// 將使用者物件存入到 session 中
+					HttpSession session = request.getSession();
+					session.setAttribute("user", userOpt.get());
 				} 
 				
 				List<Product> products = dao.findAllProducts();
