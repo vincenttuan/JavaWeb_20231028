@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>    
 <!DOCTYPE html>
 <html>
 	<head>
@@ -15,9 +16,12 @@
 				<fieldset>
 					<legend>團購網首頁</legend>
 					商品: <select id="productId" name="productId">
-							<option value="1">雞腳凍(50元/包)</option>
-							<option value="2">肉羹(80元/包)</option>
-							<option value="3">肉丸(60元/包)</option>
+							<c:forEach items="${ products }" var="product" >
+								<option value="${ product.productId }">
+									${ product.productName }
+									( ${ product.price } 元 / ${ product.unit } )
+								</option>
+							</c:forEach>
 						 </select><p />
 					數量: <input type="number" id="amount" name="amount" value="5" /><p />	 
 					<button type="submit" class="pure-button pure-button-primary">新增</button>	 
