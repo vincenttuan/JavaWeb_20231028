@@ -17,7 +17,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import static group_buy.controller.URLPath.團購首頁;
-import static group_buy.controller.URLPath.登入首頁;;
+import static group_buy.controller.URLPath.登入首頁;
+import static group_buy.controller.URLPath.新增完成頁;
 
 // 過濾路徑分派器
 @WebFilter(value = {"/group_buy/*"})
@@ -56,7 +57,10 @@ public class DispatchFilter extends HttpFilter {
 				List<Product> products = dao.findAllProducts();
 				System.out.println("商品資訊: " + products);
 				request.setAttribute("products", products); // 將商品資訊放入到 request-scope 的屬性中
-			break;
+				break;
+			case 新增完成頁:
+				
+				break;
 		}
 		
 		chain.doFilter(request, response);

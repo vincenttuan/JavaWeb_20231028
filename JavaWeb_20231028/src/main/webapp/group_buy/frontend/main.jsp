@@ -23,7 +23,7 @@
 								</option>
 							</c:forEach>
 						 </select><p />
-					數量: <input type="number" id="amount" name="amount" value="5" /><p />	 
+					數量: <input type="number" id="quantity" name="quantity" value="5" /><p />	 
 					<button type="submit" class="pure-button pure-button-primary">新增</button>	 
 				</fieldset>
 			</form>
