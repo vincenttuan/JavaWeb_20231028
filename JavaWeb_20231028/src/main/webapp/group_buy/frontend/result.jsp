@@ -16,7 +16,7 @@
 				<fieldset>
 					<legend>團購網-新增結果</legend>
 					商品: ${ product.productName } ( ${ product.price } 元 / ${ product.unit } )<p />
-					數量: ${ quantity } 包<p />	 
+					數量: ${ quantity } ${ product.unit }<p />	 
 				</fieldset>
 			</form>
 		</div>
