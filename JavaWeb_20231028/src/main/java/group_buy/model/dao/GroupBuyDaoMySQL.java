@@ -8,7 +8,7 @@ import group_buy.model.entity.CartItem;
 import group_buy.model.entity.Product;
 import group_buy.model.entity.User;
 
-public class GroupByDaoMySQL implements GroupBuyDao {
+public class GroupBuyDaoMySQL implements GroupBuyDao {
 
 	@Override
 	public List<User> findAllUsers() {
