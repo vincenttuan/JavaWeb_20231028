@@ -187,8 +187,8 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 
 	@Override
 	public Boolean removeCartItemById(Integer cartItemId) {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "delete from cartItem where itemId = ?";
+		return jdbcTemplate.update(sql, cartItemId) == 1;
 	}
 
 	@Override
