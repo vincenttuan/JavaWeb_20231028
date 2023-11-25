@@ -145,8 +145,12 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 		String sql = "select cartId, userId, isCheckout, checkoutTime from cart where cartId = ?";
 		Cart cart = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Cart.class), cartId);
 		if(cart != null) {
-			// 根據 userId 來找到 user 並注入到 cartm 中
+			// 根據 userId 來找到 user 並注入到 cart 中
 			findUserById(cart.getUserId()).ifPresent(cart::setUser);
+			// 查詢 List<CartItem> 根據 cartId  並注入到 cart 中
+			sql = "select itemId, cartId, productId, quantity from cartitem where cartId = ?";
+			List<CartItem> cartItems = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(CartItem.class), cart.getCartId());
+			cart.setCartItems(cartItems);
 		}
 		return Optional.ofNullable(cart);
 	}
@@ -157,11 +161,9 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 		CartItem cartItem = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(CartItem.class), itemId);
 		if(cartItem != null) {
 			// 根據 productId 來找到 product 並注入到 cartItem 中
-			//findProductById(cartItem.getProductId()).ifPresent(product -> cartItem.setProduct(product));
 			findProductById(cartItem.getProductId()).ifPresent(cartItem::setProduct);
 			// 根據 cartId 來找到 cart 並注入到 cartItem 中
-			//findCartById(cartItem.getCartId()).ifPresent(cart -> cartItem.setCart(cart));
-			findCartById(cartItem.getCartId()).ifPresent(cartItem::setCart);
+			//findCartById(cartItem.getCartId()).ifPresent(cartItem::setCart); // 在 CartItem 中不需要再透過 cartId 反查 cart 的實體
 		}
 		return Optional.ofNullable(cartItem);
 	}
