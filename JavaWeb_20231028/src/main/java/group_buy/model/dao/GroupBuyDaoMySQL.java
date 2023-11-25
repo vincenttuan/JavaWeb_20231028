@@ -175,14 +175,14 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 
 	@Override
 	public Boolean checkoutCartByUserId(Integer userId) {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "update cart set isCheckout = true where userId = ? and (isCheckout = false or isCheckout is null)";
+		return jdbcTemplate.update(sql, userId) == 1;
 	}
 
 	@Override
 	public Boolean checkoutCartById(Integer cartId) {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "update cart set isCheckout = true where cartId = ? and (isCheckout = false or isCheckout is null)";
+		return jdbcTemplate.update(sql, cartId) == 1;
 	}
 
 	@Override
