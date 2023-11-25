@@ -88,7 +88,7 @@ public class Cart {
 
 	public void setIsCheckout(Boolean isCheckout) {
 		this.isCheckout = isCheckout;
-		if(isCheckout) {
+		if(isCheckout != null && isCheckout) {
 			setCheckoutTime(new Date());
 		}
 	}
