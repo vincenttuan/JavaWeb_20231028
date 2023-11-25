@@ -45,8 +45,8 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 	public List<User> findAllUsers() {
 		String sql = "select userId, username, password, level from user";
 		
-		//return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(User.class));
-		
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(User.class));
+		/*
 		return jdbcTemplate.query(sql, new RowMapper<User>() {
 
 			@Override
@@ -60,6 +60,7 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 			}
 			
 		});
+		*/
 	}
 
 	@Override
