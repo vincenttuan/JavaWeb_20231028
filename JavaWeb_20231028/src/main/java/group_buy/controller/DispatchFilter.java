@@ -31,6 +31,9 @@ public class DispatchFilter extends HttpFilter {
 	@Override
 	protected void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html;charset=utf-8");
 		
 		String contextPath = getServletContext().getContextPath();
 		String servletPath = request.getServletPath();
