@@ -99,20 +99,21 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 
 	@Override
 	public List<Product> findAllProducts() {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "select productId, productName, price, unit, isLaunch from product";
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Product.class));
 	}
 
 	@Override
 	public Optional<Product> findProductById(Integer productId) {
-		// TODO Auto-generated method stub
-		return Optional.empty();
+		String sql = "select productId, productName, price, unit, isLaunch from product where productId = ?";
+		Product product = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Product.class), productId);
+		return Optional.ofNullable(product);
 	}
 
 	@Override
 	public void addProduct(Product product) {
-		// TODO Auto-generated method stub
-		
+		String sql = "insert into product(productName, price, unit, isLaunch) values(?, ?, ? , ?)";
+		jdbcTemplate.update(sql, product.getProductName(), product.getPrice(), product.getUnit(), product.getIsLaunch());
 	}
 
 	@Override
