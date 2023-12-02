@@ -9,5 +9,5 @@ public interface URLPath {
 	
 	String 後台首頁 = "/group_buy/backend/main.jsp";
 	String 後台商品新增 = "/group_buy/backend/result.jsp";
-	
+	String 後台報表 = "/group_buy/backend/report.jsp";
 }

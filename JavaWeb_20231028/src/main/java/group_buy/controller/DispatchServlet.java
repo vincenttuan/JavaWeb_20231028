@@ -3,6 +3,7 @@ package group_buy.controller;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import group_buy.model.dao.GroupBuyDao;
@@ -29,6 +30,7 @@ import static group_buy.controller.URLPath.購物車頁;
 import static group_buy.controller.URLPath.結帳成功;
 import static group_buy.controller.URLPath.後台首頁;
 import static group_buy.controller.URLPath.後台商品新增;
+import static group_buy.controller.URLPath.後台報表;
 
 // 過濾路徑
 @WebServlet(value = {"/group_buy/*"})
@@ -214,7 +216,16 @@ public class DispatchServlet extends HttpServlet {
 					
 					request.setAttribute("product", product);
 				}
-				
+				break;
+			
+			case 後台報表:
+				if(method.equals("GET")) {
+					
+					List<Map<String, Object>> reports = dao.calculateTotalAmountPerUser();
+					request.setAttribute("reports", reports);
+					
+				}
+				break;
 				
 		}
 		

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>      
 <!DOCTYPE html>
 <html>
 	<head>
@@ -22,53 +23,25 @@
 								<table class="pure-table">
 								    <thead>
 								        <tr>
-								            <th>#</th>
+								        	<th>序號</th>
+								            <th>UserID</th>
 								            <th>帳號</th>
 								            <th>金額</th>
 								            <th>明細</th>
 								        </tr>
 								    </thead>
 								    <tbody>
-								        <tr class="pure-table-odd">
-								            <td>1</td>
-								            <td>John</td>
-								            <td>$1,410</td>
-								            <td>
-								            	<button class="button-secondary pure-button">明細</button>
-								            </td>
-								        </tr>
-								        <tr>
-								            <td>2</td>
-								            <td>Mary</td>
-								            <td>$250</td>
-								            <td>
-								            	<button class="button-secondary pure-button">明細</button>
-								            </td>
-								        </tr>
-								        <tr class="pure-table-odd">
-								            <td>3</td>
-								            <td>Mark</td>
-								            <td>$560</td>
-								            <td>
-								            	<button class="button-secondary pure-button">明細</button>
-								            </td>
-								        </tr>
-								        <tr>
-								            <td>4</td>
-								            <td>Helen</td>
-								            <td>$2,850</td>
-								            <td>
-								            	<button class="button-secondary pure-button">明細</button>
-								            </td>
-								        </tr>
-								        <tr class="pure-table-odd">
-								            <td>5</td>
-								            <td>Alen</td>
-								            <td>$50</td>
-								            <td>
-								            	<button class="button-secondary pure-button">明細</button>
-								            </td>
-								        </tr>
+								    	<c:forEach items="${ reports }" var="report" varStatus="status">
+									        <tr class="pure-table-odd">
+									        	<td>${ status.count + 1 }</td>
+									            <td>${ report.userId }</td>
+									            <td>${ report.username }</td>
+									            <td>$${ report.total }</td>
+									            <td>
+									            	<button class="button-secondary pure-button">明細</button>
+									            </td>
+									        </tr>
+								        </c:forEach>
 								    </tbody>
 								</table>
 							</fieldset>
