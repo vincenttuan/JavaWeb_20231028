@@ -10,6 +10,7 @@
 		<link rel="stylesheet" href="../../css/group_buy.css">
 		<script type="text/javascript">
 			function changeLaunch(productId, isLaunch) {
+				isLaunch = (isLaunch == null) ? true : !isLaunch;
 				alert(productId + ', ' + isLaunch);
 			}
 		</script>
@@ -58,7 +59,7 @@
 											<td>${ product.price }</td>
 											<td>${ product.unit }</td>
 											<td><input 
-													onmouseup="changeLaunch(${ product.productId }, this.value)"
+													onClick="changeLaunch(${ product.productId }, this.value)"
 													type="checkbox" ${ (product.isLaunch) ? 'checked' : '' } 
 													value="true"> 上架</td>
 										</tr>
