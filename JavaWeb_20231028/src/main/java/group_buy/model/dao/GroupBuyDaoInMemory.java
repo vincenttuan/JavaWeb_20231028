@@ -1,6 +1,7 @@
 package group_buy.model.dao;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.CopyOnWriteArrayList;
 import static java.util.stream.Collectors.toList;
@@ -165,6 +166,12 @@ public class GroupBuyDaoInMemory implements GroupBuyDao {
 						.peek(cartItem -> cartItem.setQuantity(quantity))
 						.findAny()
 						.isPresent();
+	}
+
+	@Override
+	public List<Map<String, Object>> calculateTotalAmountPerUser() {
+		// Home work
+		return null;
 	}
 	
 }

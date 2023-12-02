@@ -1,6 +1,7 @@
 package group_buy.model.dao;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import group_buy.model.entity.Cart;
@@ -74,4 +75,8 @@ public interface GroupBuyDao {
 	
 //	12. 更新購物車項目的數量
 	Boolean updateCartItemQuantity(Integer cartItemId, Integer quantity);
+	
+	// 13. 計算每個使用者所購買的總金額
+	List<Map<String, Object>> calculateTotalAmountPerUser();
+	
 }

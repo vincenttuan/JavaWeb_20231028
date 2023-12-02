@@ -3,6 +3,7 @@ package group_buy.model.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -229,6 +230,24 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 	public Boolean updateCartItemQuantity(Integer cartItemId, Integer quantity) {
 		String sql = "update cartitem set quantity = ? where itemId = ?";
 		return jdbcTemplate.update(sql, quantity, cartItemId) == 1;
+	}
+
+	@Override
+	public List<Map<String, Object>> calculateTotalAmountPerUser() {
+		String sql = "SELECT "
+				+ "    u.userId, "
+				+ "    u.username, "
+				+ "    COALESCE(SUM(p.price * ci.quantity), 0) AS total "
+				+ "FROM "
+				+ "    user u "
+				+ "LEFT JOIN cart c ON u.userId = c.userId "
+				+ "LEFT JOIN cartitem ci ON c.cartId = ci.cartId "
+				+ "LEFT JOIN product p ON ci.productId = p.productId "
+				+ "WHERE "
+				+ "    c.isCheckout = true "
+				+ "GROUP BY "
+				+ "    u.userId, u.username";
+		return jdbcTemplate.queryForList(sql);
 	}
 
 }
