@@ -137,7 +137,7 @@ public class DispatchServlet extends HttpServlet {
 					String quantity = request.getParameter("quantity") + "";
 					switch (_method) {
 						case "Put":
-						
+							
 							break;
 						case "Delete": // 刪除項目
 							dao.removeCartItemById(Integer.parseInt(itemId));

@@ -8,6 +8,18 @@
 		<title>團購網-購物車</title>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css">
 		<link rel="stylesheet" href="../../css/group_buy.css">
+		
+		<script type="text/javascript">
+			function updateItem(itemId, quantity) {
+				window.location.href='./cart.jsp?_method=Put&itemId=' + itemId + '&quantity=' + quantity;
+			}
+			
+			function deleteItem(itemId) {
+				window.location.href='./cart.jsp?_method=Delete&itemId=' + itemId;
+			}
+			
+		</script>
+		
 	</head>
 	<body>
 		<!-- menu -->
@@ -33,14 +45,10 @@
 									</td>
 									<td>${ item.product.price * item.quantity }</td>
 									<td>
-										<button 
-											onClick="location.href='./cart.jsp?_method=Put&itemId=${ item.itemId }&quantity=${ item.quantity }'"
-											class="button-success pure-button">修改</button></td>
+										<a href="javascript:void(0);" onClick="updateItem(${ item.itemId }, ${ item.quantity })">Update</a>
+									</td>	
 									<td>
-										<button 
-											onClick="location.href='./cart.jsp?_method=Delete&itemId=${ item.itemId }'"
-											class="button-error pure-button">刪除</button>
-										<a href="./cart.jsp?_method=Delete&itemId=${ item.itemId }">Delete</a>	
+										<a href="javascript:void(0);" onClick="deleteItem(${ item.itemId })">Delete</a>
 									</td>
 								</tr>
 							</c:forEach>
