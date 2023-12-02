@@ -27,6 +27,7 @@ import static group_buy.controller.URLPath.登入首頁;
 import static group_buy.controller.URLPath.新增完成頁;
 import static group_buy.controller.URLPath.購物車頁;
 import static group_buy.controller.URLPath.結帳成功;
+import static group_buy.controller.URLPath.後台商品新增;
 
 // 過濾路徑
 @WebServlet(value = {"/group_buy/*"})
@@ -174,6 +175,23 @@ public class DispatchServlet extends HttpServlet {
 					dao.checkoutCartById(cart.getCartId());
 				}
 				break;
+			
+			case 後台商品新增:
+				if(method.equals("POST")) {
+					String productName = request.getParameter("productName");
+					String productPrice = request.getParameter("productPrice");
+					String productUnit = request.getParameter("productUnit");
+					String isLaunch = request.getParameter("isLaunch");
+					
+					Product product = new Product();
+					product.setProductName(productName);
+					product.setPrice(Integer.parseInt(productPrice));
+					product.setUnit(productUnit);
+					product.setIsLaunch(isLaunch != null);
+					
+					System.out.println(product);
+				}
+				
 		}
 		
 		// jsp 位置

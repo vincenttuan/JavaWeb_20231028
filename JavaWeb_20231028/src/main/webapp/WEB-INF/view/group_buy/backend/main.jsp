@@ -22,11 +22,11 @@
 								品名: <input type="text" id="productName" name="productName" value="水果茶" /><p />
 								價格: <input type="number" id="productPrice" name="productPrice" value="40" /><p />
 								單位: <select id="productUnit" name="productUnit">
-										<option value="1">捆</option>
-										<option value="2" selected>包</option>
-										<option value="3">打</option>
-										<option value="4">箱</option>
-										<option value="5">組</option>
+										<option value="捆">捆</option>
+										<option value="包" selected>包</option>
+										<option value="打">打</option>
+										<option value="箱">箱</option>
+										<option value="組">組</option>
 									 </select>
 								&nbsp;&nbsp;&nbsp;&nbsp;	 
 								上架: <input type="checkbox" id="isLaunch" name="isLaunch" value="true" checked> 	 
