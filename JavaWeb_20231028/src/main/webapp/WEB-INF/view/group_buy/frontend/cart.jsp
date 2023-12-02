@@ -10,7 +10,8 @@
 		<link rel="stylesheet" href="../../css/group_buy.css">
 		
 		<script type="text/javascript">
-			function updateItem(itemId, quantity) {
+			function updateItem(itemId) {
+				var quantity = document.getElementById('item_' + itemId + '_quantity').value;
 				window.location.href='./cart.jsp?_method=Put&itemId=' + itemId + '&quantity=' + quantity;
 			}
 			
@@ -41,11 +42,11 @@
 									<td>${ item.product.price }</td>
 									<td>${ item.product.unit }</td>
 									<td>
-										<input type="number" value="${ item.quantity }" />
+										<input type="number" id="item_${ item.itemId }_quantity" value="${ item.quantity }" />
 									</td>
 									<td>${ item.product.price * item.quantity }</td>
 									<td>
-										<a href="javascript:void(0);" onClick="updateItem(${ item.itemId }, ${ item.quantity })">Update</a>
+										<a href="javascript:void(0);" onClick="updateItem(${ item.itemId })">Update</a>
 									</td>	
 									<td>
 										<a href="javascript:void(0);" onClick="deleteItem(${ item.itemId })">Delete</a>
