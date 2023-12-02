@@ -180,11 +180,16 @@ public class DispatchServlet extends HttpServlet {
 			case 後台首頁:
 				if(method.equals("GET")) {
 					// 上下架
-					String _method = request.getParameter("_method");
+					String _method = request.getParameter("_method") + "";
 					String productId = request.getParameter("productId");
 					String isLaunch = request.getParameter("isLaunch");
-					if(_method != null && _method.equals("Put") && productId != null && isLaunch != null) {
-						dao.updateProductLaunch(Integer.parseInt(productId), Boolean.parseBoolean(isLaunch));
+					
+					switch(_method) {
+						case "Put":
+							if(productId != null && isLaunch != null) {
+								dao.updateProductLaunch(Integer.parseInt(productId), Boolean.parseBoolean(isLaunch));
+							}
+						break;
 					}
 					
 					// 取得所有商品
