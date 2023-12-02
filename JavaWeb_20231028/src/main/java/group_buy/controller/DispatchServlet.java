@@ -130,23 +130,27 @@ public class DispatchServlet extends HttpServlet {
 				// 取得尚未結帳的購物車
 				Optional<Cart> cartOpt = dao.findNoneCheckoutCartByUserId(user.getUserId());
 				if(cartOpt.isPresent()) {
-					Cart cart = cartOpt.get();
-					int total = cart.getCartItems().stream().mapToInt(item -> item.getQuantity() * item.getProduct().getPrice()).sum();
-					request.setAttribute("cart", cart);
-					request.setAttribute("total", total);
 					
 					// 刪除修改的行為
-					String _method = request.getParameter("_method");
-					String itemId = request.getParameter("itemId");
-					String quantity = request.getParameter("quantity");
+					String _method = request.getParameter("_method") + "";
+					String itemId = request.getParameter("itemId") + "";
+					String quantity = request.getParameter("quantity") + "";
 					switch (_method) {
 						case "Put":
 						
 							break;
 						case "Delete": // 刪除項目
 							dao.removeCartItemById(Integer.parseInt(itemId));
-							break;		
+							cartOpt = dao.findNoneCheckoutCartByUserId(user.getUserId());
+							System.out.println(cartOpt.get());
+							break;	
 					}
+					
+					Cart cart = cartOpt.get();
+					int total = cart.getCartItems().stream().mapToInt(item -> item.getQuantity() * item.getProduct().getPrice()).sum();
+					request.setAttribute("cart", cart);
+					request.setAttribute("total", total);
+					
 				}
 				break;
 			case 結帳成功:

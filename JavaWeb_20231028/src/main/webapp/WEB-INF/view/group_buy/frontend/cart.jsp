@@ -40,6 +40,7 @@
 										<button 
 											onClick="location.href='./cart.jsp?_method=Delete&itemId=${ item.itemId }'"
 											class="button-error pure-button">刪除</button>
+										<a href="./cart.jsp?_method=Delete&itemId=${ item.itemId }">Delete</a>	
 									</td>
 								</tr>
 							</c:forEach>
