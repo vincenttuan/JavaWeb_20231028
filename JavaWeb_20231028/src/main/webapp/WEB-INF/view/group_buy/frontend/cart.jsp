@@ -52,7 +52,11 @@
 										<a href="javascript:void(0);" onClick="updateItem(${ item.itemId })" class="pure-button button-success">Update</a>
 									</td>	
 									<td>
+										<button onClick="event.preventDefault();window.location.href='./cart.jsp?_method=Delete&itemId=${ item.itemId }';"
+                                                class="button-error pure-button">刪除</button>
+                                        <!--         
 										<a href="javascript:void(0);" onClick="deleteItem(${ item.itemId })" class="pure-button button-error">Delete</a>
+										-->
 									</td>
 								</tr>
 							</c:forEach>
