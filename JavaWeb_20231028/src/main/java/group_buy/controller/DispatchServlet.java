@@ -53,11 +53,11 @@ public class DispatchServlet extends HttpServlet {
 		String servletPath = request.getServletPath();
 		String pathInfo = request.getPathInfo();
 		String method = request.getMethod();
-		System.out.println(servletPath + ", " + method);
+		System.out.println(servletPath + ", " + pathInfo + ", " + method);
 		
 		HttpSession session = request.getSession();
 		
-		switch (servletPath) {
+		switch (servletPath + pathInfo) {
 			case 團購首頁: // 按下登入頁的"前台登入"按鈕或按下"團購首頁"連結
 				if(method.equals("POST")) { // 按下登入頁的"前台登入"按鈕
 					String username = request.getParameter("username");
