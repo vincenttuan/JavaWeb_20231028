@@ -46,10 +46,10 @@
 									</td>
 									<td>${ item.product.price * item.quantity }</td>
 									<td>
-										<a href="javascript:void(0);" onClick="updateItem(${ item.itemId })">Update</a>
+										<a href="javascript:void(0);" onClick="updateItem(${ item.itemId })" class="pure-button button-success">Update</a>
 									</td>	
 									<td>
-										<a href="javascript:void(0);" onClick="deleteItem(${ item.itemId })">Delete</a>
+										<a href="javascript:void(0);" onClick="deleteItem(${ item.itemId })" class="pure-button button-error">Delete</a>
 									</td>
 								</tr>
 							</c:forEach>
