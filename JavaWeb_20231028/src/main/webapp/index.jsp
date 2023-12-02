@@ -25,6 +25,9 @@
 		<li>
 			<a href="${pageContext.request.contextPath}/controller/guestbook/guestbook">GuestBookServlet(MySQL 版)</a>
 		</li>
+		<li>
+			<a href="${pageContext.request.contextPath}/group_buy/login.jsp">團購(MySQL 版)</a>
+		</li>
 	</ul>
 </body>
 </html>
