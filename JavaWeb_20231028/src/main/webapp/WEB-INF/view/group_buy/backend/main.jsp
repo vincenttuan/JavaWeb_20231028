@@ -8,6 +8,11 @@
 		<title>團購網-後臺商品維護</title>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css">
 		<link rel="stylesheet" href="../../css/group_buy.css">
+		<script type="text/javascript">
+			function changeLaunch(productId, isLaunch) {
+				alert(productId + ', ' + isLaunch);
+			}
+		</script>
 	</head>
 	<body>
 		<!-- menu -->
@@ -52,7 +57,10 @@
 											<td>${ product.productName }</td>
 											<td>${ product.price }</td>
 											<td>${ product.unit }</td>
-											<td><input type="checkbox" ${ (product.isLaunch) ? 'checked' : '' }> 上架</td>
+											<td><input 
+													onclick="changeLaunch(${ product.productId }, this.value)"
+													type="checkbox" ${ (product.isLaunch) ? 'checked' : '' } 
+													value="true"> 上架</td>
 										</tr>
 										</c:forEach>
 									</tbody>

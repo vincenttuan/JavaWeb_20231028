@@ -178,6 +178,9 @@ public class DispatchServlet extends HttpServlet {
 				break;
 			
 			case 後台首頁:
+				// 上下架
+				
+				// 取得所有商品
 				List<Product> productList = dao.findAllProducts();
 				request.setAttribute("products", productList);
 				break;
