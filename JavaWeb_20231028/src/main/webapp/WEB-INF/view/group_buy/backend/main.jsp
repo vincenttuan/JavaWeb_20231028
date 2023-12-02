@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>     
 <!DOCTYPE html>
 <html>
 	<head>
@@ -41,21 +42,19 @@
 								<legend>團購網-後臺商品維護</legend>
 								<table class="pure-table pure-table-bordered">
 									<thead>
-										<tr><th>序號</th><th>品名</th><th>價格</th><th>單位</th><th>上架</th></tr>
+										<tr><th>序號</th><th>ID</th><th>品名</th><th>價格</th><th>單位</th><th>上架</th></tr>
 									</thead>
 									<tbody>
+										<c:forEach items="${ products }" var="product" varStatus="status">
 										<tr>
-											<td>1</td><td>肉羹</td><td>80</td><td>包</td><td><input type="checkbox" checked> 上架</td>
+											<td>${ status.count+1 }</td>
+											<td>${ product.productId }</td>
+											<td>${ product.productName }</td>
+											<td>${ product.price }</td>
+											<td>${ product.unit }</td>
+											<td><input type="checkbox" ${ (product.isLaunch) ? 'checked' : '' }> 上架</td>
 										</tr>
-										<tr>
-											<td>2</td><td>肉丸</td><td>60</td><td>包</td><td><input type="checkbox" checked> 上架</td>
-										</tr>
-										<tr>
-											<td>3</td><td>雞腳凍</td><td>50</td><td>包</td><td><input type="checkbox" checked> 上架</td>
-										</tr>
-										<tr>
-											<td>4</td><td>乖乖</td><td>500</td><td>箱</td><td><input type="checkbox"> 上架</td>
-										</tr>
+										</c:forEach>
 									</tbody>
 								</table>
 								<p />
