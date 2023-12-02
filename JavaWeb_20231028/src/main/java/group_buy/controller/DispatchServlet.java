@@ -14,6 +14,7 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebFilter;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpFilter;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -27,7 +28,7 @@ import static group_buy.controller.URLPath.購物車頁;
 import static group_buy.controller.URLPath.結帳成功;
 
 // 過濾路徑
-@WebFilter(value = {"/group_buy/*"})
+@WebServlet(value = {"/group_buy/*"})
 public class DispatchServlet extends HttpServlet {
 	
 	private GroupBuyDao dao = GroupBuyDaoMySQL.getInstance();
