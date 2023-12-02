@@ -189,8 +189,11 @@ public class DispatchServlet extends HttpServlet {
 					product.setUnit(productUnit);
 					product.setIsLaunch(isLaunch != null);
 					
-					System.out.println(product);
+					dao.addProduct(product);
 				}
+				
+				List<Product> productList = dao.findAllProducts();
+				request.setAttribute("products", productList);
 				
 		}
 		
