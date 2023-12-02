@@ -191,7 +191,19 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 	@Override
 	public List<Cart> findCartsbyUserIdAndCheckoutStatus(Integer userId, Boolean isCheckout) {
 		String sql = "select cartId, userId, isCheckout, checkoutTime from cart where userId = ? and isCheckout = ?";
-		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Cart.class), userId, isCheckout);
+		List<Cart> carts = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Cart.class), userId, isCheckout);
+		for(Cart cart : carts) {
+			sql = "select ci.itemId, ci.cartId, ci.productId, ci.quantity from cartitem ci where ci.cartId = ?";
+			List<CartItem> cartItems = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(CartItem.class), cart.getCartId());
+			for(CartItem cartItem : cartItems) {
+				Optional<Product> productOpt = findProductById(cartItem.getProductId());
+				if(productOpt.isPresent()) {
+					cartItem.setProduct(productOpt.get());
+				}
+			}
+			cart.setCartItems(cartItems);
+		}
+		return carts;
 	}
 
 	@Override

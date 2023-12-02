@@ -220,6 +220,13 @@ public class DispatchServlet extends HttpServlet {
 			
 			case 後台報表:
 				if(method.equals("GET")) {
+					// 揭露該 userId 的明細
+					String userId = request.getParameter("userId");
+					if(userId != null) {
+						List<Cart> carts = dao.findCartsbyUserIdAndCheckoutStatus(Integer.parseInt(userId), true);
+						//System.out.println(carts);
+						request.setAttribute("carts", carts);
+					}
 					
 					List<Map<String, Object>> reports = dao.calculateTotalAmountPerUser();
 					request.setAttribute("reports", reports);

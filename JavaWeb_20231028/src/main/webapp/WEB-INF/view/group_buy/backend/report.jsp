@@ -38,7 +38,9 @@
 									            <td>${ report.username }</td>
 									            <td>$${ report.total }</td>
 									            <td>
-									            	<button class="button-secondary pure-button">明細</button>
+									            	<a href="javascript:void(0);"
+									            		onClick="location.href='./report.jsp?userId=${ report.userId }';" 
+									            		class="button-secondary pure-button">明細</button>
 									            </td>
 									        </tr>
 								        </c:forEach>
@@ -53,28 +55,35 @@
 								<legend>團購網- John 結帳明細</legend>
 								<table class="pure-table pure-table-bordered">
 									<thead>
-										<tr><th>序號</th><th>品名</th><th>價格</th><th>單位</th><th>數量</th><th>小計</th></tr>
+										<tr><th>購物車序號</th><th>購物車日期</th><th>購物項目</th></tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td>1</td><td>肉羹</td><td>80</td><td>包</td>
-											<td>7</td>
-											<td>560</td>
-										</tr>
-										<tr>
-											<td>2</td><td>肉丸</td><td>60</td><td>包</td>
-											<td>10</td>
-											<td>600</td>
-										</tr>
-										<tr>
-											<td>3</td><td>雞腳凍</td><td>50</td><td>包</td>
-											<td>5</td>
-											<td>250</td>
-										</tr>
-										<tr>
-											<td colspan="5" align="right">總計</td>
-											<td>1,410</td>
-										</tr>
+										<c:forEach items="${ carts }" var="cart">
+											<tr>
+												<td>${ cart.cartId }</td>
+												<td>${ cart.checkoutTime }</td>
+												<td>
+													<table>
+														<thead>
+															<tr><th>序號</th><th>品名</th><th>價格</th><th>單位</th><th>數量</th><th>小計</th></tr>
+														</thead>
+														<tbody>
+															<c:forEach items="${ cart.cartItems }" var="item">
+															<tr>
+																<td>${ item.itemId }</td>
+																<td>${ item.product.productName }</td>
+																<td>${ item.product.price }</td>
+																<td>${ item.product.unit }</td>
+																<td>${ item.quantity }</td>
+																<td>${ item.product.price * item.quantity }</td>
+															</tr>
+															</c:forEach>
+														</tbody>
+													</table>
+												</td>
+												
+											</tr>
+										</c:forEach>
 									</tbody>
 								</table>
 								<p />
