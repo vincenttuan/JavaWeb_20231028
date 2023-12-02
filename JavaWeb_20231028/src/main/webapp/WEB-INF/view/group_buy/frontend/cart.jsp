@@ -64,7 +64,7 @@
 						</tbody>
 					</table>
 					<p />
-					<button type="button" class="pure-button pure-button-primary" onclick="location.href='./finish.jsp';">結帳</button>	 
+					<a href="javascript:void(0);" ${ cart.cartItems == '[]' ? 'disabled' : '' } class="pure-button pure-button-primary" onclick="location.href='./finish.jsp';">結帳</a>	 
 				</fieldset>
 			</form>
 		</div>
