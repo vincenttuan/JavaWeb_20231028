@@ -32,8 +32,15 @@
 										<input type="number" value="${ item.quantity }" />
 									</td>
 									<td>${ item.product.price * item.quantity }</td>
-									<td><button class="button-success pure-button">修改</button></td>
-									<td><button class="button-error pure-button">刪除</button></td>
+									<td>
+										<button 
+											onClick="location.href='./?_method=Put&itemId=${ item.itemId }&unit=${ item.product.unit }'"
+											class="button-success pure-button">修改</button></td>
+									<td>
+										<button 
+											onClick="location.href='./?_method=Delete&itemId=${ item.itemId }'"
+											class="button-error pure-button">刪除</button>
+									</td>
 								</tr>
 							</c:forEach>
 							<tr>
