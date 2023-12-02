@@ -141,8 +141,8 @@ public class DispatchServlet extends HttpServlet {
 							break;
 						case "Delete": // 刪除項目
 							dao.removeCartItemById(Integer.parseInt(itemId));
+							// 重新再取得最新資料
 							cartOpt = dao.findNoneCheckoutCartByUserId(user.getUserId());
-							System.out.println(cartOpt.get());
 							break;	
 					}
 					
