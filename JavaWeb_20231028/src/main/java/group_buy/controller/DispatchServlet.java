@@ -179,6 +179,11 @@ public class DispatchServlet extends HttpServlet {
 			
 			case 後台首頁:
 				// 上下架
+				String productId = request.getParameter("productId");
+				if(productId != null) {
+					String isLaunch = request.getParameter("isLaunch");
+					dao.updateProductLaunch(Integer.parseInt(productId), Boolean.parseBoolean(isLaunch));
+				}
 				
 				// 取得所有商品
 				List<Product> productList = dao.findAllProducts();
