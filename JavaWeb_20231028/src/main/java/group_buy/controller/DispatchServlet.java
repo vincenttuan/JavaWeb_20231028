@@ -27,6 +27,7 @@ import static group_buy.controller.URLPath.登入首頁;
 import static group_buy.controller.URLPath.新增完成頁;
 import static group_buy.controller.URLPath.購物車頁;
 import static group_buy.controller.URLPath.結帳成功;
+import static group_buy.controller.URLPath.後台首頁;
 import static group_buy.controller.URLPath.後台商品新增;
 
 // 過濾路徑
@@ -176,6 +177,11 @@ public class DispatchServlet extends HttpServlet {
 				}
 				break;
 			
+			case 後台首頁:
+				List<Product> productList = dao.findAllProducts();
+				request.setAttribute("products", productList);
+				break;
+				
 			case 後台商品新增:
 				if(method.equals("POST")) {
 					String productName = request.getParameter("productName");
@@ -188,12 +194,11 @@ public class DispatchServlet extends HttpServlet {
 					product.setPrice(Integer.parseInt(productPrice));
 					product.setUnit(productUnit);
 					product.setIsLaunch(isLaunch != null);
-					
 					dao.addProduct(product);
+					
+					request.setAttribute("product", product);
 				}
 				
-				List<Product> productList = dao.findAllProducts();
-				request.setAttribute("products", productList);
 				
 		}
 		

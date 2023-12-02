@@ -15,10 +15,10 @@
 			<form class="pure-form">
 				<fieldset>
 					<legend>團購網-團購商品新增結果</legend>
-					品名: 手工肥皂<p />
-					價格: 200<p />
-					單位: 打
-					上架: V
+					品名: ${ product.productName }<p />
+					價格: ${ product.price }<p />
+					單位: ${ product.unit }
+					上架: ${ (product.isLaunch) ? 'V' : 'X' }
 					<p />	 
 				</fieldset>
 			</form>
