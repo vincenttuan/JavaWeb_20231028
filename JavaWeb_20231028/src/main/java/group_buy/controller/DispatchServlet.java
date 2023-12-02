@@ -1,6 +1,7 @@
 package group_buy.controller;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -54,7 +55,9 @@ public class DispatchServlet extends HttpServlet {
 		String pathInfo = request.getPathInfo();
 		String method = request.getMethod();
 		
-		System.out.println(servletPath + ", " + pathInfo + ", " + request.getParameterMap() + ", " + method);
+		System.out.print(servletPath + ", " + pathInfo + ", " + method + ", 參數:");
+		request.getParameterMap().entrySet().forEach((e) -> System.out.print(e.getKey() + ":" + Arrays.toString(e.getValue()) + ", "));
+		System.out.println();
 		
 		HttpSession session = request.getSession();
 		
