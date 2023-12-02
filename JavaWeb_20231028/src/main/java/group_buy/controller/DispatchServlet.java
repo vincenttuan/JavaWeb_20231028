@@ -137,7 +137,12 @@ public class DispatchServlet extends HttpServlet {
 					String quantity = request.getParameter("quantity") + "";
 					switch (_method) {
 						case "Put": // 修改數量
-							dao.updateCartItemQuantity(Integer.parseInt(itemId), Integer.parseInt(quantity));
+							int qty = Integer.parseInt(quantity);
+							if(qty <= 0) {
+								dao.removeCartItemById(Integer.parseInt(itemId));
+							} else {
+								dao.updateCartItemQuantity(Integer.parseInt(itemId), qty);
+							}
 							// 重新再取得最新資料
 							cartOpt = dao.findNoneCheckoutCartByUserId(user.getUserId());
 							break;

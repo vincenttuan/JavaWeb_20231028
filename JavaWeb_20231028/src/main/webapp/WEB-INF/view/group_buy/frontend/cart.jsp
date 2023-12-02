@@ -42,7 +42,10 @@
 									<td>${ item.product.price }</td>
 									<td>${ item.product.unit }</td>
 									<td>
-										<input type="number" id="item_${ item.itemId }_quantity" value="${ item.quantity }" />
+										<input type="number"
+											   min="0"
+											   onChange="updateItem(${ item.itemId })"	 
+											   id="item_${ item.itemId }_quantity" value="${ item.quantity }" />
 									</td>
 									<td>${ item.product.price * item.quantity }</td>
 									<td>
