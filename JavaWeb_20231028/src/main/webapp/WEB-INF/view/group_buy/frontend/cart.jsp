@@ -34,7 +34,7 @@
 									<td>${ item.product.price * item.quantity }</td>
 									<td>
 										<button 
-											onClick="location.href='./?_method=Put&itemId=${ item.itemId }&unit=${ item.product.unit }'"
+											onClick="location.href='./?_method=Put&itemId=${ item.itemId }&quantity=${ item.quantity }'"
 											class="button-success pure-button">修改</button></td>
 									<td>
 										<button 
