@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="jakarta.tags.core" prefix="c" %>      
+<%@ taglib uri="jakarta.tags.core" prefix="c" %>
+<%@ taglib uri="jakarta.tags.fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -61,7 +62,9 @@
 										<c:forEach items="${ carts }" var="cart">
 											<tr>
 												<td>${ cart.cartId }</td>
-												<td>${ cart.checkoutTime }</td>
+												<td>
+													<fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss E" value="${ cart.checkoutTime }" />
+												</td>
 												<td>
 													<table>
 														<thead>
