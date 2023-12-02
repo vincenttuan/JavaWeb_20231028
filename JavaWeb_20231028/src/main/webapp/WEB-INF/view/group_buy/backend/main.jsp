@@ -29,7 +29,7 @@
 										<option value="5">組</option>
 									 </select>
 								&nbsp;&nbsp;&nbsp;&nbsp;	 
-								上架: <input type="checkbox" checked> 	 
+								上架: <input type="checkbox" id="isLaunch" name="isLaunch" checked> 	 
 								<p />
 								<button type="submit" class="pure-button pure-button-primary">新增</button>
 							</fieldset>
