@@ -32,7 +32,7 @@
 								    </thead>
 								    <tbody>
 								    	<c:forEach items="${ reports }" var="report" varStatus="status">
-									        <tr class="pure-table-odd">
+									        <tr class="${ (status.count % 2) == 0 ? 'pure-table-odd' : 'pure-table' }">
 									        	<td>${ status.count + 1 }</td>
 									            <td>${ report.userId }</td>
 									            <td>${ report.username }</td>
