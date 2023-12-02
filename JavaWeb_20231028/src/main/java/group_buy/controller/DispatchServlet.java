@@ -53,7 +53,8 @@ public class DispatchServlet extends HttpServlet {
 		String servletPath = request.getServletPath();
 		String pathInfo = request.getPathInfo();
 		String method = request.getMethod();
-		System.out.println(servletPath + ", " + pathInfo + ", " + method);
+		
+		System.out.println(servletPath + ", " + pathInfo + ", " + request.getParameterMap() + ", " + method);
 		
 		HttpSession session = request.getSession();
 		
