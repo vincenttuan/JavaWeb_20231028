@@ -34,11 +34,11 @@
 									<td>${ item.product.price * item.quantity }</td>
 									<td>
 										<button 
-											onClick="location.href='./?_method=Put&itemId=${ item.itemId }&quantity=${ item.quantity }'"
+											onClick="location.href='./cart.jsp?_method=Put&itemId=${ item.itemId }&quantity=${ item.quantity }'"
 											class="button-success pure-button">修改</button></td>
 									<td>
 										<button 
-											onClick="location.href='./?_method=Delete&itemId=${ item.itemId }'"
+											onClick="location.href='./cart.jsp?_method=Delete&itemId=${ item.itemId }'"
 											class="button-error pure-button">刪除</button>
 									</td>
 								</tr>

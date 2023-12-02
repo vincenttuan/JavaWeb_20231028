@@ -134,6 +134,19 @@ public class DispatchServlet extends HttpServlet {
 					int total = cart.getCartItems().stream().mapToInt(item -> item.getQuantity() * item.getProduct().getPrice()).sum();
 					request.setAttribute("cart", cart);
 					request.setAttribute("total", total);
+					
+					// 刪除修改的行為
+					String _method = request.getParameter("_method");
+					String itemId = request.getParameter("itemId");
+					String quantity = request.getParameter("quantity");
+					switch (_method) {
+						case "Put":
+						
+							break;
+						case "Delete": // 刪除項目
+							dao.removeCartItemById(Integer.parseInt(itemId));
+							break;		
+					}
 				}
 				break;
 			case 結帳成功:
