@@ -10,7 +10,7 @@
 		<link rel="stylesheet" href="../../css/group_buy.css">
 		<script type="text/javascript">
 			function changeLaunch(productId, isLaunch) {
-				location.href = './main.jsp?productId=' + productId + '&isLaunch=' + isLaunch;
+				location.href = './main.jsp?_method=Put&productId=' + productId + '&isLaunch=' + isLaunch;
 			}
 		</script>
 	</head>
