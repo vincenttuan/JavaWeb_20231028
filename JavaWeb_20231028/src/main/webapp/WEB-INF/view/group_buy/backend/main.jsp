@@ -58,7 +58,7 @@
 											<td>${ product.price }</td>
 											<td>${ product.unit }</td>
 											<td><input 
-													onclick="changeLaunch(${ product.productId }, this.value)"
+													onmouseup="changeLaunch(${ product.productId }, this.value)"
 													type="checkbox" ${ (product.isLaunch) ? 'checked' : '' } 
 													value="true"> 上架</td>
 										</tr>
