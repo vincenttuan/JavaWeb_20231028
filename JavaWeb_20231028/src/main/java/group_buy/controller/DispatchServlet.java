@@ -51,6 +51,7 @@ public class DispatchServlet extends HttpServlet {
 		
 		String contextPath = getServletContext().getContextPath();
 		String servletPath = request.getServletPath();
+		String pathInfo = request.getPathInfo();
 		String method = request.getMethod();
 		System.out.println(servletPath + ", " + method);
 		
@@ -148,7 +149,7 @@ public class DispatchServlet extends HttpServlet {
 		}
 		
 		// jsp 位置
-		String jspLocation = "/WEB-INF/view/group_buy" + servletPath;
+		String jspLocation = "/WEB-INF/view" + servletPath + pathInfo;
 		RequestDispatcher rd = request.getRequestDispatcher(jspLocation);
 		rd.forward(request, response);
 		
