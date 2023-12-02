@@ -140,19 +140,32 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Cart.class));
 	}
 
+	// 為 cart 注入 cartItems
+	private void enrichCartWithDetails(Cart cart) {
+	    // 注入 User
+	    findUserById(cart.getUserId()).ifPresent(cart::setUser);
+	    
+	    // 查詢和注入 CartItems
+	    String sqlItems = "SELECT itemId, cartId, productId, quantity FROM cartitem WHERE cartId = ?";
+	    List<CartItem> cartItems = jdbcTemplate.query(sqlItems, new BeanPropertyRowMapper<>(CartItem.class), cart.getCartId());
+	    cartItems.forEach(cartItem -> {
+	        findProductById(cartItem.getProductId()).ifPresent(cartItem::setProduct);
+	    });
+	    cart.setCartItems(cartItems);
+	}
+	
 	@Override
 	public Optional<Cart> findCartById(Integer cartId) {
-		String sql = "select cartId, userId, isCheckout, checkoutTime from cart where cartId = ?";
-		Cart cart = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Cart.class), cartId);
-		if(cart != null) {
-			// 根據 userId 來找到 user 並注入到 cart 中
-			findUserById(cart.getUserId()).ifPresent(cart::setUser);
-			// 查詢 List<CartItem> 根據 cartId  並注入到 cart 中
-			sql = "select itemId, cartId, productId, quantity from cartitem where cartId = ?";
-			List<CartItem> cartItems = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(CartItem.class), cart.getCartId());
-			cart.setCartItems(cartItems);
-		}
-		return Optional.ofNullable(cart);
+	    try {
+	        String sql = "SELECT cartId, userId, isCheckout, checkoutTime FROM cart WHERE cartId = ?";
+	        Cart cart = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Cart.class), cartId);
+	        if (cart != null) {
+	            enrichCartWithDetails(cart);
+	        }
+	        return Optional.ofNullable(cart);
+	    } catch (EmptyResultDataAccessException e) {
+	        return Optional.empty();
+	    }
 	}
 
 	@Override
@@ -182,23 +195,16 @@ public class GroupBuyDaoMySQL implements GroupBuyDao {
 
 	@Override
 	public Optional<Cart> findNoneCheckoutCartByUserId(Integer userId) {
-		String sql = "select cartId, userId, isCheckout, checkoutTime from cart where userId = ? and (isCheckout = false or isCheckout is null)";
-		try {
-			Cart cart = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Cart.class), userId);
-			if(cart != null) {
-				// 根據 userId 來找到 user 並注入到 cart 中
-				findUserById(cart.getUserId()).ifPresent(cart::setUser);
-				// 查詢 List<CartItem> 根據 cartId  並注入到 cart 中
-				sql = "select itemId, cartId, productId, quantity from cartitem where cartId = ?";
-				List<CartItem> cartItems = jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(CartItem.class), cart.getCartId());
-				cart.setCartItems(cartItems);
-				// 根據每一筆 cartItem 注入 product
-				cartItems.forEach(cartItem -> cartItem.setProduct(findProductById(cartItem.getProductId()).get()));
-			}
-			return Optional.ofNullable(cart);
-		} catch(EmptyResultDataAccessException e) {
-			return Optional.empty();
-		}
+	    try {
+	        String sql = "select cartId, userId, isCheckout, checkoutTime from cart where userId = ? and (isCheckout = false or isCheckout is null)";
+	        Cart cart = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Cart.class), userId);
+	        if (cart != null) {
+	            enrichCartWithDetails(cart);
+	        }
+	        return Optional.ofNullable(cart);
+	    } catch (EmptyResultDataAccessException e) {
+	        return Optional.empty();
+	    }
 	}
 
 	@Override
