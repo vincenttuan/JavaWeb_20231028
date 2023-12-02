@@ -11,9 +11,11 @@ import group_buy.model.entity.CartItem;
 import group_buy.model.entity.Product;
 import group_buy.model.entity.User;
 import jakarta.servlet.FilterChain;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpFilter;
+import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -24,14 +26,23 @@ import static group_buy.controller.URLPath.新增完成頁;
 import static group_buy.controller.URLPath.購物車頁;
 import static group_buy.controller.URLPath.結帳成功;
 
-// 過濾路徑分派器
+// 過濾路徑
 @WebFilter(value = {"/group_buy/*"})
-public class DispatchFilter extends HttpFilter {
+public class DispatchServlet extends HttpServlet {
 	
 	private GroupBuyDao dao = GroupBuyDaoMySQL.getInstance();
 	
 	@Override
-	protected void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		doHandler(req, resp);
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		doHandler(req, resp);
+	}
+
+	private void doHandler(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
@@ -135,7 +146,11 @@ public class DispatchFilter extends HttpFilter {
 				break;
 		}
 		
-		chain.doFilter(request, response);
+		// jsp 位置
+		String jspLocation = "/WEB-INF/view/group_buy" + servletPath;
+		RequestDispatcher rd = request.getRequestDispatcher(jspLocation);
+		rd.forward(request, response);
+		
 	}
 	
 }
