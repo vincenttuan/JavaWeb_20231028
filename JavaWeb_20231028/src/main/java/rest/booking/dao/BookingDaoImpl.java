@@ -61,7 +61,7 @@ public class BookingDaoImpl implements BookingDao {
 			PreparedStatement pstmt = conn.prepareStatement(sql, new String[] {"bookingId"});
 			pstmt.setInt(1, bookingRoom.getRoomId());
 			pstmt.setString(2, bookingRoom.getUsername());
-			pstmt.setString(2, bookingRoom.getBookingDate());
+			pstmt.setString(3, bookingRoom.getBookingDate());
 			return pstmt;
 		}, keyHolder);
 		
