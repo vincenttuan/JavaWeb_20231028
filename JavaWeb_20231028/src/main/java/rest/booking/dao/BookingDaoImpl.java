@@ -3,6 +3,8 @@ package rest.booking.dao;
 import java.util.List;
 import java.util.Optional;
 
+import org.simpleflatmapper.jdbc.JdbcMapper;
+import org.simpleflatmapper.jdbc.JdbcMapperFactory;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
@@ -56,8 +58,23 @@ public class BookingDaoImpl implements BookingDao {
 
 	@Override
 	public List<BookingRoom> findAllBookingRooms() {
-		String sql = "select bookingId, roomId, username, bookingDate, createDate from BookingRoom";
-		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(BookingRoom.class));
+		//String sql = "select bookingId, roomId, username, bookingDate, createDate from BookingRoom";
+		//return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(BookingRoom.class));
+		
+		String sql = "select "
+				+ "bookingroom.bookingId, bookingroom.roomId, bookingroom.username, bookingroom.bookingDate, bookingroom.createDate, "
+				+ "room.roomId, room.roomName "
+				+ "from BookingRoom "
+				+ "left join Room on bookingroom.roomId = room.roomId";
+		
+		JdbcMapper<BookingRoom> mapper = JdbcMapperFactory.newInstance()
+				.addKeys("roomId")
+				.newBuilder(BookingRoom.class)
+				.mapper();
+		
+		List<BookingRoom> bookingRooms = jdbcTemplate.query(sql, mapper);
+		
+		return bookingRooms;
 	}
 
 	@Override
