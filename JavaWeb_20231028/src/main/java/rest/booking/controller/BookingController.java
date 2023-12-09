@@ -171,7 +171,9 @@ public class BookingController extends HttpServlet {
 				resp.getWriter().print("{\"result\": \"OK\", \"bookingId\": " + bookingId + "}");
 			}	
 		} catch (Exception e) {
-			resp.getWriter().print("{\"result\": \"Fail\", \"bookingId\": " + bookingId + ", \"exception\": \"" + e.getMessage() + "\"}");
+			//resp.getWriter().print("{\"result\": \"Fail\", \"bookingId\": " + bookingId + ", \"exception\": \"" + e.getMessage() + "\"}");
+			String msg = String.format("{\"result\": \"%s\", \"bookingId\": %d, \"exception\": \"%s\"}", "Fail", bookingId, e.getMessage());
+			resp.getWriter().print(msg);
 		}
 		
 	}
