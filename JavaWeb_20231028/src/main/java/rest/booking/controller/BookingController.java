@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -121,7 +122,7 @@ public class BookingController extends HttpServlet {
 		String pathInfo = req.getPathInfo();
 		switch (pathInfo) {
 			case "/bookingroom":
-				
+				resp.getWriter().print(req.getReader().lines().collect(Collectors.joining("\n")));
 				break;
 
 			case "/room":
