@@ -78,7 +78,7 @@ public class BookingDaoImpl implements BookingDao {
 				+ "left join Room on bookingroom.roomId = room.roomId";
 		
 		ResultSetExtractor<List<BookingRoom>> resultSetExtractor = JdbcTemplateMapperFactory.newInstance()
-							.addKeys("roomId")
+							.addKeys("bookingId")
 							.newResultSetExtractor(BookingRoom.class);
 		
 		List<BookingRoom> bookingRooms = jdbcTemplate.query(sql, resultSetExtractor);
