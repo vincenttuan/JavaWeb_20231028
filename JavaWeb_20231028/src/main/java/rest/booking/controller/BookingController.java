@@ -129,11 +129,13 @@ public class BookingController extends HttpServlet {
 				String bookingRoomJsonStr = req.getReader().lines().collect(Collectors.joining("\n"));
 				// json str 轉 bean
 				BookingRoom bookingRoom = gson.fromJson(bookingRoomJsonStr, BookingRoom.class);
-				int bookingId = dao.addBookingRoom(bookingRoom);
-				if(bookingId == 0) {
-					resp.getWriter().print("{\"result\": \"Fail\"}");
-				} else {
+				
+				try {
+					int bookingId = dao.addBookingRoom(bookingRoom);
 					resp.getWriter().print("{\"result\": \"OK\", \"bookingId\": " + bookingId + "}");
+					
+				} catch (Exception e) {
+					resp.getWriter().print("{\"result\": \"Fail\", \"exception\": " + e.getMessage() + "}");
 				}
 				
 				break;
