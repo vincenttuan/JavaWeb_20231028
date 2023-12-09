@@ -77,7 +77,7 @@ public class BookingDaoImpl implements BookingDao {
 	public Optional<Room> getRoomById(Integer roomId) {
 		String sql = "select roomId, roomName from Room where roomId = ?";
 		Room room = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Room.class), roomId);
-		return Optional.empty();
+		return Optional.ofNullable(room);
 	}
 
 }
