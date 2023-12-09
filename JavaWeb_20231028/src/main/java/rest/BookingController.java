@@ -17,6 +17,7 @@ import jakarta.servlet.http.HttpServlet;
  *    }
  *    
  * 2. 取消預約
+ *    DELETE /rest/booking/{bookingId}
  *    DELETE /rest/booking/1
  *    請求:                            回應:
  *                                    {
@@ -25,7 +26,13 @@ import jakarta.servlet.http.HttpServlet;
  *                                    }
  *    
  * 3. 變更預約時間
+ *    PUT /rest/booking/{bookingId}
  *    PUT /rest/booking/1
+ *    請求:                            回應:
+ *    {                               {
+ *      "bookingDate": "2023-12-10"     "result": "OK",
+ *    }                                 "bookingId": 1
+ *                                    }
  * 4. 查詢當前所有預約狀態。
  * 	  GET /rest/booking/ 
  */
