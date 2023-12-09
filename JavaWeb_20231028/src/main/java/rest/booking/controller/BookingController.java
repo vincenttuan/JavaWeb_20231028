@@ -1,6 +1,8 @@
 package rest.booking.controller;
 
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -64,14 +66,24 @@ import jakarta.servlet.http.HttpServletResponse;
 @WebServlet("/rest/booking/*")
 public class BookingController extends HttpServlet {
 	
-	// GET /rest/booking/
-	// GET /rest/booking/1
+	// GET /rest/booking/bookingroom/
+	// GET /rest/booking/bookingroom/1
+	// GET /rest/booking/room/
+	// GET /rest/booking/room/1
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String pathInfo = req.getPathInfo();
-		resp.getWriter().print(pathInfo);
+		if(pathInfo.contains("/bookingroom")) {
+			// 取得 bookingId
+			String regex = "^/bookingroom/(\\d+)$";
+			
+		} else if(pathInfo.contains("/room")) {
+			
+		}
+		
+		
 	}
-
+	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -89,7 +101,16 @@ public class BookingController extends HttpServlet {
 		// TODO Auto-generated method stub
 		super.doDelete(req, resp);
 	}
-
+	
+	public Integer getId(String pathInfo, String regex) {
+		Pattern pattern = Pattern.compile(regex);
+		Matcher matcher = pattern.matcher(pathInfo);
+		if(matcher.find()) {
+			String numberStr = matcher.group(1);
+			return Integer.parseInt(numberStr);
+		}
+		return null;
+	}
 }
 
 
