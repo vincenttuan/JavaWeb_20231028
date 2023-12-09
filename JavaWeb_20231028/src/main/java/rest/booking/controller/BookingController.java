@@ -139,7 +139,7 @@ public class BookingController extends HttpServlet {
 					resp.getWriter().print("{\"result\": \"OK\", \"bookingId\": " + bookingId + "}");
 					
 				} catch (Exception e) {
-					resp.getWriter().print("{\"result\": \"Fail\", \"exception\": " + e.getMessage() + "}");
+					resp.getWriter().print("{\"result\": \"Fail\", \"exception\": \"" + e.getMessage() + "\"}");
 				}
 				
 				break;
@@ -171,7 +171,7 @@ public class BookingController extends HttpServlet {
 				resp.getWriter().print("{\"result\": \"OK\", \"bookingId\": " + bookingId + "}");
 			}	
 		} catch (Exception e) {
-			resp.getWriter().print("{\"result\": \"Fail\", \"bookingId\": " + bookingId + ", \"exception\": " + e.getMessage() + "}");
+			resp.getWriter().print("{\"result\": \"Fail\", \"bookingId\": " + bookingId + ", \"exception\": \"" + e.getMessage() + "\"}");
 		}
 		
 	}
