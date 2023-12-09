@@ -7,7 +7,7 @@ public class BookingRoom {
 	private Integer roomId;
 	private String username;
 	private String bookingDate;
-	private Timestamp createTime;
+	private Timestamp createDate;
 	
 	public Integer getBookingId() {
 		return bookingId;
@@ -33,17 +33,18 @@ public class BookingRoom {
 	public void setBookingDate(String bookingDate) {
 		this.bookingDate = bookingDate;
 	}
-	public Timestamp getCreateTime() {
-		return createTime;
+	public Timestamp getCreateDate() {
+		return createDate;
 	}
-	public void setCreateTime(Timestamp createTime) {
-		this.createTime = createTime;
+	public void setCreateDate(Timestamp createDate) {
+		this.createDate = createDate;
 	}
 	@Override
 	public String toString() {
 		return "BookingRoom [bookingId=" + bookingId + ", roomId=" + roomId + ", username=" + username
-				+ ", bookingDate=" + bookingDate + ", createTime=" + createTime + "]";
+				+ ", bookingDate=" + bookingDate + ", createDate=" + createDate + "]";
 	}
+	
 	
 	
 }
