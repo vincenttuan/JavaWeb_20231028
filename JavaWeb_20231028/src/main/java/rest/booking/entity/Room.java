@@ -1,5 +1,7 @@
 package rest.booking.entity;
 
+import com.google.gson.Gson;
+
 public class Room {
 	private Integer roomId;
 	private String roomName;
@@ -19,7 +21,7 @@ public class Room {
 	
 	@Override
 	public String toString() {
-		return "Room [roomId=" + roomId + ", roomName=" + roomName + "]";
+		return new Gson().toJson(this);
 	}
 	
 }
