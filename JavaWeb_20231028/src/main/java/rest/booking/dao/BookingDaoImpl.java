@@ -43,13 +43,13 @@ public class BookingDaoImpl implements BookingDao {
 
 	@Override
 	public int cancelBookingRoomById(Integer bookingId) {
-		String sql = "delete from BookingItem where bookingId = ?";
+		String sql = "delete from BookingRoom where bookingId = ?";
 		return jdbcTemplate.update(sql, bookingId);
 	}
 
 	@Override
 	public int updateBookingRoomDateById(Integer bookingId, String newBookingDate) {
-		String sql = "update BookingItem set bookingDate = ? where bookingId = ?";
+		String sql = "update BookingRoom set bookingDate = ? where bookingId = ?";
 		return jdbcTemplate.update(sql, newBookingDate, bookingId);
 	}
 
