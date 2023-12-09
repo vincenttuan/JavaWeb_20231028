@@ -4,7 +4,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 
 /**
- * 會議室預訂系統
+ * 會議室預訂系統(規定使用 REST/RESTful)
  * 假設您正在為一家公司開發一個會議室預訂系統。
  * 您需要實現一個控制器，該控制器可以處理會議室的
  * 1. 預訂請求
