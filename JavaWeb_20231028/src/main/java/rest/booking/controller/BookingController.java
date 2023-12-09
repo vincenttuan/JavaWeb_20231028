@@ -1,12 +1,16 @@
 package rest.booking.controller;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -151,14 +155,37 @@ public class BookingController extends HttpServlet {
 	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String pathInfo = req.getPathInfo();
 		int bookingId = getId(pathInfo, "^/bookingroom/(\\d+)$");
-		resp.getWriter().print(bookingId);
+		//resp.getWriter().print(bookingId);
+		String jsonStr = req.getReader().lines().collect(Collectors.joining("\n"));
+		Gson gson = new Gson();
+		//Type mapType = new TypeToken<Map<String, String>>(){}.getType(); // 建立一個 Map<String, String> 的型別
+		//Map<String, String> map = gson.fromJson(jsonStr, mapType);
+		Map map = gson.fromJson(jsonStr, Map.class);
+		String bookingDate = map.get("bookingDate") + "";
+		//resp.getWriter().print(bookingDate);
+		try {
+			int rowcount = dao.updateBookingRoomDateById(bookingId, bookingDate);
+			if(rowcount == 0) {
+				resp.getWriter().print("{\"result\": \"Fail\", \"bookingId\": " + bookingId + "}");
+			} else {
+				resp.getWriter().print("{\"result\": \"OK\", \"bookingId\": " + bookingId + "}");
+			}	
+		} catch (Exception e) {
+			resp.getWriter().print("{\"result\": \"Fail\", \"bookingId\": " + bookingId + ", \"exception\": " + e.getMessage() + "}");
+		}
+		
 	}
 	
 	@Override
 	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String pathInfo = req.getPathInfo();
 		int bookingId = getId(pathInfo, "^/bookingroom/(\\d+)$");
-		resp.getWriter().print(bookingId);
+		int rowcount = dao.cancelBookingRoomById(bookingId);
+		if(rowcount == 0) {
+			resp.getWriter().print("{\"result\": \"Fail\", \"bookingId\": " + bookingId + "}");
+		} else {
+			resp.getWriter().print("{\"result\": \"OK\", \"bookingId\": " + bookingId + "}");
+		}	 
 	}
 	
 	public Integer getId(String pathInfo, String regex) {
