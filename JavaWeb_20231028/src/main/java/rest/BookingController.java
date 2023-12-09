@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpServlet;
  *    請求:                            回應:
  *    {                               {
  *      "roomId": 3,                    "result": "OK",
- *      "name": "John",                 "bookingId": 1 
+ *      "username": "John",             "bookingId": 1 
  *      "bookingDate": "2023-12-09"   } 
  *    }
  *    
@@ -40,18 +40,18 @@ import jakarta.servlet.http.HttpServlet;
  *                                      {
  *                                        "bookingId": 1,
  *                                        "roomId": 3,
- *                                        "name": "John",
+ *                                        "username": "John",
  *                                        "bookingDate": "2023-12-10",
  *                                        "createDate": "2023-12-09 10:29:35",
- *                                        "room": {"roomId": 3, "name": "301中型會議室"}
+ *                                        "room": {"roomId": 3, "roomName": "301中型會議室"}
  *                                      },
  *                                      {
  *                                        "bookingId": 2,
  *                                        "roomId": 5,
- *                                        "name": "Mary",
+ *                                        "username": "Mary",
  *                                        "bookingDate": "2023-12-11",
  *                                        "createDate": "2023-12-09 11:30:50",
- *                                        "room": {"roomId": 5, "name": "501大型會議室"}
+ *                                        "room": {"roomId": 5, "roomName": "501大型會議室"}
  *                                      }
  *                                      ...  
  *                                    ]
