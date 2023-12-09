@@ -133,7 +133,7 @@ public class BookingController extends HttpServlet {
 				if(bookingId == 0) {
 					resp.getWriter().print("{\"result\": \"Fail\"}");
 				} else {
-					resp.getWriter().print("{\"result\": \"OK\"}");
+					resp.getWriter().print("{\"result\": \"OK\", \"bookingId\": " + bookingId + "}");
 				}
 				
 				break;
