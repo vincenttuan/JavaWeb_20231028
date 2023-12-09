@@ -150,14 +150,14 @@ public class BookingController extends HttpServlet {
 	@Override
 	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String pathInfo = req.getPathInfo();
-		int bookingId = getId(pathInfo, "^/bookingroom/(\\d)+$");
+		int bookingId = getId(pathInfo, "^/bookingroom/(\\d+)$");
 		resp.getWriter().print(bookingId);
 	}
 	
 	@Override
 	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String pathInfo = req.getPathInfo();
-		int bookingId = getId(pathInfo, "^/bookingroom/(\\d)+$");
+		int bookingId = getId(pathInfo, "^/bookingroom/(\\d+)$");
 		resp.getWriter().print(bookingId);
 	}
 	
