@@ -129,8 +129,8 @@ public class BookingController extends HttpServlet {
 				String bookingRoomJsonStr = req.getReader().lines().collect(Collectors.joining("\n"));
 				// json str 轉 bean
 				BookingRoom bookingRoom = gson.fromJson(bookingRoomJsonStr, BookingRoom.class);
-				int rowcount = dao.addBookingRoom(bookingRoom);
-				if(rowcount == 0) {
+				int bookingId = dao.addBookingRoom(bookingRoom);
+				if(bookingId == 0) {
 					resp.getWriter().print("{\"result\": \"Fail\"}");
 				} else {
 					resp.getWriter().print("{\"result\": \"OK\"}");
