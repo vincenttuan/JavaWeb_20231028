@@ -133,9 +133,16 @@ public class BookingController extends HttpServlet {
 	}
 	
 	public Integer getId(String pathInfo, String regex) {
+		/*
+		 * pathInfo = /room/2
+		 * regex    = /room/(\\d+)  
+		 * */
 		Pattern pattern = Pattern.compile(regex);
 		Matcher matcher = pattern.matcher(pathInfo);
 		if(matcher.find()) {
+			System.out.println(matcher.group());
+			System.out.println(matcher.group(1));
+			
 			String numberStr = matcher.group(1);
 			return Integer.parseInt(numberStr);
 		}

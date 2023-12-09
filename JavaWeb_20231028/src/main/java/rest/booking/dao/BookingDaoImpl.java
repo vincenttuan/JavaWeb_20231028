@@ -89,16 +89,18 @@ public class BookingDaoImpl implements BookingDao {
 	@Override
 	public Optional<BookingRoom> getBookingRoomById(Integer bookingId) {
 		String sql = "select bookingId, roomId, username, bookingDate, createDate from BookingRoom where bookingId = ?";
-		BookingRoom bookingRoom = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(BookingRoom.class), bookingId);
+		try {
+			BookingRoom bookingRoom = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(BookingRoom.class), bookingId);
 		
-		if(bookingRoom != null) {
 			Optional<Room> roomOpt = getRoomById(bookingRoom.getRoomId());
 			if(roomOpt.isPresent()) {
 				bookingRoom.setRoom(roomOpt.get()); // 注入 room 物件
 			}
 			return Optional.ofNullable(bookingRoom);
+		} catch (Exception e) {
+			return Optional.empty();
 		}
-		return Optional.empty();
+		
 	}
 
 	@Override
@@ -110,8 +112,13 @@ public class BookingDaoImpl implements BookingDao {
 	@Override
 	public Optional<Room> getRoomById(Integer roomId) {
 		String sql = "select roomId, roomName from Room where roomId = ?";
-		Room room = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Room.class), roomId);
-		return Optional.ofNullable(room);
+		try {
+			Room room = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Room.class), roomId);
+			return Optional.ofNullable(room);
+		} catch (Exception e) {
+			return Optional.empty();
+		}
+		
 	}
 	
 	public static void main(String[] args) {
