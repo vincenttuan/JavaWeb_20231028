@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import org.simpleflatmapper.jdbc.JdbcMapper;
 import org.simpleflatmapper.jdbc.JdbcMapperFactory;
+import org.simpleflatmapper.jdbc.spring.JdbcTemplateMapperFactory;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -71,12 +72,11 @@ public class BookingDaoImpl implements BookingDao {
 				+ "from BookingRoom "
 				+ "left join Room on bookingroom.roomId = room.roomId";
 		
-		ResultSetExtractor<BookingRoom> resultSetExtractor = 
-				JdbcTemplateMapperFactory.newInstance()
-						.addKeys("roomId")
-						.newResultSetExtractor(BookingRoom.class);
+		ResultSetExtractor<List<BookingRoom>> resultSetExtractor = JdbcTemplateMapperFactory.newInstance()
+							.addKeys("roomId")
+							.newResultSetExtractor(BookingRoom.class);
 		
-		List<BookingRoom> bookingRooms = jdbcTemplate.query(sql, mapper);
+		List<BookingRoom> bookingRooms = jdbcTemplate.query(sql, resultSetExtractor);
 		
 		return bookingRooms;
 	}
