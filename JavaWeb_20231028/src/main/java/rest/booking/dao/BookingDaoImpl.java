@@ -3,6 +3,7 @@ package rest.booking.dao;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
@@ -55,25 +56,27 @@ public class BookingDaoImpl implements BookingDao {
 
 	@Override
 	public List<BookingRoom> findAllBookingRooms() {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "select bookingId, roomId, username, bookingDate, createDate from BookingRoom";
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(BookingRoom.class));
 	}
 
 	@Override
 	public Optional<BookingRoom> getBookingRoomById(Integer bookingId) {
-		// TODO Auto-generated method stub
-		return Optional.empty();
+		String sql = "select bookingId, roomId, username, bookingDate, createDate from BookingRoom where bookingId = ?";
+		BookingRoom bookingRoom = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(BookingRoom.class), bookingId);
+		return Optional.ofNullable(bookingRoom);
 	}
 
 	@Override
 	public List<Room> findAllRooms() {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "select roomId, roomName from Room";
+		return jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(Room.class));
 	}
 
 	@Override
 	public Optional<Room> getRoomById(Integer roomId) {
-		// TODO Auto-generated method stub
+		String sql = "select roomId, roomName from Room where roomId = ?";
+		Room room = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Room.class), roomId);
 		return Optional.empty();
 	}
 
