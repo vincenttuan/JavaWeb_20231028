@@ -114,10 +114,19 @@ public class BookingController extends HttpServlet {
 		
 	}
 	
+	// 新增 POST /rest/booking/bookingroom
+	// 新增 POST /rest/booking/room
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		super.doPost(req, resp);
+		String pathInfo = req.getPathInfo();
+		switch (pathInfo) {
+			case "/bookingroom":
+				
+				break;
+
+			case "/room":
+				break;
+		}
 	}
 
 	@Override
