@@ -42,14 +42,16 @@ import jakarta.servlet.http.HttpServlet;
  *                                        "roomId": 3,
  *                                        "name": "John",
  *                                        "bookingDate": "2023-12-10",
- *                                        "createDate": "2023-12-09 10:29:35"
+ *                                        "createDate": "2023-12-09 10:29:35",
+ *                                        "room": {"roomId": 3, "name": "301中型會議室"}
  *                                      },
  *                                      {
  *                                        "bookingId": 2,
  *                                        "roomId": 5,
  *                                        "name": "Mary",
  *                                        "bookingDate": "2023-12-11",
- *                                        "createDate": "2023-12-09 11:30:50"
+ *                                        "createDate": "2023-12-09 11:30:50",
+ *                                        "room": {"roomId": 5, "name": "501大型會議室"}
  *                                      }
  *                                      ...  
  *                                    ]
