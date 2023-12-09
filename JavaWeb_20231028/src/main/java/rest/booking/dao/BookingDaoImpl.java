@@ -1,12 +1,16 @@
 package rest.booking.dao;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
 import org.simpleflatmapper.jdbc.JdbcMapper;
 import org.simpleflatmapper.jdbc.JdbcMapperFactory;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import rest.booking.entity.BookingRoom;
@@ -67,10 +71,10 @@ public class BookingDaoImpl implements BookingDao {
 				+ "from BookingRoom "
 				+ "left join Room on bookingroom.roomId = room.roomId";
 		
-		JdbcMapper<BookingRoom> mapper = JdbcMapperFactory.newInstance()
-				.addKeys("roomId")
-				.newBuilder(BookingRoom.class)
-				.mapper();
+		ResultSetExtractor<BookingRoom> resultSetExtractor = 
+				JdbcTemplateMapperFactory.newInstance()
+						.addKeys("roomId")
+						.newResultSetExtractor(BookingRoom.class);
 		
 		List<BookingRoom> bookingRooms = jdbcTemplate.query(sql, mapper);
 		
