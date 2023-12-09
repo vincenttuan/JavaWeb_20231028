@@ -144,17 +144,21 @@ public class BookingController extends HttpServlet {
 				break;
 		}
 	}
-
+	
+	// 修改 PUT /rest/booking/bookingroom/{bookingId}
+	// 修改 PUT /rest/booking/bookingroom/1
 	@Override
 	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		super.doPut(req, resp);
+		String pathInfo = req.getPathInfo();
+		int bookingId = getId(pathInfo, "^/bookingroom/(\\d)+$");
+		resp.getWriter().print(bookingId);
 	}
 	
 	@Override
 	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		super.doDelete(req, resp);
+		String pathInfo = req.getPathInfo();
+		int bookingId = getId(pathInfo, "^/bookingroom/(\\d)+$");
+		resp.getWriter().print(bookingId);
 	}
 	
 	public Integer getId(String pathInfo, String regex) {
