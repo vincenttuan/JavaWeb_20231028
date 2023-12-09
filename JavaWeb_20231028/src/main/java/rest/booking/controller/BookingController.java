@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import rest.booking.dao.BookingDao;
 import rest.booking.dao.BookingDaoImpl;
 import rest.booking.entity.BookingRoom;
+import rest.booking.entity.Room;
 
 /**
  * 會議室預訂系統(規定使用 REST/RESTful)
@@ -95,7 +96,19 @@ public class BookingController extends HttpServlet {
 			}
 			
 		} else if(pathInfo.contains("/room")) {
-			
+			// 取得 roomId
+			String regex = "^/room/(\\d+)$";
+			Integer id = getId(pathInfo, regex);
+			if(id == null) {
+				resp.getWriter().print(dao.findAllRooms());
+			} else {
+				Optional<Room> roomOpt = dao.getRoomById(id);
+				if(roomOpt.isPresent()) {
+					resp.getWriter().print(roomOpt.get());
+				} else {
+					resp.getWriter().print("{}");
+				}
+			}
 		}
 		
 		
