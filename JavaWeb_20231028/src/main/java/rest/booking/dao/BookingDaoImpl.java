@@ -8,11 +8,16 @@ import java.util.Optional;
 import org.simpleflatmapper.jdbc.JdbcMapper;
 import org.simpleflatmapper.jdbc.JdbcMapperFactory;
 import org.simpleflatmapper.jdbc.spring.JdbcTemplateMapperFactory;
+import org.simpleflatmapper.reflect.asm.GetterBuilder;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonParser;
 
 import rest.booking.entity.BookingRoom;
 import rest.booking.entity.Room;
@@ -107,6 +112,13 @@ public class BookingDaoImpl implements BookingDao {
 		String sql = "select roomId, roomName from Room where roomId = ?";
 		Room room = jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(Room.class), roomId);
 		return Optional.ofNullable(room);
+	}
+	
+	public static void main(String[] args) {
+		String jsonString = BookingDaoImpl.getInstance().findAllBookingRooms().toString();
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+		String formatedJson = gson.toJson(JsonParser.parseString(jsonString));
+		System.out.println(formatedJson);
 	}
 
 }
