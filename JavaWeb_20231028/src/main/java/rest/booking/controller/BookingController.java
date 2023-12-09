@@ -9,6 +9,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import rest.booking.dao.BookingDao;
+import rest.booking.dao.BookingDaoImpl;
 
 /**
  * 會議室預訂系統(規定使用 REST/RESTful)
@@ -66,6 +68,8 @@ import jakarta.servlet.http.HttpServletResponse;
 @WebServlet("/rest/booking/*")
 public class BookingController extends HttpServlet {
 	
+	private BookingDao dao = BookingDaoImpl.getInstance();
+	
 	// GET /rest/booking/bookingroom/
 	// GET /rest/booking/bookingroom/1
 	// GET /rest/booking/room/
@@ -76,6 +80,12 @@ public class BookingController extends HttpServlet {
 		if(pathInfo.contains("/bookingroom")) {
 			// 取得 bookingId
 			String regex = "^/bookingroom/(\\d+)$";
+			Integer id = getId(pathInfo, regex);
+			if(id == null) {
+				resp.getWriter().print(dao.findAllBookingRooms());
+			} else {
+				resp.getWriter().print(dao.getBookingRoomById(id));
+			}
 			
 		} else if(pathInfo.contains("/room")) {
 			
