@@ -1,5 +1,6 @@
 package rest.booking.dao;
 
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -14,6 +15,8 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -48,10 +51,21 @@ public class BookingDaoImpl implements BookingDao {
 		return _instance;
 	}
 	
+	// addBookingRoom 是回傳 bookingId
 	@Override
 	public int addBookingRoom(BookingRoom bookingRoom) {
 		String sql = "insert BookingRoom(roomId, username, bookingDate) values(?, ?, ?)";
-		return jdbcTemplate.update(sql, bookingRoom.getRoomId(), bookingRoom.getUsername(), bookingRoom.getBookingDate());
+		KeyHolder keyHolder = new GeneratedKeyHolder();
+		
+		jdbcTemplate.update(conn -> {
+			PreparedStatement pstmt = conn.prepareStatement(sql, new String[] {"bookingId"});
+			pstmt.setInt(1, bookingRoom.getRoomId());
+			pstmt.setString(2, bookingRoom.getUsername());
+			pstmt.setString(2, bookingRoom.getBookingDate());
+			return pstmt;
+		}, keyHolder);
+		
+		return keyHolder.getKey() != null ? keyHolder.getKey().intValue(): 0;
 	}
 
 	@Override
