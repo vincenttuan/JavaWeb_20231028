@@ -6,6 +6,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import com.google.gson.Gson;
+
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -119,10 +121,21 @@ public class BookingController extends HttpServlet {
 	// 新增 POST /rest/booking/room
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		Gson gson = new Gson();
 		String pathInfo = req.getPathInfo();
 		switch (pathInfo) {
 			case "/bookingroom":
-				resp.getWriter().print(req.getReader().lines().collect(Collectors.joining("\n")));
+				//resp.getWriter().print(req.getReader().lines().collect(Collectors.joining("\n")));
+				String bookingRoomJsonStr = req.getReader().lines().collect(Collectors.joining("\n"));
+				// json str 轉 bean
+				BookingRoom bookingRoom = gson.fromJson(bookingRoomJsonStr, BookingRoom.class);
+				int rowcount = dao.addBookingRoom(bookingRoom);
+				if(rowcount == 0) {
+					resp.getWriter().print("{\"result\": \"Fail\"}");
+				} else {
+					resp.getWriter().print("{\"result\": \"OK\"}");
+				}
+				
 				break;
 
 			case "/room":
