@@ -68,7 +68,7 @@ public class BookingDaoImpl implements BookingDao {
 		
 		String sql = "select "
 				+ "bookingroom.bookingId, bookingroom.roomId, bookingroom.username, bookingroom.bookingDate, bookingroom.createDate, "
-				+ "room.roomId, room.roomName "
+				+ "room.roomId as room_roomId, room.roomName as room_roomName "
 				+ "from BookingRoom "
 				+ "left join Room on bookingroom.roomId = room.roomId";
 		
