@@ -35,6 +35,24 @@ import jakarta.servlet.http.HttpServlet;
  *                                    }
  * 4. 查詢當前所有預約狀態。
  * 	  GET /rest/booking/ 
+ *    請求:                            回應:
+ *                                    [
+ *                                      {
+ *                                        "bookingId": 1,
+ *                                        "roomId": 3,
+ *                                        "name": "John",
+ *                                        "bookingDate": "2023-12-10",
+ *                                        "createDate": "2023-12-09 10:29:35"
+ *                                      },
+ *                                      {
+ *                                        "bookingId": 2,
+ *                                        "roomId": 5,
+ *                                        "name": "Mary",
+ *                                        "bookingDate": "2023-12-11",
+ *                                        "createDate": "2023-12-09 11:30:50"
+ *                                      }
+ *                                      ...  
+ *                                    ]
  */
 @WebServlet("/rest/booking/*")
 public class BookingController extends HttpServlet {
