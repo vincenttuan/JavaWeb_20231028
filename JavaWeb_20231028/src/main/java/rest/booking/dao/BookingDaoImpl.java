@@ -37,20 +37,20 @@ public class BookingDaoImpl implements BookingDao {
 	
 	@Override
 	public int addBookingRoom(BookingRoom bookingRoom) {
-		// TODO Auto-generated method stub
-		return 0;
+		String sql = "insert BookingRoom(roomId, username, bookingDate) values(?, ?, ?)";
+		return jdbcTemplate.update(sql, bookingRoom.getRoomId(), bookingRoom.getUsername(), bookingRoom.getBookingDate());
 	}
 
 	@Override
 	public int cancelBookingRoomById(Integer bookingId) {
-		// TODO Auto-generated method stub
-		return 0;
+		String sql = "delete from BookingItem where bookingId = ?";
+		return jdbcTemplate.update(sql, bookingId);
 	}
 
 	@Override
 	public int updateBookingRoomDateById(Integer bookingId, String newBookingDate) {
-		// TODO Auto-generated method stub
-		return 0;
+		String sql = "update BookingItem set bookingDate = ? where bookingId = ?";
+		return jdbcTemplate.update(sql, newBookingDate, bookingId);
 	}
 
 	@Override
