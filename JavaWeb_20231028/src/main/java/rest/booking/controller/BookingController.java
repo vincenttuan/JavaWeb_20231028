@@ -63,12 +63,13 @@ import jakarta.servlet.http.HttpServletResponse;
  */
 @WebServlet("/rest/booking/*")
 public class BookingController extends HttpServlet {
-
 	
+	// GET /rest/booking/
+	// GET /rest/booking/1
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		super.doGet(req, resp);
+		String pathInfo = req.getPathInfo();
+		resp.getWriter().print(pathInfo);
 	}
 
 	@Override
