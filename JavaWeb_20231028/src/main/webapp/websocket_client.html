@@ -29,6 +29,12 @@
                 padding: 10px;
                 margin-top: 10px;
             }
+            
+            .collapsed {
+		        max-height: 20px; /* 將高度縮小到 20px */
+		        overflow: hidden; /* 隱藏內部元素 */
+		        padding: 0; /* 移除內邊距 */
+		    }
         </style>
 		<script>
 			window.onload = function() {
@@ -85,6 +91,13 @@
 				onMessageBtn.addEventListener("click", function() {
 					webSocket.send(messageInput.value);
 				});
+				
+				// 獲取 legend 元素，並為其添加雙擊事件處理函數
+		        const legend = document.querySelector("#floating-container legend");
+		        legend.addEventListener("dblclick", function() {
+		            const container = document.getElementById("floating-container");
+		            container.classList.toggle("collapsed");
+		        });
 				
 				// 一啟動就連線
 				setWebSocket();
