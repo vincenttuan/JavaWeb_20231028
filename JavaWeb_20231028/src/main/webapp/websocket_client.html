@@ -34,6 +34,7 @@
 					webSocket.onmessage = function(event) {
 						//const msg = event.data; // 收到來自 websocket server 的訊息
 						//messageDisplay.insertAdjacentHTML("afterbegin", msg + "<br>");
+						// 將 json 字串轉 json 物件
 						const jsonObj = JSON.parse(event.data);
 						messageDisplay.insertAdjacentHTML("afterbegin", jsonObj.msg + "<br>");
 						onlines.innerText = jsonObj.onlines;
