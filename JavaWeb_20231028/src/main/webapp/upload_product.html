@@ -56,6 +56,8 @@
 						reader.onload = function(e) {
 							const image = document.createElement('img'); // 建立一個 image 標籤
 							console.log(e);
+							image.src = e.target.result;
+							imagePreview.appendChild(image); // 將建好的 image 塞到 imagePreview 中
 						};
 						reader.readAsDataURL(file);
 					}
