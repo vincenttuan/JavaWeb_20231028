@@ -19,6 +19,18 @@
 				if(input.files.length > 0) {
 					const fileName = input.files[0].name;
 					console.log(fileName);
+					/*
+						利用正則表示式來提取 (玫瑰油雞飯$128.jpg) 商品名稱 與 商品價格
+						/^ 運算開始
+						. 任意文字
+						* 0~多個
+						\$ $ 符號, \ 跳脫
+						\d 十進位整數
+						+ 1~多個
+						$/ 運算結束
+					*/
+					const matches = fileName.matche(/^(.*)\$([\d]+)\.jpg $/);
+					console.log(matches);
 					
 				} else {
 					productNameInput.value = '';
