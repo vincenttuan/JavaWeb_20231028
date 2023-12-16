@@ -3,6 +3,7 @@ package websocket;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import jakarta.websocket.OnClose;
+import jakarta.websocket.OnError;
 import jakarta.websocket.OnMessage;
 import jakarta.websocket.OnOpen;
 import jakarta.websocket.Session;
@@ -37,6 +38,11 @@ public class WebSocketServer {
 		System.out.printf("Client 發送訊息, message: %s 來自 session id: %s%n", message, session.getId());
 		// 進行廣播
 		broadcase(message);
+	}
+	
+	@OnError
+	public void onError(Session session, Throwable throwable) {
+		System.out.printf("Client 發生錯誤, 錯誤原因: %s 來自 session id: %s%n", throwable, session.getId());
 	}
 	
 	// 廣播
