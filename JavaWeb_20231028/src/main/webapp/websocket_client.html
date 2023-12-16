@@ -44,9 +44,16 @@
 				}
 				
 				onOpenBtn.addEventListener("click", function() {
-						
+					setWebSocket(); // 啟動		
 				});
 				
+				onCloseBtn.addEventListener("click", function() {
+					webSocket.close(); // 離線
+				});
+				
+				onMessageBtn.addEventListener("click", function() {
+					webSocket.send(messageInput.value);
+				});
 				
 			}
 		</script>
