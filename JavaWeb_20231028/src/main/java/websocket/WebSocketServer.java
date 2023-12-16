@@ -32,7 +32,7 @@ public class WebSocketServer {
 		sessions.remove(session);
 		System.out.println("目前連線數量: " + sessions.size());
 		// 進行廣播
-		broadcase("bye bye 我離開~", session.getId());
+		broadcase("bye bye 我離開了~", session.getId());
 	}
 	
 	@OnMessage
