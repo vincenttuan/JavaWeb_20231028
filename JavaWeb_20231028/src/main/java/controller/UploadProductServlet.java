@@ -40,6 +40,9 @@ public class UploadProductServlet extends HttpServlet {
 		resp.getWriter().println("檔案名稱: " + fileName);
 		
 		// 儲存檔案
+		filePart.write(fileName);
+		resp.getWriter().println("<p>");
+		resp.getWriter().println("存檔完成");
 		
 		
 	}
