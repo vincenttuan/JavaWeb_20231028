@@ -48,11 +48,11 @@ public class WebSocketServer {
 	}
 	
 	// 廣播
-	private void broadcase(String message) {
+	private void broadcase(String message, String sessionId) {
 		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
 		sessions.forEach(s -> {  // s 指的就是 session
 			if(s.isOpen()) {
-				s.getAsyncRemote().sendText(message + " " + sdf.format(new Date()));
+				s.getAsyncRemote().sendText("ID: " + sessionId + " 發送: " + message + " 時間: " + sdf.format(new Date()));
 			}
 		});
 	}
