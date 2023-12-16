@@ -35,6 +35,7 @@ public class UploadProductServlet extends HttpServlet {
 		resp.getWriter().println("商品價格: " + productPrice);
 		resp.getWriter().println("<p>");
 		resp.getWriter().println("圖片資訊: " + filePart.getHeader("content-disposition"));
+		resp.getWriter().println("<p>");
 		String fileName = getFileName(filePart);
 		resp.getWriter().println("檔案名稱: " + fileName);
 		
