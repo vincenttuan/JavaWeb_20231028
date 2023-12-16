@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.File;
 import java.io.IOException;
 
 import jakarta.servlet.ServletException;
@@ -42,8 +43,19 @@ public class UploadProductServlet extends HttpServlet {
 		String fileName = getFileName(filePart);
 		resp.getWriter().println("檔案名稱: " + fileName);
 		
-		// 儲存檔案
-		filePart.write(fileName);
+		// 取得 MultipartConfig 設定資料
+		MultipartConfig config = getClass().getAnnotation(MultipartConfig.class);
+		// 基礎路徑
+		String location = config.location();
+		// 存放分類路徑
+		String dirPath = location + File.separator + productGroup;
+		File directory = new File(dirPath);
+		if(!directory.exists()) { // 若路徑不存在
+			directory.mkdirs(); // 建立路徑
+		}
+		// 存檔
+		filePart.write(dirPath + File.separator + fileName);
+		
 		resp.getWriter().println("<p>");
 		resp.getWriter().println("存檔完成");
 		
