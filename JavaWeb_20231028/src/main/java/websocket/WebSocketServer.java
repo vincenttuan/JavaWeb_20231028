@@ -23,7 +23,7 @@ public class WebSocketServer {
 		sessions.add(session);
 		System.out.println("目前連線數量: " + sessions.size());
 		// 進行廣播
-		broadcase("有新人加入~");
+		broadcase("大家好我加入了~", session.getId());
 	}
 	
 	@OnClose
@@ -32,14 +32,14 @@ public class WebSocketServer {
 		sessions.remove(session);
 		System.out.println("目前連線數量: " + sessions.size());
 		// 進行廣播
-		broadcase("有舊人離開~");
+		broadcase("bye bye 我離開~", session.getId());
 	}
 	
 	@OnMessage
 	public void onMessage(String message, Session session) {
 		System.out.printf("Client 發送訊息, message: %s 來自 session id: %s%n", message, session.getId());
 		// 進行廣播
-		broadcase(message);
+		broadcase(message, session.getId());
 	}
 	
 	@OnError
