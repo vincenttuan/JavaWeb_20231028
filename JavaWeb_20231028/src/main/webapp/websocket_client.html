@@ -15,9 +15,38 @@
 				var webSocket = null;
 				var isConnectionSuccess = false;
 				
-				onOpenBtn.addEventListener("click", function() {
+				// 設置 WebSocket
+				function setWebSocket() {
+					const wsurl = 'ws://localhost:8080/JavaWeb_20231028/websocket_server';
+					// 建立 WebSocket client
+					webSocket = new webSocket(url);
+					webSocket.onopen = function() {
+						onOpenBtn.disabled = true;
+						onCloseBtn.disabled = false;
+						onMessageBtn.disabled = false;
+					};
+					webSocket.onclose = function() {
+						onOpenBtn.disabled = false;
+						onCloseBtn.disabled = true;
+						onMessageBtn.disabled = true;
+					};
+					webSocket.onmessage = function(event) {
+						const msg = event.data; // 收到來自 websocket server 的訊息
+						messageDisplay.insertAdjacentHTML("afterbegin", msg);
+					};
+					webSocket.onerror = function(e) {
+						onOpenBtn.disabled = false;
+						onCloseBtn.disabled = true;
+						onMessageBtn.disabled = true;
+						console.log(e);
+					};
 					
+				}
+				
+				onOpenBtn.addEventListener("click", function() {
+						
 				});
+				
 				
 			}
 		</script>
