@@ -32,7 +32,7 @@
 					};
 					webSocket.onmessage = function(event) {
 						const msg = event.data; // 收到來自 websocket server 的訊息
-						messageDisplay.insertAdjacentHTML("afterbegin", msg);
+						messageDisplay.insertAdjacentHTML("afterbegin", msg + "<br>");
 					};
 					webSocket.onerror = function(e) {
 						onOpenBtn.disabled = false;
