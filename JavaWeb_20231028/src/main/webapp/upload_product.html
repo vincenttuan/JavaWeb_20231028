@@ -14,6 +14,7 @@
 			// 商品名稱 = 玫瑰油雞飯
 			// 商品價格 = 128
 			function displayNameAndPrice(input) {
+				const productGroupSelect = document.getElementById('productGroup');
 				const productNameInput = document.getElementById('productName');
 				const productPriceInput = document.getElementById('productPrice');
 				if(input.files.length > 0) {
@@ -32,8 +33,28 @@
 					const matches = fileName.match(/^(.*)\$([\d]+)\.jpg$/);
 					console.log(matches);
 					if(matches && matches.length >= 3) {
-						productNameInput.value = matches[1].trim();
-						productPriceInput.value = matches[2].trim();
+						const productName = matches[1].trim();
+						const productPrice = matches[2].trim();
+						productNameInput.value = productName;
+						productPriceInput.value = productPrice;
+						// 抓取名字最後一個字
+						const keyword = productName.substring(productName.length-1);
+						switch(keyword) {
+							case '飯':
+								productGroupSelect.selectedIndex = 0;
+								break;
+							case '麵':
+								productGroupSelect.selectedIndex = 1;
+								break;	
+							case '湯':
+								productGroupSelect.selectedIndex = 3;
+								break;
+							case '茶':
+								productGroupSelect.selectedIndex = 4;
+								break;
+							default:
+								productGroupSelect.selectedIndex = 2;
+						}
 					} else {
 						productNameInput.value = '';
 						productPriceInput.value = '';
