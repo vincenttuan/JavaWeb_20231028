@@ -46,6 +46,12 @@
 			}
 			
 			function displayImage(input) {
+				const imagePreview = document.getElementById('imagePreview');
+				imagePreview.innerHTML = ''; // 清空預覽圖片
+				if(input.files.length > 0) {
+					const file = input.files[0];
+					console.log(file);
+				}
 				
 			}
 			
