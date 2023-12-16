@@ -29,10 +29,12 @@ public class WebSocketServer {
 	@OnClose
 	public void Close(Session session) {
 		System.out.println("Client 已離線, session id: " + session.getId());
-		sessions.remove(session);
-		System.out.println("目前連線數量: " + sessions.size());
 		// 進行廣播
 		broadcase("bye bye 我離開了~", session.getId());
+		
+		sessions.remove(session);
+		System.out.println("目前連線數量: " + sessions.size());
+		
 	}
 	
 	@OnMessage

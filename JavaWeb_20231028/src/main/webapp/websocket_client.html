@@ -4,6 +4,23 @@
 		<meta charset="UTF-8">
 		<title>WebSocket Client</title>
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css">
+		<script>
+			window.onload = function() {
+				const onOpenBtn      = document.getElementById('onOpenBtn');
+				const onCloseBtn     = document.getElementById('onCloseBtn');
+				const messageInput   = document.getElementById('messageInput');
+				const onMessageBtn   = document.getElementById('onMessageBtn');
+				const messageDisplay = document.getElementById('messageDisplay');
+				
+				var webSocket = null;
+				var isConnectionSuccess = false;
+				
+				onOpenBtn.addEventListener("click", function() {
+					
+				});
+				
+			}
+		</script>
 	</head>
 	<body style="padding: 15px;">
 		<form class="pure-form">
@@ -11,7 +28,7 @@
 			<button type="button" id="onOpenBtn" class="pure-button pure-button-primary">onOpen 連線</button>
 			<button type="button" id="onCloseBtn" class="pure-button pure-button-primary">onClose 關閉</button>
 			<p />
-			<input type="text" id="message" placeholder="請輸入訊息">
+			<input type="text" id="messageInput" placeholder="請輸入訊息">
 			<button type="button" id="onMessageBtn" class="pure-button pure-button-primary">onMessage 傳送</button>
 			<p />
 		</form>
