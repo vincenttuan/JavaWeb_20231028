@@ -61,8 +61,8 @@ public class WebSocketServer {
 				 	"onlines": 3
 				 }
 				 * */
-				String json = "{\"msg\": \"%s\", \"onlines\": %d}";
-				s.getAsyncRemote().sendText(String.format(json, msg, onlines));
+				String jsonString = "{\"msg\": \"%s\", \"onlines\": %d}";
+				s.getAsyncRemote().sendText(String.format(jsonString, msg, onlines));
 			}
 		});
 	}
