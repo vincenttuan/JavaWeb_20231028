@@ -24,12 +24,15 @@ public class UploadProductServlet extends HttpServlet {
 		resp.setCharacterEncoding("UTF-8");
 		resp.setContentType("text/html;charset=UTF-8");
 		
+		String productGroup = req.getParameter("productGroup");
 		String productName = req.getParameter("productName");
 		String productPrice = req.getParameter("productPrice");
 		// 取得上傳文件
 		Part filePart = req.getPart("productFile");
 		
 		// 顯示相關資料
+		resp.getWriter().println("商品分類: " + productGroup);
+		resp.getWriter().println("<p>");
 		resp.getWriter().println("商品名稱: " + productName);
 		resp.getWriter().println("<p>");
 		resp.getWriter().println("商品價格: " + productPrice);
