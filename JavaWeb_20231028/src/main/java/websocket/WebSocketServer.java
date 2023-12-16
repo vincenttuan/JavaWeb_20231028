@@ -53,7 +53,16 @@ public class WebSocketServer {
 		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
 		sessions.forEach(s -> {  // s 指的就是 session
 			if(s.isOpen()) {
-				s.getAsyncRemote().sendText("ID: " + sessionId + " 發送: " + message + " 時間: " + sdf.format(new Date()));
+				String msg = "ID: " + sessionId + " 發送: " + message + " 時間: " + sdf.format(new Date());
+				int onlines = sessions.size();
+				/*
+				 {
+				 	"msg": "Test",
+				 	"onlines": 3
+				 }
+				 * */
+				String json = "{\"msg\": \"%s\", \"onlines\": %d}";
+				s.getAsyncRemote().sendText(String.format(json, msg, onlines));
 			}
 		});
 	}
