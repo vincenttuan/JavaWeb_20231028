@@ -19,7 +19,7 @@
 				function setWebSocket() {
 					const wsurl = 'ws://localhost:8080/JavaWeb_20231028/websocket_server';
 					// 建立 WebSocket client
-					webSocket = new webSocket(url);
+					webSocket = new webSocket(wsurl);
 					webSocket.onopen = function() {
 						onOpenBtn.disabled = true;
 						onCloseBtn.disabled = false;
