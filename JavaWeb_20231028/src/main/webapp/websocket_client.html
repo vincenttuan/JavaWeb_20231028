@@ -11,6 +11,7 @@
 				const messageInput   = document.getElementById('messageInput');
 				const onMessageBtn   = document.getElementById('onMessageBtn');
 				const messageDisplay = document.getElementById('messageDisplay');
+				const onlines        = document.getElementById('onlines');
 				
 				var webSocket = null;
 				var isConnectionSuccess = false;
@@ -31,8 +32,11 @@
 						onMessageBtn.disabled = true;
 					};
 					webSocket.onmessage = function(event) {
-						const msg = event.data; // 收到來自 websocket server 的訊息
-						messageDisplay.insertAdjacentHTML("afterbegin", msg + "<br>");
+						//const msg = event.data; // 收到來自 websocket server 的訊息
+						//messageDisplay.insertAdjacentHTML("afterbegin", msg + "<br>");
+						const jsonObj = JSON.parse(event.data);
+						messageDisplay.insertAdjacentHTML("afterbegin", jsonObj.msg + "<br>");
+						onlines.innerText = jsonObj.onlines;
 					};
 					webSocket.onerror = function(e) {
 						onOpenBtn.disabled = false;
