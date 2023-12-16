@@ -1,5 +1,7 @@
 package websocket;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import jakarta.websocket.OnClose;
@@ -47,9 +49,10 @@ public class WebSocketServer {
 	
 	// 廣播
 	private void broadcase(String message) {
+		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
 		sessions.forEach(s -> {  // s 指的就是 session
 			if(s.isOpen()) {
-				s.getAsyncRemote().sendText(message);
+				s.getAsyncRemote().sendText(message + " " + sdf.format(new Date()));
 			}
 		});
 	}
