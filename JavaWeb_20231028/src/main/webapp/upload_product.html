@@ -31,6 +31,13 @@
 					*/
 					const matches = fileName.match(/^(.*)\$([\d]+)\.jpg$/);
 					console.log(matches);
+					if(matches && matches.length >= 3) {
+						productNameInput.value = matches[1].trim();
+						productPriceInput.value = matches[2].trim();
+					} else {
+						productNameInput.value = '';
+						productPriceInput.value = '';
+					}
 					
 				} else {
 					productNameInput.value = '';
