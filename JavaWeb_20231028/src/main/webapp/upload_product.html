@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Upload Product</title>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css">
+	</head>
+	<body style="padding: 15px;">
+		<form method="post" action="./upload/product" enctype="multipart/form-data" class="pure-form">
+			<fieldset>
+				<legend>Upload Product</legend>
+				商品分類: <select id="productGroup" name="productGroup">
+							<option value="01-飯">01-飯</option>
+							<option value="02-麵">02-麵</option>
+							<option value="03-單點">03-單點</option>
+							<option value="04-湯品">04-湯品</option>
+							<option value="05-飲品">05-飲品</option>
+						</select>
+			</fieldset>
+			
+		</form>
+	</body>
+</html>
