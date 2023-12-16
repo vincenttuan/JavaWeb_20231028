@@ -59,19 +59,19 @@
 		</script>
 	</head>
 	<body style="padding: 15px;">
-		<form class="pure-form">
-			<legend>聊天室</legend>
+		<div class="pure-form">
+			<legend>聊天室 (在線人數: <span id="onlines"></span>)</legend>
 			<button type="button" id="onOpenBtn" class="pure-button pure-button-primary">onOpen 連線</button>
 			<button type="button" id="onCloseBtn" class="pure-button pure-button-primary" disabled>onClose 關閉</button>
 			<p />
 			<input type="text" id="messageInput" placeholder="請輸入訊息">
 			<button type="button" id="onMessageBtn" class="pure-button pure-button-primary" disabled>onMessage 傳送</button>
 			<p />
-		</form>
-		<form class="pure-form">
+		</div>
+		<div class="pure-form">
 			<legend>聊天歷史紀錄</legend>
 			<div id="messageDisplay"></div>
-		</form>	
+		</div>	
 		
 	</body>
 </html>
