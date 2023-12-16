@@ -35,10 +35,21 @@ public class UploadProductServlet extends HttpServlet {
 		resp.getWriter().println("商品價格: " + productPrice);
 		resp.getWriter().println("<p>");
 		resp.getWriter().println("圖片資訊: " + filePart.getHeader("content-disposition"));
-		resp.getWriter().println("檔案名稱: ");
+		String fileName = getFileName(filePart);
+		resp.getWriter().println("檔案名稱: " + fileName);
+		
 		// 儲存檔案
 		
 		
 	}
 	
+	private String getFileName(final Part part) {
+        final String partHeader = part.getHeader("content-disposition");
+        for (String content : partHeader.split(";")) {
+            if (content.trim().startsWith("filename")) {
+                return content.substring(content.indexOf('=') + 1).trim().replace("\"", "");
+            }
+        }
+        return null;
+    }
 }
